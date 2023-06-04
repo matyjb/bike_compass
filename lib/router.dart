@@ -1,3 +1,4 @@
+import 'package:bike_compass/presentation/screens/gmaps.dart';
 import 'package:bike_compass/presentation/screens/home/home.dart';
 import 'package:bike_compass/presentation/screens/settings/settings.dart';
 import 'package:flutter/material.dart';
@@ -5,6 +6,7 @@ import 'package:flutter/material.dart';
 class RouteNames {
   static const String home = "/";
   static const String settings = "/settings";
+  static const String test = "/test";
 }
 
 class AppRouter {
@@ -17,6 +19,10 @@ class AppRouter {
       case RouteNames.settings:
         return MaterialPageRoute(
           builder: (_) => const SettingsScreen(),
+        );
+      case RouteNames.test:
+        return MaterialPageRoute(
+          builder: (_) => const MapSample(),
         );
       default:
         return null;

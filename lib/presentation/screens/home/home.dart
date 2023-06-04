@@ -63,7 +63,13 @@ class HomeScreen extends StatelessWidget {
                   initial: (s) => const CircularProgressIndicator(),
                 );
               },
-            )
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed(RouteNames.test);
+              },
+              child: const Text("go to map"),
+            ),
           ],
         ),
       ),
