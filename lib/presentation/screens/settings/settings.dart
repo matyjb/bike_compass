@@ -1,4 +1,6 @@
+import 'package:bike_compass/logic/location_bloc/location_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -10,11 +12,16 @@ class SettingsScreen extends StatelessWidget {
         title: const Text("settings"),
       ),
       body: Center(
-        child: TextButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          child: const Text("go to home"),
+        child: Column(
+          children: [
+            TextButton(
+              onPressed: () {
+                BlocProvider.of<LocationBloc>(context)
+                    .add(const LocationEvent.start());
+              },
+              child: const Text("restart location"),
+            ),
+          ],
         ),
       ),
     );

@@ -1,5 +1,8 @@
 import 'package:bike_compass/logic/compass_bloc/compass_bloc.dart';
 import 'package:bike_compass/logic/location_bloc/location_bloc.dart';
+import 'package:bike_compass/presentation/screens/home/compass_arrow.dart';
+import 'package:bike_compass/presentation/screens/home/gmap.dart';
+import 'package:bike_compass/presentation/screens/widgets/inverted_circle_clipper.dart';
 import 'package:bike_compass/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,23 +15,38 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("home"),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).pushNamed(RouteNames.settings);
+            },
+            icon: const Icon(Icons.settings),
+          )
+        ],
       ),
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pushNamed(RouteNames.settings);
-              },
-              child: const Text("go to settings"),
-            ),
-            TextButton(
-              onPressed: () {
-                BlocProvider.of<LocationBloc>(context)
-                    .add(const LocationEvent.start());
-              },
-              child: const Text("restart location"),
+            Padding(
+              padding: const EdgeInsets.all(50.0),
+              child: AspectRatio(
+                aspectRatio: 1,
+                child: Stack(
+                  children: [
+                    const GMap(),
+                    IgnorePointer(
+                      child: ClipPath(
+                        clipper: InvertedCircleClipper(),
+                        child: Container(
+                          color: Theme.of(context).scaffoldBackgroundColor,
+                        ),
+                      ),
+                    ),
+                    const CompassArrow()
+                  ],
+                ),
+              ),
             ),
             BlocBuilder<LocationBloc, LocationState>(
               builder: (context, state) {
@@ -63,12 +81,6 @@ class HomeScreen extends StatelessWidget {
                   initial: (s) => const CircularProgressIndicator(),
                 );
               },
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pushNamed(RouteNames.test);
-              },
-              child: const Text("go to map"),
             ),
           ],
         ),
