@@ -1,5 +1,7 @@
+import 'package:bike_compass/logic/compass_bloc/compass_bloc.dart';
 import 'package:bike_compass/logic/location_bloc/location_bloc.dart';
 import 'package:bike_compass/router.dart';
+import 'package:bike_compass/theme_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,17 +17,20 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => LocationBloc()..add(const LocationEvent.start()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) => LocationBloc()..add(const LocationEvent.start()),
+        ),
+        BlocProvider(
+          create: (_) => CompassBloc()..add(const CompassEvent.start()),
+        ),
+      ],
       child: MaterialApp(
         title: appName,
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(
-            seedColor: Colors.deepPurple,
-            brightness: Brightness.dark,
-          ),
-          useMaterial3: true,
-        ),
+        theme: lightTheme,
+        darkTheme: darkTheme,
+        themeMode: ThemeMode.dark,
         onGenerateRoute: _appRouter.onGenerateRoute,
       ),
     );

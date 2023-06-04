@@ -16,7 +16,7 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
       final loc = Location();
 
       // this can cause screen flashing on bloc restart
-      emit(const _RequestingPermission());
+      emit(const LocationState.requestingPermission());
 
       bool serviceEnabled = await loc.serviceEnabled();
       if (!serviceEnabled) {
@@ -26,13 +26,13 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
         }
       }
 
-      PermissionStatus permissionGranted = await loc.hasPermission();
-      if (permissionGranted == PermissionStatus.denied) {
-        permissionGranted = await loc.requestPermission();
-        if (permissionGranted != PermissionStatus.granted) {
+      PermissionStatus permissionStatus = await loc.hasPermission();
+      if (permissionStatus == PermissionStatus.denied) {
+        permissionStatus = await loc.requestPermission();
+        if (permissionStatus != PermissionStatus.granted) {
           return emit(_Denied(
             hasService: serviceEnabled,
-            status: permissionGranted,
+            status: permissionStatus,
           ));
         }
       }
