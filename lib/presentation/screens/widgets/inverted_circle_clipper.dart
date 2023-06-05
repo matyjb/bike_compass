@@ -6,7 +6,7 @@ class InvertedCircleClipper extends CustomClipper<Path> {
     return Path()
       ..addOval(Rect.fromCircle(
           center: Offset(size.width / 2, size.height / 2),
-          radius: size.width * 0.45))
+          radius: size.width * 0.48))
       ..addRect(Rect.fromLTWH(0.0, 0.0, size.width, size.height))
       ..fillType = PathFillType.evenOdd;
   }

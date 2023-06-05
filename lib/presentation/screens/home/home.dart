@@ -1,8 +1,6 @@
 import 'package:bike_compass/logic/compass_bloc/compass_bloc.dart';
 import 'package:bike_compass/logic/location_bloc/location_bloc.dart';
-import 'package:bike_compass/presentation/screens/home/compass_arrow.dart';
-import 'package:bike_compass/presentation/screens/home/gmap.dart';
-import 'package:bike_compass/presentation/screens/widgets/inverted_circle_clipper.dart';
+import 'package:bike_compass/presentation/screens/home/compass.dart';
 import 'package:bike_compass/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -28,26 +26,7 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Padding(
-              padding: const EdgeInsets.all(50.0),
-              child: AspectRatio(
-                aspectRatio: 1,
-                child: Stack(
-                  children: [
-                    const GMap(),
-                    IgnorePointer(
-                      child: ClipPath(
-                        clipper: InvertedCircleClipper(),
-                        child: Container(
-                          color: Theme.of(context).scaffoldBackgroundColor,
-                        ),
-                      ),
-                    ),
-                    const CompassArrow()
-                  ],
-                ),
-              ),
-            ),
+            const Compass(),
             BlocBuilder<LocationBloc, LocationState>(
               builder: (context, state) {
                 return state.map(
