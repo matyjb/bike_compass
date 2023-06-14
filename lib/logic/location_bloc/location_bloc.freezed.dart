@@ -16,43 +16,42 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$LocationEvent {
+  LocationData? get data => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() start,
-    required TResult Function(LocationData data) newLocation,
+    required TResult Function(LocationData? data) locationChange,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? start,
-    TResult? Function(LocationData data)? newLocation,
+    TResult? Function(LocationData? data)? locationChange,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? start,
-    TResult Function(LocationData data)? newLocation,
+    TResult Function(LocationData? data)? locationChange,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Start value) start,
-    required TResult Function(_NewLocation value) newLocation,
+    required TResult Function(_LocationChange value) locationChange,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Start value)? start,
-    TResult? Function(_NewLocation value)? newLocation,
+    TResult? Function(_LocationChange value)? locationChange,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Start value)? start,
-    TResult Function(_NewLocation value)? newLocation,
+    TResult Function(_LocationChange value)? locationChange,
     required TResult orElse(),
   }) =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $LocationEventCopyWith<LocationEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -61,6 +60,8 @@ abstract class $LocationEventCopyWith<$Res> {
   factory $LocationEventCopyWith(
           LocationEvent value, $Res Function(LocationEvent) then) =
       _$LocationEventCopyWithImpl<$Res, LocationEvent>;
+  @useResult
+  $Res call({LocationData? data});
 }
 
 /// @nodoc
@@ -72,157 +73,72 @@ class _$LocationEventCopyWithImpl<$Res, $Val extends LocationEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = freezed,
+  }) {
+    return _then(_value.copyWith(
+      data: freezed == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as LocationData?,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$_StartCopyWith<$Res> {
-  factory _$$_StartCopyWith(_$_Start value, $Res Function(_$_Start) then) =
-      __$$_StartCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_StartCopyWithImpl<$Res>
-    extends _$LocationEventCopyWithImpl<$Res, _$_Start>
-    implements _$$_StartCopyWith<$Res> {
-  __$$_StartCopyWithImpl(_$_Start _value, $Res Function(_$_Start) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$_Start implements _Start {
-  const _$_Start();
-
+abstract class _$$_LocationChangeCopyWith<$Res>
+    implements $LocationEventCopyWith<$Res> {
+  factory _$$_LocationChangeCopyWith(
+          _$_LocationChange value, $Res Function(_$_LocationChange) then) =
+      __$$_LocationChangeCopyWithImpl<$Res>;
   @override
-  String toString() {
-    return 'LocationEvent.start()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Start);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() start,
-    required TResult Function(LocationData data) newLocation,
-  }) {
-    return start();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? start,
-    TResult? Function(LocationData data)? newLocation,
-  }) {
-    return start?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? start,
-    TResult Function(LocationData data)? newLocation,
-    required TResult orElse(),
-  }) {
-    if (start != null) {
-      return start();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Start value) start,
-    required TResult Function(_NewLocation value) newLocation,
-  }) {
-    return start(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Start value)? start,
-    TResult? Function(_NewLocation value)? newLocation,
-  }) {
-    return start?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Start value)? start,
-    TResult Function(_NewLocation value)? newLocation,
-    required TResult orElse(),
-  }) {
-    if (start != null) {
-      return start(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Start implements LocationEvent {
-  const factory _Start() = _$_Start;
-}
-
-/// @nodoc
-abstract class _$$_NewLocationCopyWith<$Res> {
-  factory _$$_NewLocationCopyWith(
-          _$_NewLocation value, $Res Function(_$_NewLocation) then) =
-      __$$_NewLocationCopyWithImpl<$Res>;
   @useResult
-  $Res call({LocationData data});
+  $Res call({LocationData? data});
 }
 
 /// @nodoc
-class __$$_NewLocationCopyWithImpl<$Res>
-    extends _$LocationEventCopyWithImpl<$Res, _$_NewLocation>
-    implements _$$_NewLocationCopyWith<$Res> {
-  __$$_NewLocationCopyWithImpl(
-      _$_NewLocation _value, $Res Function(_$_NewLocation) _then)
+class __$$_LocationChangeCopyWithImpl<$Res>
+    extends _$LocationEventCopyWithImpl<$Res, _$_LocationChange>
+    implements _$$_LocationChangeCopyWith<$Res> {
+  __$$_LocationChangeCopyWithImpl(
+      _$_LocationChange _value, $Res Function(_$_LocationChange) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? data = null,
+    Object? data = freezed,
   }) {
-    return _then(_$_NewLocation(
-      data: null == data
+    return _then(_$_LocationChange(
+      data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as LocationData,
+              as LocationData?,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_NewLocation implements _NewLocation {
-  const _$_NewLocation({required this.data});
+class _$_LocationChange implements _LocationChange {
+  const _$_LocationChange({this.data});
 
   @override
-  final LocationData data;
+  final LocationData? data;
 
   @override
   String toString() {
-    return 'LocationEvent.newLocation(data: $data)';
+    return 'LocationEvent.locationChange(data: $data)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_NewLocation &&
+            other is _$_LocationChange &&
             (identical(other.data, data) || other.data == data));
   }
 
@@ -232,36 +148,33 @@ class _$_NewLocation implements _NewLocation {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_NewLocationCopyWith<_$_NewLocation> get copyWith =>
-      __$$_NewLocationCopyWithImpl<_$_NewLocation>(this, _$identity);
+  _$$_LocationChangeCopyWith<_$_LocationChange> get copyWith =>
+      __$$_LocationChangeCopyWithImpl<_$_LocationChange>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() start,
-    required TResult Function(LocationData data) newLocation,
+    required TResult Function(LocationData? data) locationChange,
   }) {
-    return newLocation(data);
+    return locationChange(data);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? start,
-    TResult? Function(LocationData data)? newLocation,
+    TResult? Function(LocationData? data)? locationChange,
   }) {
-    return newLocation?.call(data);
+    return locationChange?.call(data);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? start,
-    TResult Function(LocationData data)? newLocation,
+    TResult Function(LocationData? data)? locationChange,
     required TResult orElse(),
   }) {
-    if (newLocation != null) {
-      return newLocation(data);
+    if (locationChange != null) {
+      return locationChange(data);
     }
     return orElse();
   }
@@ -269,42 +182,40 @@ class _$_NewLocation implements _NewLocation {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Start value) start,
-    required TResult Function(_NewLocation value) newLocation,
+    required TResult Function(_LocationChange value) locationChange,
   }) {
-    return newLocation(this);
+    return locationChange(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Start value)? start,
-    TResult? Function(_NewLocation value)? newLocation,
+    TResult? Function(_LocationChange value)? locationChange,
   }) {
-    return newLocation?.call(this);
+    return locationChange?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Start value)? start,
-    TResult Function(_NewLocation value)? newLocation,
+    TResult Function(_LocationChange value)? locationChange,
     required TResult orElse(),
   }) {
-    if (newLocation != null) {
-      return newLocation(this);
+    if (locationChange != null) {
+      return locationChange(this);
     }
     return orElse();
   }
 }
 
-abstract class _NewLocation implements LocationEvent {
-  const factory _NewLocation({required final LocationData data}) =
-      _$_NewLocation;
+abstract class _LocationChange implements LocationEvent {
+  const factory _LocationChange({final LocationData? data}) = _$_LocationChange;
 
-  LocationData get data;
+  @override
+  LocationData? get data;
+  @override
   @JsonKey(ignore: true)
-  _$$_NewLocationCopyWith<_$_NewLocation> get copyWith =>
+  _$$_LocationChangeCopyWith<_$_LocationChange> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -313,50 +224,44 @@ mixin _$LocationState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() requestingPermission,
-    required TResult Function(bool hasService, PermissionStatus? status) denied,
     required TResult Function(LocationData data) hasLocation,
+    required TResult Function() noLocation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? requestingPermission,
-    TResult? Function(bool hasService, PermissionStatus? status)? denied,
     TResult? Function(LocationData data)? hasLocation,
+    TResult? Function()? noLocation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? requestingPermission,
-    TResult Function(bool hasService, PermissionStatus? status)? denied,
     TResult Function(LocationData data)? hasLocation,
+    TResult Function()? noLocation,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_RequestingPermission value) requestingPermission,
-    required TResult Function(_Denied value) denied,
     required TResult Function(_HasLocation value) hasLocation,
+    required TResult Function(_NoLocation value) noLocation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_RequestingPermission value)? requestingPermission,
-    TResult? Function(_Denied value)? denied,
     TResult? Function(_HasLocation value)? hasLocation,
+    TResult? Function(_NoLocation value)? noLocation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_RequestingPermission value)? requestingPermission,
-    TResult Function(_Denied value)? denied,
     TResult Function(_HasLocation value)? hasLocation,
+    TResult Function(_NoLocation value)? noLocation,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -418,9 +323,8 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() requestingPermission,
-    required TResult Function(bool hasService, PermissionStatus? status) denied,
     required TResult Function(LocationData data) hasLocation,
+    required TResult Function() noLocation,
   }) {
     return initial();
   }
@@ -429,9 +333,8 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? requestingPermission,
-    TResult? Function(bool hasService, PermissionStatus? status)? denied,
     TResult? Function(LocationData data)? hasLocation,
+    TResult? Function()? noLocation,
   }) {
     return initial?.call();
   }
@@ -440,9 +343,8 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? requestingPermission,
-    TResult Function(bool hasService, PermissionStatus? status)? denied,
     TResult Function(LocationData data)? hasLocation,
+    TResult Function()? noLocation,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -455,9 +357,8 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_RequestingPermission value) requestingPermission,
-    required TResult Function(_Denied value) denied,
     required TResult Function(_HasLocation value) hasLocation,
+    required TResult Function(_NoLocation value) noLocation,
   }) {
     return initial(this);
   }
@@ -466,9 +367,8 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_RequestingPermission value)? requestingPermission,
-    TResult? Function(_Denied value)? denied,
     TResult? Function(_HasLocation value)? hasLocation,
+    TResult? Function(_NoLocation value)? noLocation,
   }) {
     return initial?.call(this);
   }
@@ -477,9 +377,8 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_RequestingPermission value)? requestingPermission,
-    TResult Function(_Denied value)? denied,
     TResult Function(_HasLocation value)? hasLocation,
+    TResult Function(_NoLocation value)? noLocation,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -491,275 +390,6 @@ class _$_Initial implements _Initial {
 
 abstract class _Initial implements LocationState {
   const factory _Initial() = _$_Initial;
-}
-
-/// @nodoc
-abstract class _$$_RequestingPermissionCopyWith<$Res> {
-  factory _$$_RequestingPermissionCopyWith(_$_RequestingPermission value,
-          $Res Function(_$_RequestingPermission) then) =
-      __$$_RequestingPermissionCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_RequestingPermissionCopyWithImpl<$Res>
-    extends _$LocationStateCopyWithImpl<$Res, _$_RequestingPermission>
-    implements _$$_RequestingPermissionCopyWith<$Res> {
-  __$$_RequestingPermissionCopyWithImpl(_$_RequestingPermission _value,
-      $Res Function(_$_RequestingPermission) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$_RequestingPermission implements _RequestingPermission {
-  const _$_RequestingPermission();
-
-  @override
-  String toString() {
-    return 'LocationState.requestingPermission()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_RequestingPermission);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() requestingPermission,
-    required TResult Function(bool hasService, PermissionStatus? status) denied,
-    required TResult Function(LocationData data) hasLocation,
-  }) {
-    return requestingPermission();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? requestingPermission,
-    TResult? Function(bool hasService, PermissionStatus? status)? denied,
-    TResult? Function(LocationData data)? hasLocation,
-  }) {
-    return requestingPermission?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? requestingPermission,
-    TResult Function(bool hasService, PermissionStatus? status)? denied,
-    TResult Function(LocationData data)? hasLocation,
-    required TResult orElse(),
-  }) {
-    if (requestingPermission != null) {
-      return requestingPermission();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_RequestingPermission value) requestingPermission,
-    required TResult Function(_Denied value) denied,
-    required TResult Function(_HasLocation value) hasLocation,
-  }) {
-    return requestingPermission(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_RequestingPermission value)? requestingPermission,
-    TResult? Function(_Denied value)? denied,
-    TResult? Function(_HasLocation value)? hasLocation,
-  }) {
-    return requestingPermission?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_RequestingPermission value)? requestingPermission,
-    TResult Function(_Denied value)? denied,
-    TResult Function(_HasLocation value)? hasLocation,
-    required TResult orElse(),
-  }) {
-    if (requestingPermission != null) {
-      return requestingPermission(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _RequestingPermission implements LocationState {
-  const factory _RequestingPermission() = _$_RequestingPermission;
-}
-
-/// @nodoc
-abstract class _$$_DeniedCopyWith<$Res> {
-  factory _$$_DeniedCopyWith(_$_Denied value, $Res Function(_$_Denied) then) =
-      __$$_DeniedCopyWithImpl<$Res>;
-  @useResult
-  $Res call({bool hasService, PermissionStatus? status});
-}
-
-/// @nodoc
-class __$$_DeniedCopyWithImpl<$Res>
-    extends _$LocationStateCopyWithImpl<$Res, _$_Denied>
-    implements _$$_DeniedCopyWith<$Res> {
-  __$$_DeniedCopyWithImpl(_$_Denied _value, $Res Function(_$_Denied) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? hasService = null,
-    Object? status = freezed,
-  }) {
-    return _then(_$_Denied(
-      hasService: null == hasService
-          ? _value.hasService
-          : hasService // ignore: cast_nullable_to_non_nullable
-              as bool,
-      status: freezed == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as PermissionStatus?,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_Denied implements _Denied {
-  const _$_Denied({required this.hasService, this.status});
-
-  @override
-  final bool hasService;
-  @override
-  final PermissionStatus? status;
-
-  @override
-  String toString() {
-    return 'LocationState.denied(hasService: $hasService, status: $status)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_Denied &&
-            (identical(other.hasService, hasService) ||
-                other.hasService == hasService) &&
-            (identical(other.status, status) || other.status == status));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, hasService, status);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_DeniedCopyWith<_$_Denied> get copyWith =>
-      __$$_DeniedCopyWithImpl<_$_Denied>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() requestingPermission,
-    required TResult Function(bool hasService, PermissionStatus? status) denied,
-    required TResult Function(LocationData data) hasLocation,
-  }) {
-    return denied(hasService, status);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? requestingPermission,
-    TResult? Function(bool hasService, PermissionStatus? status)? denied,
-    TResult? Function(LocationData data)? hasLocation,
-  }) {
-    return denied?.call(hasService, status);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? requestingPermission,
-    TResult Function(bool hasService, PermissionStatus? status)? denied,
-    TResult Function(LocationData data)? hasLocation,
-    required TResult orElse(),
-  }) {
-    if (denied != null) {
-      return denied(hasService, status);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_RequestingPermission value) requestingPermission,
-    required TResult Function(_Denied value) denied,
-    required TResult Function(_HasLocation value) hasLocation,
-  }) {
-    return denied(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_RequestingPermission value)? requestingPermission,
-    TResult? Function(_Denied value)? denied,
-    TResult? Function(_HasLocation value)? hasLocation,
-  }) {
-    return denied?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_RequestingPermission value)? requestingPermission,
-    TResult Function(_Denied value)? denied,
-    TResult Function(_HasLocation value)? hasLocation,
-    required TResult orElse(),
-  }) {
-    if (denied != null) {
-      return denied(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Denied implements LocationState {
-  const factory _Denied(
-      {required final bool hasService,
-      final PermissionStatus? status}) = _$_Denied;
-
-  bool get hasService;
-  PermissionStatus? get status;
-  @JsonKey(ignore: true)
-  _$$_DeniedCopyWith<_$_Denied> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -827,9 +457,8 @@ class _$_HasLocation implements _HasLocation {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() requestingPermission,
-    required TResult Function(bool hasService, PermissionStatus? status) denied,
     required TResult Function(LocationData data) hasLocation,
+    required TResult Function() noLocation,
   }) {
     return hasLocation(data);
   }
@@ -838,9 +467,8 @@ class _$_HasLocation implements _HasLocation {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? requestingPermission,
-    TResult? Function(bool hasService, PermissionStatus? status)? denied,
     TResult? Function(LocationData data)? hasLocation,
+    TResult? Function()? noLocation,
   }) {
     return hasLocation?.call(data);
   }
@@ -849,9 +477,8 @@ class _$_HasLocation implements _HasLocation {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? requestingPermission,
-    TResult Function(bool hasService, PermissionStatus? status)? denied,
     TResult Function(LocationData data)? hasLocation,
+    TResult Function()? noLocation,
     required TResult orElse(),
   }) {
     if (hasLocation != null) {
@@ -864,9 +491,8 @@ class _$_HasLocation implements _HasLocation {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_RequestingPermission value) requestingPermission,
-    required TResult Function(_Denied value) denied,
     required TResult Function(_HasLocation value) hasLocation,
+    required TResult Function(_NoLocation value) noLocation,
   }) {
     return hasLocation(this);
   }
@@ -875,9 +501,8 @@ class _$_HasLocation implements _HasLocation {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_RequestingPermission value)? requestingPermission,
-    TResult? Function(_Denied value)? denied,
     TResult? Function(_HasLocation value)? hasLocation,
+    TResult? Function(_NoLocation value)? noLocation,
   }) {
     return hasLocation?.call(this);
   }
@@ -886,9 +511,8 @@ class _$_HasLocation implements _HasLocation {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_RequestingPermission value)? requestingPermission,
-    TResult Function(_Denied value)? denied,
     TResult Function(_HasLocation value)? hasLocation,
+    TResult Function(_NoLocation value)? noLocation,
     required TResult orElse(),
   }) {
     if (hasLocation != null) {
@@ -906,4 +530,112 @@ abstract class _HasLocation implements LocationState {
   @JsonKey(ignore: true)
   _$$_HasLocationCopyWith<_$_HasLocation> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_NoLocationCopyWith<$Res> {
+  factory _$$_NoLocationCopyWith(
+          _$_NoLocation value, $Res Function(_$_NoLocation) then) =
+      __$$_NoLocationCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_NoLocationCopyWithImpl<$Res>
+    extends _$LocationStateCopyWithImpl<$Res, _$_NoLocation>
+    implements _$$_NoLocationCopyWith<$Res> {
+  __$$_NoLocationCopyWithImpl(
+      _$_NoLocation _value, $Res Function(_$_NoLocation) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_NoLocation implements _NoLocation {
+  const _$_NoLocation();
+
+  @override
+  String toString() {
+    return 'LocationState.noLocation()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_NoLocation);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(LocationData data) hasLocation,
+    required TResult Function() noLocation,
+  }) {
+    return noLocation();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function(LocationData data)? hasLocation,
+    TResult? Function()? noLocation,
+  }) {
+    return noLocation?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(LocationData data)? hasLocation,
+    TResult Function()? noLocation,
+    required TResult orElse(),
+  }) {
+    if (noLocation != null) {
+      return noLocation();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_HasLocation value) hasLocation,
+    required TResult Function(_NoLocation value) noLocation,
+  }) {
+    return noLocation(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_HasLocation value)? hasLocation,
+    TResult? Function(_NoLocation value)? noLocation,
+  }) {
+    return noLocation?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_HasLocation value)? hasLocation,
+    TResult Function(_NoLocation value)? noLocation,
+    required TResult orElse(),
+  }) {
+    if (noLocation != null) {
+      return noLocation(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _NoLocation implements LocationState {
+  const factory _NoLocation() = _$_NoLocation;
 }

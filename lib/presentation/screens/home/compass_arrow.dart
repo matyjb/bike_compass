@@ -28,6 +28,14 @@ class CompassPainter extends CustomPainter {
       strokeWidth / 2,
       Paint()..color = arrowColor ?? Colors.red,
     );
+    // canvas.translate(0, center.dy - arrowCenter.dy);
+    // canvas.rotate(pi / 2);
+    // canvas.drawDRRect(
+    //   outer,
+    //   inner,
+    //   Paint()..color = arrowColor ?? Colors.red,
+    // );
+    // canvas.restore();
   }
 
   @override
@@ -49,11 +57,11 @@ class CompassArrow extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<CompassBloc, CompassState>(
       buildWhen: (prev, curr) =>
-          curr.maybeMap(orElse: () => false, hasCompass: (_) => true),
+          curr.maybeMap(orElse: () => false, hasState: (_) => true),
       builder: (context, state) {
         final double angle = state.maybeMap(
           orElse: () => 0,
-          hasCompass: (s) => -(s.data.heading ?? 0) / 360,
+          hasState: (s) => -(s.data.heading ?? 0) / 360,
         );
         return IgnorePointer(
           child: AnimatedRotation(

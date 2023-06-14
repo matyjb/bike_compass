@@ -37,9 +37,7 @@ class HomeScreen extends StatelessWidget {
                       Text("heading: ${s.data.heading}"),
                     ],
                   ),
-                  denied: (s) => const Icon(Icons.not_interested),
-                  requestingPermission: (s) =>
-                      const CircularProgressIndicator(),
+                  noLocation: (s) => const Icon(Icons.not_interested),
                   initial: (s) => const CircularProgressIndicator(),
                 );
               },
@@ -48,15 +46,13 @@ class HomeScreen extends StatelessWidget {
             BlocBuilder<CompassBloc, CompassState>(
               builder: (context, state) {
                 return state.map(
-                  hasCompass: (s) => Column(
+                  hasState: (s) => Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text("heading: ${s.data.heading}"),
                     ],
                   ),
-                  denied: (s) => const Icon(Icons.not_interested),
-                  requestingPermission: (s) =>
-                      const CircularProgressIndicator(),
+                  noState: (s) => const Icon(Icons.not_interested),
                   initial: (s) => const CircularProgressIndicator(),
                 );
               },

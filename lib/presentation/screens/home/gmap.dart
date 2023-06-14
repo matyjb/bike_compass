@@ -46,9 +46,7 @@ class _GMapState extends State<GMap> {
         scrollGesturesEnabled: false,
         tiltGesturesEnabled: false,
         rotateGesturesEnabled: false,
-        onMapCreated: (GoogleMapController controller) {
-          _controller.complete(controller);
-        },
+        onMapCreated: _controller.complete,
       ),
     );
   }
