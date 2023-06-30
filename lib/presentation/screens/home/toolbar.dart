@@ -29,8 +29,8 @@ class Toolbar extends StatelessWidget {
                     : context.read<ToolbarCubit>().toggleExpandedMap,
                 icon: Icon(
                   expandedMap == true
-                      ? Icons.keyboard_arrow_down_rounded
-                      : Icons.keyboard_arrow_up_rounded,
+                      ? Icons.keyboard_arrow_up_rounded
+                      : Icons.keyboard_arrow_down_rounded,
                 ),
               ),
               IconButton(
@@ -39,8 +39,8 @@ class Toolbar extends StatelessWidget {
                     : context.read<ToolbarCubit>().toggleFollowMode,
                 icon: Icon(
                   followMode == true
-                      ? Icons.location_disabled_rounded
-                      : Icons.location_searching_rounded,
+                      ? Icons.location_searching_rounded
+                      : Icons.location_disabled_rounded,
                 ),
               ),
               Transform.scale(
