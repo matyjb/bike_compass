@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Toolbar extends StatelessWidget {
-  const Toolbar({super.key});
+  final Function() onTapAdd;
+  const Toolbar({super.key, required this.onTapAdd});
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +47,7 @@ class Toolbar extends StatelessWidget {
               Transform.scale(
                 scale: 2,
                 child: IconButton.filled(
-                  onPressed: () {},
+                  onPressed: onTapAdd,
                   icon: const Icon(Icons.add_rounded),
                 ),
               ),

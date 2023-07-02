@@ -7,7 +7,12 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class MapsWithCompass extends StatefulWidget {
   final bool followMode;
-  const MapsWithCompass({super.key, this.followMode = false});
+  final Function(GoogleMapController)? onMapCreated;
+  const MapsWithCompass({
+    super.key,
+    this.followMode = false,
+    this.onMapCreated,
+  });
 
   @override
   State<MapsWithCompass> createState() => _MapsWithCompassState();
@@ -50,7 +55,12 @@ class _MapsWithCompassState extends State<MapsWithCompass> {
           scrollGesturesEnabled: false,
           tiltGesturesEnabled: false,
           rotateGesturesEnabled: false,
-          onMapCreated: _controller.complete,
+          onMapCreated: (controller) {
+            _controller.complete(controller);
+            if (widget.onMapCreated != null) {
+              widget.onMapCreated!(controller);
+            }
+          },
         ),
       ),
     );
