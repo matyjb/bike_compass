@@ -18,60 +18,83 @@ class MapDestinationsBloc
 
     on<_CreateDestination>((event, emit) {
       if (state is _Loaded) {
-        var s = (state as _Loaded).copyWith();
-        s.destinations.add(MapDestination(
-          name: event.name,
-          location: event.location,
-        ));
+        final prevState = (state as _Loaded);
+        final newDestinations = List.of(prevState.destinations)
+          ..add(MapDestination(
+            name: event.name,
+            location: event.location,
+          ));
 
-        emit(s);
+        emit(prevState.copyWith(
+          destinations: newDestinations,
+        ));
       }
     });
     on<_DeleteDestination>((event, emit) {
       if (state is _Loaded) {
-        var s = (state as _Loaded).copyWith();
-        s.destinations.remove(event.destination);
-        for (var route in s.routes) {
-          route.route.removeWhere((d) => d == event.destination);
-        }
+        final prevState = (state as _Loaded);
+        final newDestinations = List.of(prevState.destinations)
+          ..remove(event.destination);
 
-        emit(s);
+        final newRoutes = List.of(prevState.routes)
+          ..forEach((route) =>
+              route.route.removeWhere((d) => d == event.destination));
+
+        emit(prevState.copyWith(
+          destinations: newDestinations,
+          routes: newRoutes,
+        ));
       }
     });
 
     on<_CreateRoute>((event, emit) {
       if (state is _Loaded) {
-        var s = (state as _Loaded).copyWith();
-        s.routes.add(MapRoute(name: event.name, route: []));
+        final prevState = (state as _Loaded);
+        final newRoutes = List.of(prevState.routes)
+          ..add(MapRoute(name: event.name, route: []));
 
-        emit(s);
+        emit(prevState.copyWith(
+          routes: newRoutes,
+        ));
       }
     });
     on<_DeleteRoute>((event, emit) {
       if (state is _Loaded) {
-        var s = (state as _Loaded).copyWith();
-        s.routes.remove(event.route);
+        final prevState = (state as _Loaded);
+        final newRoutes = List.of(prevState.routes)..remove(event.route);
 
-        emit(s);
+        emit(prevState.copyWith(
+          routes: newRoutes,
+        ));
       }
     });
 
     on<_AddToRoute>((event, emit) {
       if (state is _Loaded) {
-        var s = (state as _Loaded).copyWith();
+        final prevState = (state as _Loaded);
+
         event.route.route.add(event.destination);
-        
-        emit(s);
+        final newRoutes = List.of(prevState.routes);
+
+        emit(prevState.copyWith(
+          routes: newRoutes,
+        ));
       }
     });
     on<_CreateDestAndAddToRoute>((event, emit) {
       if (state is _Loaded) {
-        MapDestination d = MapDestination(name: event.name, location: event.location);
-        var s = (state as _Loaded).copyWith();
-        event.route.route.add(d);
-        s.destinations.add(d);
+        MapDestination d =
+            MapDestination(name: event.name, location: event.location);
+        final prevState = (state as _Loaded);
 
-        emit(s);
+        event.route.route.add(d);
+        final newRoutes = List.of(prevState.routes);
+        final newDestinations = List.of(prevState.destinations)..add(d);
+
+        emit(prevState.copyWith(
+          routes: newRoutes,
+          destinations: newDestinations,
+        ));
       }
     });
   }
