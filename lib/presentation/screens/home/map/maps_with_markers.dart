@@ -5,20 +5,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class MapsWithCompass extends StatefulWidget {
+class MapsWithMarkers extends StatefulWidget {
   final bool followMode;
   final Function(GoogleMapController)? onMapCreated;
-  const MapsWithCompass({
+  const MapsWithMarkers({
     super.key,
     this.followMode = false,
     this.onMapCreated,
   });
 
   @override
-  State<MapsWithCompass> createState() => _MapsWithCompassState();
+  State<MapsWithMarkers> createState() => _MapsWithMarkersState();
 }
 
-class _MapsWithCompassState extends State<MapsWithCompass> {
+class _MapsWithMarkersState extends State<MapsWithMarkers> {
   final Completer<GoogleMapController> _controller =
       Completer<GoogleMapController>();
 

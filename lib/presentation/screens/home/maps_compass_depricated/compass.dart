@@ -1,4 +1,4 @@
-import 'package:bike_compass/presentation/screens/home/gmap.dart';
+import 'package:bike_compass/presentation/screens/home/maps_compass_depricated/gmap.dart';
 import 'package:bike_compass/presentation/screens/widgets/inverted_circle_clipper.dart';
 import 'package:flutter/material.dart';
 

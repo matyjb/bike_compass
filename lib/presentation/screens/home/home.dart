@@ -2,10 +2,10 @@ import 'dart:async';
 
 import 'package:bike_compass/logic/map_destinations_bloc/map_destinations_bloc.dart';
 import 'package:bike_compass/logic/toolbar_cubit/toolbar_cubit.dart';
-import 'package:bike_compass/presentation/screens/home/get_name_dialog.dart';
-import 'package:bike_compass/presentation/screens/home/maps_with_compass.dart';
-import 'package:bike_compass/presentation/screens/home/route_destination_list_view.dart';
-import 'package:bike_compass/presentation/screens/home/toolbar.dart';
+import 'package:bike_compass/presentation/screens/home/toolbar/get_name_dialog.dart';
+import 'package:bike_compass/presentation/screens/home/map/maps_with_markers.dart';
+import 'package:bike_compass/presentation/screens/home/route_destinations_list/route_destination_list_view.dart';
+import 'package:bike_compass/presentation/screens/home/toolbar/toolbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -63,7 +63,7 @@ class _HomeScreenLayoutState extends State<HomeScreenLayout>
         children: [
           Flexible(
             flex: _animation.value,
-            child: MapsWithCompass(
+            child: MapsWithMarkers(
               followMode: true,
               onMapCreated: _controller.complete,
             ),
