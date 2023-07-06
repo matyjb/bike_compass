@@ -3,6 +3,7 @@ part of 'map_destinations_bloc.dart';
 @freezed
 class MapDestinationsEvent with _$MapDestinationsEvent {
   const factory MapDestinationsEvent.load() = _Load;
+  const factory MapDestinationsEvent.save() = _Save;
 
   const factory MapDestinationsEvent.createDestination(
     String name,

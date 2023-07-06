@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:bike_compass/logic/hive_boxes.dart';
 import 'package:bike_compass/models/destination.dart';
 import 'package:bike_compass/models/map_route.dart';
 import 'package:bloc/bloc.dart';
@@ -10,10 +13,51 @@ part 'map_destinations_bloc.freezed.dart';
 
 class MapDestinationsBloc
     extends Bloc<MapDestinationsEvent, MapDestinationsState> {
+  final box = HiveBoxes.i!.boxes[HiveBoxesNames.mapDestinations]!;
+
   MapDestinationsBloc() : super(const _Initial()) {
-    on<_Load>((event, emit) {
+    on<_Load>((event, emit) async {
       emit(const MapDestinationsState.loading());
-      emit(const MapDestinationsState.loaded(destinations: [], routes: []));
+
+      final destinationsJson =
+          jsonDecode(box.get("destinations", defaultValue: "[]"))
+              as List<dynamic>;
+      final destinations =
+          destinationsJson.map((e) => MapDestination.fromJson(e)).toList();
+
+      final routesJson =
+          jsonDecode(box.get("routes", defaultValue: "[]")) as List<dynamic>;
+
+      final routes = routesJson
+          .map(
+            (element) => MapRoute(
+              name: element["name"] as String,
+              route: (element["route"] as List<int>)
+                  .map((e) => destinations[e])
+                  .toList(),
+            ),
+          )
+          .toList();
+
+      emit(MapDestinationsState.loaded(
+        destinations: destinations,
+        routes: routes,
+      ));
+    });
+
+    on<_Save>((event, emit) async {
+      if (state is _Loaded) {
+        final s = state as _Loaded;
+        box.putAll({
+          "destinations": jsonEncode(s.destinations),
+          "routes": jsonEncode(s.routes.map((e) {
+            return {
+              "name": e.name,
+              "route": e.route.map(s.destinations.indexOf).toList()
+            };
+          }).toList()),
+        });
+      }
     });
 
     on<_CreateDestination>((event, emit) {
@@ -28,6 +72,7 @@ class MapDestinationsBloc
         emit(prevState.copyWith(
           destinations: newDestinations,
         ));
+        add(const _Save());
       }
     });
     on<_DeleteDestination>((event, emit) {
@@ -44,6 +89,7 @@ class MapDestinationsBloc
           destinations: newDestinations,
           routes: newRoutes,
         ));
+        add(const _Save());
       }
     });
 
@@ -56,6 +102,7 @@ class MapDestinationsBloc
         emit(prevState.copyWith(
           routes: newRoutes,
         ));
+        add(const _Save());
       }
     });
     on<_DeleteRoute>((event, emit) {
@@ -66,6 +113,7 @@ class MapDestinationsBloc
         emit(prevState.copyWith(
           routes: newRoutes,
         ));
+        add(const _Save());
       }
     });
 
@@ -79,6 +127,7 @@ class MapDestinationsBloc
         emit(prevState.copyWith(
           routes: newRoutes,
         ));
+        add(const _Save());
       }
     });
     on<_CreateDestAndAddToRoute>((event, emit) {
@@ -95,6 +144,7 @@ class MapDestinationsBloc
           routes: newRoutes,
           destinations: newDestinations,
         ));
+        add(const _Save());
       }
     });
   }

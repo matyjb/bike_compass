@@ -37,12 +37,14 @@ dependencies:
   flutter_compass: ^0.7.0
   freezed_annotation: ^2.2.0
   google_maps_flutter: ^2.2.8
+  hive: ^2.2.3
   json_annotation: ^4.8.1
   location:
     git:
       url: https://github.com/781flyingdutchman/flutterlocation.git
       ref: V4
       path: packages/location
+  path_provider: ^2.0.15
 
 dev_dependencies:
   flutter_lints: ^2.0.0
