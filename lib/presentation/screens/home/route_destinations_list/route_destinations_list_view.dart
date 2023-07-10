@@ -33,17 +33,18 @@ class RouteDestinationsListView extends StatelessWidget {
                   ],
                 ),
                 Text(
-                  "${route.route.length} points",
+                  "${route.destinations.length} points",
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
               ],
             ),
             Expanded(
               child: ListView.builder(
-                itemCount: route.route.length,
+                itemCount: route.destinations.length,
                 itemBuilder: (_, i) => RouteDestinationListTile(
                   id: i.toString(),
-                  name: route.route[i].name,
+                  // name: route.destinations[i].name,
+                  name: "test destination"
                 ),
               ),
             ),

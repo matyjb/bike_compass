@@ -14,11 +14,16 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+MapRoute _$MapRouteFromJson(Map<String, dynamic> json) {
+  return _MapRoute.fromJson(json);
+}
+
 /// @nodoc
 mixin _$MapRoute {
   String get name => throw _privateConstructorUsedError;
-  List<MapDestination> get route => throw _privateConstructorUsedError;
+  List<int> get destinations => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $MapRouteCopyWith<MapRoute> get copyWith =>
       throw _privateConstructorUsedError;
@@ -29,7 +34,7 @@ abstract class $MapRouteCopyWith<$Res> {
   factory $MapRouteCopyWith(MapRoute value, $Res Function(MapRoute) then) =
       _$MapRouteCopyWithImpl<$Res, MapRoute>;
   @useResult
-  $Res call({String name, List<MapDestination> route});
+  $Res call({String name, List<int> destinations});
 }
 
 /// @nodoc
@@ -46,17 +51,17 @@ class _$MapRouteCopyWithImpl<$Res, $Val extends MapRoute>
   @override
   $Res call({
     Object? name = null,
-    Object? route = null,
+    Object? destinations = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      route: null == route
-          ? _value.route
-          : route // ignore: cast_nullable_to_non_nullable
-              as List<MapDestination>,
+      destinations: null == destinations
+          ? _value.destinations
+          : destinations // ignore: cast_nullable_to_non_nullable
+              as List<int>,
     ) as $Val);
   }
 }
@@ -68,7 +73,7 @@ abstract class _$$_MapRouteCopyWith<$Res> implements $MapRouteCopyWith<$Res> {
       __$$_MapRouteCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, List<MapDestination> route});
+  $Res call({String name, List<int> destinations});
 }
 
 /// @nodoc
@@ -83,41 +88,43 @@ class __$$_MapRouteCopyWithImpl<$Res>
   @override
   $Res call({
     Object? name = null,
-    Object? route = null,
+    Object? destinations = null,
   }) {
     return _then(_$_MapRoute(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      route: null == route
-          ? _value._route
-          : route // ignore: cast_nullable_to_non_nullable
-              as List<MapDestination>,
+      destinations: null == destinations
+          ? _value._destinations
+          : destinations // ignore: cast_nullable_to_non_nullable
+              as List<int>,
     ));
   }
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_MapRoute implements _MapRoute {
-  const _$_MapRoute(
-      {required this.name, required final List<MapDestination> route})
-      : _route = route;
+  const _$_MapRoute({required this.name, required final List<int> destinations})
+      : _destinations = destinations;
+
+  factory _$_MapRoute.fromJson(Map<String, dynamic> json) =>
+      _$$_MapRouteFromJson(json);
 
   @override
   final String name;
-  final List<MapDestination> _route;
+  final List<int> _destinations;
   @override
-  List<MapDestination> get route {
-    if (_route is EqualUnmodifiableListView) return _route;
+  List<int> get destinations {
+    if (_destinations is EqualUnmodifiableListView) return _destinations;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_route);
+    return EqualUnmodifiableListView(_destinations);
   }
 
   @override
   String toString() {
-    return 'MapRoute(name: $name, route: $route)';
+    return 'MapRoute(name: $name, destinations: $destinations)';
   }
 
   @override
@@ -126,29 +133,40 @@ class _$_MapRoute implements _MapRoute {
         (other.runtimeType == runtimeType &&
             other is _$_MapRoute &&
             (identical(other.name, name) || other.name == name) &&
-            const DeepCollectionEquality().equals(other._route, _route));
+            const DeepCollectionEquality()
+                .equals(other._destinations, _destinations));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, name, const DeepCollectionEquality().hash(_route));
+      runtimeType, name, const DeepCollectionEquality().hash(_destinations));
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$_MapRouteCopyWith<_$_MapRoute> get copyWith =>
       __$$_MapRouteCopyWithImpl<_$_MapRoute>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_MapRouteToJson(
+      this,
+    );
+  }
 }
 
 abstract class _MapRoute implements MapRoute {
   const factory _MapRoute(
       {required final String name,
-      required final List<MapDestination> route}) = _$_MapRoute;
+      required final List<int> destinations}) = _$_MapRoute;
+
+  factory _MapRoute.fromJson(Map<String, dynamic> json) = _$_MapRoute.fromJson;
 
   @override
   String get name;
   @override
-  List<MapDestination> get route;
+  List<int> get destinations;
   @override
   @JsonKey(ignore: true)
   _$$_MapRouteCopyWith<_$_MapRoute> get copyWith =>

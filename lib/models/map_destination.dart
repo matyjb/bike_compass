@@ -3,8 +3,8 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import 'lat_lng_json_converter.dart';
 
-part 'destination.freezed.dart';
-part 'destination.g.dart';
+part 'map_destination.freezed.dart';
+part 'map_destination.g.dart';
 
 @freezed
 class MapDestination with _$MapDestination  {

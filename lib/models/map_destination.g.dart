@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'destination.dart';
+part of 'map_destination.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator

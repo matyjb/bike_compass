@@ -1,11 +1,11 @@
 import 'dart:convert';
 
+import 'package:bike_compass/helpers.dart';
 import 'package:bike_compass/logic/hive_boxes.dart';
-import 'package:bike_compass/models/destination.dart';
+import 'package:bike_compass/models/map_destination.dart';
 import 'package:bike_compass/models/map_route.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 part 'map_destinations_event.dart';
 part 'map_destinations_state.dart';
@@ -18,92 +18,107 @@ class MapDestinationsBloc
   MapDestinationsBloc() : super(const _Initial()) {
     on<_Load>((event, emit) async {
       emit(const MapDestinationsState.loading());
+      try {
+        final destinationsJson =
+            jsonDecode(box.get("destinations", defaultValue: "{}")) as Map;
+        final destinations = destinationsJson.map((k, v) =>
+            MapEntry<int, MapDestination>(
+                int.parse(k), MapDestination.fromJson(v)));
 
-      final destinationsJson =
-          jsonDecode(box.get("destinations", defaultValue: "[]")) as List;
-      final destinations =
-          destinationsJson.map((e) => MapDestination.fromJson(e)).toList();
+        final routesJson =
+            jsonDecode(box.get("routes", defaultValue: "{}")) as Map;
+        final routes = routesJson.map((k, v) =>
+            MapEntry<int, MapRoute>(int.parse(k), MapRoute.fromJson(v)));
 
-      final routesJson =
-          jsonDecode(box.get("routes", defaultValue: "[]")) as List;
-      final routes = routesJson
-          .map(
-            (element) => MapRoute(
-              name: element["name"] as String,
-              route: (element["route"] as List)
-                  .map((e) => destinations[e])
-                  .toList(),
-            ),
-          )
-          .toList();
-
-      emit(MapDestinationsState.loaded(
-        destinations: destinations,
-        routes: routes,
-      ));
+        emit(MapDestinationsState.loaded(
+          destinations: destinations,
+          routes: routes,
+        ));
+      } catch (e) {
+        emit(const MapDestinationsState.loaded(
+          destinations: {},
+          routes: {},
+        ));
+      }
     });
-
     on<_Save>((event, emit) async {
       if (state is _Loaded) {
         final s = state as _Loaded;
         box.putAll({
-          "destinations": jsonEncode(s.destinations),
-          "routes": jsonEncode(s.routes.map((e) {
-            return {
-              "name": e.name,
-              "route": e.route.map(s.destinations.indexOf).toList()
-            };
-          }).toList()),
+          "destinations": jsonEncode(s.destinations
+              .map((key, value) => MapEntry(key.toString(), value))),
+          "routes": jsonEncode(
+              s.routes.map((key, value) => MapEntry(key.toString(), value))),
         });
       }
     });
 
-    on<_CreateDestination>((event, emit) {
+    on<_AddDestination>((event, emit) {
       if (state is _Loaded) {
         final prevState = (state as _Loaded);
-        if (prevState.selectedRoute == null) {
-          final newDestinations = List.of(prevState.destinations)
-            ..add(MapDestination(
-              name: event.name,
-              location: event.location,
-            ));
+        final newDestinations = Map.of(prevState.destinations)
+          ..putIfAbsent(
+              getNewKey(prevState.destinations), () => event.destination);
 
-          emit(prevState.copyWith(
-            destinations: newDestinations,
-          ));
-          add(const _Save());
-        } else {
-          add(MapDestinationsEvent.createDestAndAddToRoute(
-            event.name,
-            event.location,
-            prevState.selectedRoute!,
-          ));
-        }
+        emit(prevState.copyWith(
+          destinations: newDestinations,
+        ));
+        add(const _Save());
+      }
+    });
+    on<_EditDestination>((event, emit) {
+      if (state is _Loaded) {
+        final prevState = (state as _Loaded);
+        final newDestinations = Map.of(prevState.destinations);
+        newDestinations[event.destinationId] = event.editedDestination;
+
+        emit(prevState.copyWith(
+          destinations: newDestinations,
+        ));
+        add(const _Save());
       }
     });
     on<_DeleteDestination>((event, emit) {
       if (state is _Loaded) {
         final prevState = (state as _Loaded);
-        final newDestinations = List.of(prevState.destinations)
-          ..remove(event.destination);
+        final newDestinations = Map.of(prevState.destinations)
+          ..remove(event.destinationId);
 
-        final newRoutes = List.of(prevState.routes)
-          ..forEach((route) =>
-              route.route.removeWhere((d) => d == event.destination));
+        // todo: replace with remove destination from route event
+        prevState.routes.forEach((key, route) => add(
+              MapDestinationsEvent.editRoute(
+                key,
+                route.copyWith(
+                  destinations: List.of(route.destinations)
+                    ..remove(event.destinationId),
+                ),
+              ),
+            ));
 
         emit(prevState.copyWith(
           destinations: newDestinations,
-          routes: newRoutes,
         ));
         add(const _Save());
       }
     });
 
-    on<_CreateRoute>((event, emit) {
+    on<_AddRoute>((event, emit) {
       if (state is _Loaded) {
         final prevState = (state as _Loaded);
-        final newRoutes = List.of(prevState.routes)
-          ..add(MapRoute(name: event.name, route: []));
+        final newRoutes = Map.of(prevState.routes)
+          ..putIfAbsent(getNewKey(prevState.routes), () => event.route);
+
+        emit(prevState.copyWith(
+          routes: newRoutes,
+        ));
+        add(const _Save());
+      }
+    });
+    on<_EditRoute>((event, emit) {
+      if (state is _Loaded) {
+        final prevState = (state as _Loaded);
+        final newRoutes = Map.of(prevState.routes);
+        newRoutes[event.routeId] = event.editedRoute;
 
         emit(prevState.copyWith(
           routes: newRoutes,
@@ -114,10 +129,13 @@ class MapDestinationsBloc
     on<_DeleteRoute>((event, emit) {
       if (state is _Loaded) {
         final prevState = (state as _Loaded);
-        final newRoutes = List.of(prevState.routes)..remove(event.route);
+        final newRoutes = Map.of(prevState.routes)..remove(event.routeId);
 
         emit(prevState.copyWith(
           routes: newRoutes,
+          selectedRouteId: event.routeId == prevState.selectedRouteId
+              ? null
+              : prevState.selectedRouteId,
         ));
         add(const _Save());
       }
@@ -127,7 +145,7 @@ class MapDestinationsBloc
         final prevState = (state as _Loaded);
 
         emit(prevState.copyWith(
-          selectedRoute: event.route,
+          selectedRouteId: event.routeId,
         ));
       }
     });
@@ -135,45 +153,51 @@ class MapDestinationsBloc
     on<_AddToRoute>((event, emit) {
       if (state is _Loaded) {
         final prevState = (state as _Loaded);
+        final prevRoute = prevState.routes[event.routeId]!;
+        final prevRouteNewDestinations = List.of(prevRoute.destinations)
+          ..add(event.destinatinId);
 
-        final updatedRoute = event.route.copyWith(
-            route: List.of(event.route.route)..add(event.destination));
-        // TODO: Fix order of routes after remove and add (should create replace function)
-        final newRoutes = List.of(prevState.routes)
-          ..remove(event.route)
-          ..add(updatedRoute);
-
-        emit(prevState.copyWith(
-          routes: newRoutes,
-          selectedRoute: prevState.selectedRoute == event.route
-              ? updatedRoute
-              : prevState.selectedRoute,
+        add(_EditRoute(
+          event.routeId,
+          prevRoute.copyWith(
+            destinations: prevRouteNewDestinations,
+          ),
         ));
-        add(const _Save());
       }
     });
-    on<_CreateDestAndAddToRoute>((event, emit) {
+    on<_AddDestAndAddToRoute>((event, emit) {
       if (state is _Loaded) {
         final prevState = (state as _Loaded);
-        MapDestination d =
-            MapDestination(name: event.name, location: event.location);
+        add(_AddDestination(event.newDestination));
+        add(_AddToRoute(getNewKey(prevState.destinations), event.routeId));
+      }
+    });
+    on<_RemoveFromRoute>((event, emit) {
+      if (state is _Loaded) {
+        final prevState = (state as _Loaded);
+        final prevRoute = prevState.routes[event.routeId]!;
+        final prevRouteNewDestinations = List.of(prevRoute.destinations)
+          ..remove(event.destinatinId);
 
-        final updatedRoute =
-            event.route.copyWith(route: List.of(event.route.route)..add(d));
-        // TODO: Fix order of routes after remove and add (should create replace function)
-        final newRoutes = List.of(prevState.routes)
-          ..remove(event.route)
-          ..add(updatedRoute);
-        final newDestinations = List.of(prevState.destinations)..add(d);
-
-        emit(prevState.copyWith(
-          routes: newRoutes,
-          destinations: newDestinations,
-          selectedRoute: prevState.selectedRoute == event.route
-              ? updatedRoute
-              : prevState.selectedRoute,
+        add(_EditRoute(
+          event.routeId,
+          prevRoute.copyWith(
+            destinations: prevRouteNewDestinations,
+          ),
         ));
-        add(const _Save());
+      }
+    });
+    on<_OnDestinationAdd>((event, emit) {
+      if (state is _Loaded) {
+        final prevState = (state as _Loaded);
+        if (prevState.selectedRouteId != null) {
+          add(_AddDestAndAddToRoute(
+            event.newDestination,
+            prevState.selectedRouteId!,
+          ));
+        } else {
+          add(_AddDestination(event.newDestination));
+        }
       }
     });
   }
