@@ -4,31 +4,58 @@ import 'package:flutter/material.dart';
 
 class RouteDestinationsListView extends StatelessWidget {
   final MapRoute route;
-  const RouteDestinationsListView({super.key, required this.route});
+  final Function() onBackButton;
+  const RouteDestinationsListView({
+    super.key,
+    required this.route,
+    required this.onBackButton,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Stack(
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        Column(
           children: [
-            Text(
-              route.name,
-              style: Theme.of(context).textTheme.bodySmall,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    Text(
+                      ">>> ",
+                      style: Theme.of(context).textTheme.titleSmall,
+                    ),
+                    Text(
+                      route.name,
+                      style: Theme.of(context).textTheme.bodySmall,
+                    ),
+                  ],
+                ),
+                Text(
+                  "${route.route.length} points",
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
+              ],
             ),
-            Text(
-              "${route.route.length} points",
-              style: Theme.of(context).textTheme.bodySmall,
+            Expanded(
+              child: ListView.builder(
+                itemCount: route.route.length,
+                itemBuilder: (_, i) => RouteDestinationListTile(
+                  id: i.toString(),
+                  name: route.route[i].name,
+                ),
+              ),
             ),
           ],
         ),
-        Expanded(
-          child: ListView.builder(
-            itemCount: route.route.length,
-            itemBuilder: (_, i) => RouteDestinationListTile(
-              id: i.toString(),
-              name: route.route[i].name,
+        Align(
+          alignment: Alignment.bottomRight,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: FloatingActionButton.small(
+              onPressed: onBackButton,
+              child: const Icon(Icons.arrow_back_rounded),
             ),
           ),
         ),

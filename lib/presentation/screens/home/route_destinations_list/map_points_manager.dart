@@ -18,7 +18,27 @@ class MapPointsManager extends StatelessWidget {
                 if (state.selectedRoute == null) {
                   return RoutesListView(routes: state.routes);
                 } else {
-                  return RouteDestinationsListView(route: state.selectedRoute!);
+                  return WillPopScope(
+                    onWillPop: () async {
+                      final bloc = context.read<MapDestinationsBloc>();
+                      bool hasSelected = bloc.state.mapOrNull(
+                            loaded: (s) =>
+                                s.selectedRoute != null ? true : false,
+                          ) ??
+                          false;
+                      if (hasSelected) {
+                        bloc.add(const MapDestinationsEvent.selectRoute(null));
+                      }
+                      return !hasSelected;
+                    },
+                    child: RouteDestinationsListView(
+                      route: state.selectedRoute!,
+                      onBackButton: () {
+                        final bloc = context.read<MapDestinationsBloc>();
+                        bloc.add(const MapDestinationsEvent.selectRoute(null));
+                      },
+                    ),
+                  );
                 }
               },
             ) ??

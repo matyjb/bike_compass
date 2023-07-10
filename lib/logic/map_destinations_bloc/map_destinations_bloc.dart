@@ -136,12 +136,18 @@ class MapDestinationsBloc
       if (state is _Loaded) {
         final prevState = (state as _Loaded);
 
-        final updatedRoute = event.route.copyWith(route: List.of(event.route.route)..add(event.destination));
+        final updatedRoute = event.route.copyWith(
+            route: List.of(event.route.route)..add(event.destination));
         // TODO: Fix order of routes after remove and add (should create replace function)
-        final newRoutes = List.of(prevState.routes)..remove(event.route)..add(updatedRoute);
+        final newRoutes = List.of(prevState.routes)
+          ..remove(event.route)
+          ..add(updatedRoute);
 
         emit(prevState.copyWith(
           routes: newRoutes,
+          selectedRoute: prevState.selectedRoute == event.route
+              ? updatedRoute
+              : prevState.selectedRoute,
         ));
         add(const _Save());
       }
@@ -152,15 +158,20 @@ class MapDestinationsBloc
         MapDestination d =
             MapDestination(name: event.name, location: event.location);
 
-        final updatedRoute = event.route.copyWith(route: List.of(event.route.route)..add(d));
+        final updatedRoute =
+            event.route.copyWith(route: List.of(event.route.route)..add(d));
         // TODO: Fix order of routes after remove and add (should create replace function)
-        final newRoutes = List.of(prevState.routes)..remove(event.route)..add(updatedRoute);
+        final newRoutes = List.of(prevState.routes)
+          ..remove(event.route)
+          ..add(updatedRoute);
         final newDestinations = List.of(prevState.destinations)..add(d);
 
         emit(prevState.copyWith(
           routes: newRoutes,
           destinations: newDestinations,
-          selectedRoute: prevState.selectedRoute == event.route ? updatedRoute : prevState.selectedRoute
+          selectedRoute: prevState.selectedRoute == event.route
+              ? updatedRoute
+              : prevState.selectedRoute,
         ));
         add(const _Save());
       }
