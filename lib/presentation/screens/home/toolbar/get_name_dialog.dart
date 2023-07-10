@@ -5,6 +5,16 @@ class GetNameDialog extends StatelessWidget {
   final TextEditingController _controller = TextEditingController();
   GetNameDialog({super.key, required this.onSubmitted});
 
+  static showStandardDialog(BuildContext context) {
+    return showDialog<String>(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => GetNameDialog(
+        onSubmitted: (name) => Navigator.pop(context, name),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Dialog(

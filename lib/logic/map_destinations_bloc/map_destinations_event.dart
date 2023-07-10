@@ -19,6 +19,9 @@ class MapDestinationsEvent with _$MapDestinationsEvent {
   const factory MapDestinationsEvent.deleteRoute(
     MapRoute route,
   ) = _DeleteRoute;
+  const factory MapDestinationsEvent.selectRoute(
+    MapRoute? route,
+  ) = _SelectRoute;
 
   const factory MapDestinationsEvent.addToRoute(
     MapDestination destination,

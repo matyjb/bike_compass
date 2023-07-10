@@ -24,6 +24,7 @@ mixin _$MapDestinationsEvent {
     required TResult Function(MapDestination destination) deleteDestination,
     required TResult Function(String name) createRoute,
     required TResult Function(MapRoute route) deleteRoute,
+    required TResult Function(MapRoute? route) selectRoute,
     required TResult Function(MapDestination destination, MapRoute route)
         addToRoute,
     required TResult Function(String name, LatLng location, MapRoute route)
@@ -38,6 +39,7 @@ mixin _$MapDestinationsEvent {
     TResult? Function(MapDestination destination)? deleteDestination,
     TResult? Function(String name)? createRoute,
     TResult? Function(MapRoute route)? deleteRoute,
+    TResult? Function(MapRoute? route)? selectRoute,
     TResult? Function(MapDestination destination, MapRoute route)? addToRoute,
     TResult? Function(String name, LatLng location, MapRoute route)?
         createDestAndAddToRoute,
@@ -51,6 +53,7 @@ mixin _$MapDestinationsEvent {
     TResult Function(MapDestination destination)? deleteDestination,
     TResult Function(String name)? createRoute,
     TResult Function(MapRoute route)? deleteRoute,
+    TResult Function(MapRoute? route)? selectRoute,
     TResult Function(MapDestination destination, MapRoute route)? addToRoute,
     TResult Function(String name, LatLng location, MapRoute route)?
         createDestAndAddToRoute,
@@ -65,6 +68,7 @@ mixin _$MapDestinationsEvent {
     required TResult Function(_DeleteDestination value) deleteDestination,
     required TResult Function(_CreateRoute value) createRoute,
     required TResult Function(_DeleteRoute value) deleteRoute,
+    required TResult Function(_SelectRoute value) selectRoute,
     required TResult Function(_AddToRoute value) addToRoute,
     required TResult Function(_CreateDestAndAddToRoute value)
         createDestAndAddToRoute,
@@ -78,6 +82,7 @@ mixin _$MapDestinationsEvent {
     TResult? Function(_DeleteDestination value)? deleteDestination,
     TResult? Function(_CreateRoute value)? createRoute,
     TResult? Function(_DeleteRoute value)? deleteRoute,
+    TResult? Function(_SelectRoute value)? selectRoute,
     TResult? Function(_AddToRoute value)? addToRoute,
     TResult? Function(_CreateDestAndAddToRoute value)? createDestAndAddToRoute,
   }) =>
@@ -90,6 +95,7 @@ mixin _$MapDestinationsEvent {
     TResult Function(_DeleteDestination value)? deleteDestination,
     TResult Function(_CreateRoute value)? createRoute,
     TResult Function(_DeleteRoute value)? deleteRoute,
+    TResult Function(_SelectRoute value)? selectRoute,
     TResult Function(_AddToRoute value)? addToRoute,
     TResult Function(_CreateDestAndAddToRoute value)? createDestAndAddToRoute,
     required TResult orElse(),
@@ -158,6 +164,7 @@ class _$_Load implements _Load {
     required TResult Function(MapDestination destination) deleteDestination,
     required TResult Function(String name) createRoute,
     required TResult Function(MapRoute route) deleteRoute,
+    required TResult Function(MapRoute? route) selectRoute,
     required TResult Function(MapDestination destination, MapRoute route)
         addToRoute,
     required TResult Function(String name, LatLng location, MapRoute route)
@@ -175,6 +182,7 @@ class _$_Load implements _Load {
     TResult? Function(MapDestination destination)? deleteDestination,
     TResult? Function(String name)? createRoute,
     TResult? Function(MapRoute route)? deleteRoute,
+    TResult? Function(MapRoute? route)? selectRoute,
     TResult? Function(MapDestination destination, MapRoute route)? addToRoute,
     TResult? Function(String name, LatLng location, MapRoute route)?
         createDestAndAddToRoute,
@@ -191,6 +199,7 @@ class _$_Load implements _Load {
     TResult Function(MapDestination destination)? deleteDestination,
     TResult Function(String name)? createRoute,
     TResult Function(MapRoute route)? deleteRoute,
+    TResult Function(MapRoute? route)? selectRoute,
     TResult Function(MapDestination destination, MapRoute route)? addToRoute,
     TResult Function(String name, LatLng location, MapRoute route)?
         createDestAndAddToRoute,
@@ -211,6 +220,7 @@ class _$_Load implements _Load {
     required TResult Function(_DeleteDestination value) deleteDestination,
     required TResult Function(_CreateRoute value) createRoute,
     required TResult Function(_DeleteRoute value) deleteRoute,
+    required TResult Function(_SelectRoute value) selectRoute,
     required TResult Function(_AddToRoute value) addToRoute,
     required TResult Function(_CreateDestAndAddToRoute value)
         createDestAndAddToRoute,
@@ -227,6 +237,7 @@ class _$_Load implements _Load {
     TResult? Function(_DeleteDestination value)? deleteDestination,
     TResult? Function(_CreateRoute value)? createRoute,
     TResult? Function(_DeleteRoute value)? deleteRoute,
+    TResult? Function(_SelectRoute value)? selectRoute,
     TResult? Function(_AddToRoute value)? addToRoute,
     TResult? Function(_CreateDestAndAddToRoute value)? createDestAndAddToRoute,
   }) {
@@ -242,6 +253,7 @@ class _$_Load implements _Load {
     TResult Function(_DeleteDestination value)? deleteDestination,
     TResult Function(_CreateRoute value)? createRoute,
     TResult Function(_DeleteRoute value)? deleteRoute,
+    TResult Function(_SelectRoute value)? selectRoute,
     TResult Function(_AddToRoute value)? addToRoute,
     TResult Function(_CreateDestAndAddToRoute value)? createDestAndAddToRoute,
     required TResult orElse(),
@@ -299,6 +311,7 @@ class _$_Save implements _Save {
     required TResult Function(MapDestination destination) deleteDestination,
     required TResult Function(String name) createRoute,
     required TResult Function(MapRoute route) deleteRoute,
+    required TResult Function(MapRoute? route) selectRoute,
     required TResult Function(MapDestination destination, MapRoute route)
         addToRoute,
     required TResult Function(String name, LatLng location, MapRoute route)
@@ -316,6 +329,7 @@ class _$_Save implements _Save {
     TResult? Function(MapDestination destination)? deleteDestination,
     TResult? Function(String name)? createRoute,
     TResult? Function(MapRoute route)? deleteRoute,
+    TResult? Function(MapRoute? route)? selectRoute,
     TResult? Function(MapDestination destination, MapRoute route)? addToRoute,
     TResult? Function(String name, LatLng location, MapRoute route)?
         createDestAndAddToRoute,
@@ -332,6 +346,7 @@ class _$_Save implements _Save {
     TResult Function(MapDestination destination)? deleteDestination,
     TResult Function(String name)? createRoute,
     TResult Function(MapRoute route)? deleteRoute,
+    TResult Function(MapRoute? route)? selectRoute,
     TResult Function(MapDestination destination, MapRoute route)? addToRoute,
     TResult Function(String name, LatLng location, MapRoute route)?
         createDestAndAddToRoute,
@@ -352,6 +367,7 @@ class _$_Save implements _Save {
     required TResult Function(_DeleteDestination value) deleteDestination,
     required TResult Function(_CreateRoute value) createRoute,
     required TResult Function(_DeleteRoute value) deleteRoute,
+    required TResult Function(_SelectRoute value) selectRoute,
     required TResult Function(_AddToRoute value) addToRoute,
     required TResult Function(_CreateDestAndAddToRoute value)
         createDestAndAddToRoute,
@@ -368,6 +384,7 @@ class _$_Save implements _Save {
     TResult? Function(_DeleteDestination value)? deleteDestination,
     TResult? Function(_CreateRoute value)? createRoute,
     TResult? Function(_DeleteRoute value)? deleteRoute,
+    TResult? Function(_SelectRoute value)? selectRoute,
     TResult? Function(_AddToRoute value)? addToRoute,
     TResult? Function(_CreateDestAndAddToRoute value)? createDestAndAddToRoute,
   }) {
@@ -383,6 +400,7 @@ class _$_Save implements _Save {
     TResult Function(_DeleteDestination value)? deleteDestination,
     TResult Function(_CreateRoute value)? createRoute,
     TResult Function(_DeleteRoute value)? deleteRoute,
+    TResult Function(_SelectRoute value)? selectRoute,
     TResult Function(_AddToRoute value)? addToRoute,
     TResult Function(_CreateDestAndAddToRoute value)? createDestAndAddToRoute,
     required TResult orElse(),
@@ -478,6 +496,7 @@ class _$_CreateDestination implements _CreateDestination {
     required TResult Function(MapDestination destination) deleteDestination,
     required TResult Function(String name) createRoute,
     required TResult Function(MapRoute route) deleteRoute,
+    required TResult Function(MapRoute? route) selectRoute,
     required TResult Function(MapDestination destination, MapRoute route)
         addToRoute,
     required TResult Function(String name, LatLng location, MapRoute route)
@@ -495,6 +514,7 @@ class _$_CreateDestination implements _CreateDestination {
     TResult? Function(MapDestination destination)? deleteDestination,
     TResult? Function(String name)? createRoute,
     TResult? Function(MapRoute route)? deleteRoute,
+    TResult? Function(MapRoute? route)? selectRoute,
     TResult? Function(MapDestination destination, MapRoute route)? addToRoute,
     TResult? Function(String name, LatLng location, MapRoute route)?
         createDestAndAddToRoute,
@@ -511,6 +531,7 @@ class _$_CreateDestination implements _CreateDestination {
     TResult Function(MapDestination destination)? deleteDestination,
     TResult Function(String name)? createRoute,
     TResult Function(MapRoute route)? deleteRoute,
+    TResult Function(MapRoute? route)? selectRoute,
     TResult Function(MapDestination destination, MapRoute route)? addToRoute,
     TResult Function(String name, LatLng location, MapRoute route)?
         createDestAndAddToRoute,
@@ -531,6 +552,7 @@ class _$_CreateDestination implements _CreateDestination {
     required TResult Function(_DeleteDestination value) deleteDestination,
     required TResult Function(_CreateRoute value) createRoute,
     required TResult Function(_DeleteRoute value) deleteRoute,
+    required TResult Function(_SelectRoute value) selectRoute,
     required TResult Function(_AddToRoute value) addToRoute,
     required TResult Function(_CreateDestAndAddToRoute value)
         createDestAndAddToRoute,
@@ -547,6 +569,7 @@ class _$_CreateDestination implements _CreateDestination {
     TResult? Function(_DeleteDestination value)? deleteDestination,
     TResult? Function(_CreateRoute value)? createRoute,
     TResult? Function(_DeleteRoute value)? deleteRoute,
+    TResult? Function(_SelectRoute value)? selectRoute,
     TResult? Function(_AddToRoute value)? addToRoute,
     TResult? Function(_CreateDestAndAddToRoute value)? createDestAndAddToRoute,
   }) {
@@ -562,6 +585,7 @@ class _$_CreateDestination implements _CreateDestination {
     TResult Function(_DeleteDestination value)? deleteDestination,
     TResult Function(_CreateRoute value)? createRoute,
     TResult Function(_DeleteRoute value)? deleteRoute,
+    TResult Function(_SelectRoute value)? selectRoute,
     TResult Function(_AddToRoute value)? addToRoute,
     TResult Function(_CreateDestAndAddToRoute value)? createDestAndAddToRoute,
     required TResult orElse(),
@@ -666,6 +690,7 @@ class _$_DeleteDestination implements _DeleteDestination {
     required TResult Function(MapDestination destination) deleteDestination,
     required TResult Function(String name) createRoute,
     required TResult Function(MapRoute route) deleteRoute,
+    required TResult Function(MapRoute? route) selectRoute,
     required TResult Function(MapDestination destination, MapRoute route)
         addToRoute,
     required TResult Function(String name, LatLng location, MapRoute route)
@@ -683,6 +708,7 @@ class _$_DeleteDestination implements _DeleteDestination {
     TResult? Function(MapDestination destination)? deleteDestination,
     TResult? Function(String name)? createRoute,
     TResult? Function(MapRoute route)? deleteRoute,
+    TResult? Function(MapRoute? route)? selectRoute,
     TResult? Function(MapDestination destination, MapRoute route)? addToRoute,
     TResult? Function(String name, LatLng location, MapRoute route)?
         createDestAndAddToRoute,
@@ -699,6 +725,7 @@ class _$_DeleteDestination implements _DeleteDestination {
     TResult Function(MapDestination destination)? deleteDestination,
     TResult Function(String name)? createRoute,
     TResult Function(MapRoute route)? deleteRoute,
+    TResult Function(MapRoute? route)? selectRoute,
     TResult Function(MapDestination destination, MapRoute route)? addToRoute,
     TResult Function(String name, LatLng location, MapRoute route)?
         createDestAndAddToRoute,
@@ -719,6 +746,7 @@ class _$_DeleteDestination implements _DeleteDestination {
     required TResult Function(_DeleteDestination value) deleteDestination,
     required TResult Function(_CreateRoute value) createRoute,
     required TResult Function(_DeleteRoute value) deleteRoute,
+    required TResult Function(_SelectRoute value) selectRoute,
     required TResult Function(_AddToRoute value) addToRoute,
     required TResult Function(_CreateDestAndAddToRoute value)
         createDestAndAddToRoute,
@@ -735,6 +763,7 @@ class _$_DeleteDestination implements _DeleteDestination {
     TResult? Function(_DeleteDestination value)? deleteDestination,
     TResult? Function(_CreateRoute value)? createRoute,
     TResult? Function(_DeleteRoute value)? deleteRoute,
+    TResult? Function(_SelectRoute value)? selectRoute,
     TResult? Function(_AddToRoute value)? addToRoute,
     TResult? Function(_CreateDestAndAddToRoute value)? createDestAndAddToRoute,
   }) {
@@ -750,6 +779,7 @@ class _$_DeleteDestination implements _DeleteDestination {
     TResult Function(_DeleteDestination value)? deleteDestination,
     TResult Function(_CreateRoute value)? createRoute,
     TResult Function(_DeleteRoute value)? deleteRoute,
+    TResult Function(_SelectRoute value)? selectRoute,
     TResult Function(_AddToRoute value)? addToRoute,
     TResult Function(_CreateDestAndAddToRoute value)? createDestAndAddToRoute,
     required TResult orElse(),
@@ -841,6 +871,7 @@ class _$_CreateRoute implements _CreateRoute {
     required TResult Function(MapDestination destination) deleteDestination,
     required TResult Function(String name) createRoute,
     required TResult Function(MapRoute route) deleteRoute,
+    required TResult Function(MapRoute? route) selectRoute,
     required TResult Function(MapDestination destination, MapRoute route)
         addToRoute,
     required TResult Function(String name, LatLng location, MapRoute route)
@@ -858,6 +889,7 @@ class _$_CreateRoute implements _CreateRoute {
     TResult? Function(MapDestination destination)? deleteDestination,
     TResult? Function(String name)? createRoute,
     TResult? Function(MapRoute route)? deleteRoute,
+    TResult? Function(MapRoute? route)? selectRoute,
     TResult? Function(MapDestination destination, MapRoute route)? addToRoute,
     TResult? Function(String name, LatLng location, MapRoute route)?
         createDestAndAddToRoute,
@@ -874,6 +906,7 @@ class _$_CreateRoute implements _CreateRoute {
     TResult Function(MapDestination destination)? deleteDestination,
     TResult Function(String name)? createRoute,
     TResult Function(MapRoute route)? deleteRoute,
+    TResult Function(MapRoute? route)? selectRoute,
     TResult Function(MapDestination destination, MapRoute route)? addToRoute,
     TResult Function(String name, LatLng location, MapRoute route)?
         createDestAndAddToRoute,
@@ -894,6 +927,7 @@ class _$_CreateRoute implements _CreateRoute {
     required TResult Function(_DeleteDestination value) deleteDestination,
     required TResult Function(_CreateRoute value) createRoute,
     required TResult Function(_DeleteRoute value) deleteRoute,
+    required TResult Function(_SelectRoute value) selectRoute,
     required TResult Function(_AddToRoute value) addToRoute,
     required TResult Function(_CreateDestAndAddToRoute value)
         createDestAndAddToRoute,
@@ -910,6 +944,7 @@ class _$_CreateRoute implements _CreateRoute {
     TResult? Function(_DeleteDestination value)? deleteDestination,
     TResult? Function(_CreateRoute value)? createRoute,
     TResult? Function(_DeleteRoute value)? deleteRoute,
+    TResult? Function(_SelectRoute value)? selectRoute,
     TResult? Function(_AddToRoute value)? addToRoute,
     TResult? Function(_CreateDestAndAddToRoute value)? createDestAndAddToRoute,
   }) {
@@ -925,6 +960,7 @@ class _$_CreateRoute implements _CreateRoute {
     TResult Function(_DeleteDestination value)? deleteDestination,
     TResult Function(_CreateRoute value)? createRoute,
     TResult Function(_DeleteRoute value)? deleteRoute,
+    TResult Function(_SelectRoute value)? selectRoute,
     TResult Function(_AddToRoute value)? addToRoute,
     TResult Function(_CreateDestAndAddToRoute value)? createDestAndAddToRoute,
     required TResult orElse(),
@@ -1025,6 +1061,7 @@ class _$_DeleteRoute implements _DeleteRoute {
     required TResult Function(MapDestination destination) deleteDestination,
     required TResult Function(String name) createRoute,
     required TResult Function(MapRoute route) deleteRoute,
+    required TResult Function(MapRoute? route) selectRoute,
     required TResult Function(MapDestination destination, MapRoute route)
         addToRoute,
     required TResult Function(String name, LatLng location, MapRoute route)
@@ -1042,6 +1079,7 @@ class _$_DeleteRoute implements _DeleteRoute {
     TResult? Function(MapDestination destination)? deleteDestination,
     TResult? Function(String name)? createRoute,
     TResult? Function(MapRoute route)? deleteRoute,
+    TResult? Function(MapRoute? route)? selectRoute,
     TResult? Function(MapDestination destination, MapRoute route)? addToRoute,
     TResult? Function(String name, LatLng location, MapRoute route)?
         createDestAndAddToRoute,
@@ -1058,6 +1096,7 @@ class _$_DeleteRoute implements _DeleteRoute {
     TResult Function(MapDestination destination)? deleteDestination,
     TResult Function(String name)? createRoute,
     TResult Function(MapRoute route)? deleteRoute,
+    TResult Function(MapRoute? route)? selectRoute,
     TResult Function(MapDestination destination, MapRoute route)? addToRoute,
     TResult Function(String name, LatLng location, MapRoute route)?
         createDestAndAddToRoute,
@@ -1078,6 +1117,7 @@ class _$_DeleteRoute implements _DeleteRoute {
     required TResult Function(_DeleteDestination value) deleteDestination,
     required TResult Function(_CreateRoute value) createRoute,
     required TResult Function(_DeleteRoute value) deleteRoute,
+    required TResult Function(_SelectRoute value) selectRoute,
     required TResult Function(_AddToRoute value) addToRoute,
     required TResult Function(_CreateDestAndAddToRoute value)
         createDestAndAddToRoute,
@@ -1094,6 +1134,7 @@ class _$_DeleteRoute implements _DeleteRoute {
     TResult? Function(_DeleteDestination value)? deleteDestination,
     TResult? Function(_CreateRoute value)? createRoute,
     TResult? Function(_DeleteRoute value)? deleteRoute,
+    TResult? Function(_SelectRoute value)? selectRoute,
     TResult? Function(_AddToRoute value)? addToRoute,
     TResult? Function(_CreateDestAndAddToRoute value)? createDestAndAddToRoute,
   }) {
@@ -1109,6 +1150,7 @@ class _$_DeleteRoute implements _DeleteRoute {
     TResult Function(_DeleteDestination value)? deleteDestination,
     TResult Function(_CreateRoute value)? createRoute,
     TResult Function(_DeleteRoute value)? deleteRoute,
+    TResult Function(_SelectRoute value)? selectRoute,
     TResult Function(_AddToRoute value)? addToRoute,
     TResult Function(_CreateDestAndAddToRoute value)? createDestAndAddToRoute,
     required TResult orElse(),
@@ -1126,6 +1168,200 @@ abstract class _DeleteRoute implements MapDestinationsEvent {
   MapRoute get route;
   @JsonKey(ignore: true)
   _$$_DeleteRouteCopyWith<_$_DeleteRoute> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_SelectRouteCopyWith<$Res> {
+  factory _$$_SelectRouteCopyWith(
+          _$_SelectRoute value, $Res Function(_$_SelectRoute) then) =
+      __$$_SelectRouteCopyWithImpl<$Res>;
+  @useResult
+  $Res call({MapRoute? route});
+
+  $MapRouteCopyWith<$Res>? get route;
+}
+
+/// @nodoc
+class __$$_SelectRouteCopyWithImpl<$Res>
+    extends _$MapDestinationsEventCopyWithImpl<$Res, _$_SelectRoute>
+    implements _$$_SelectRouteCopyWith<$Res> {
+  __$$_SelectRouteCopyWithImpl(
+      _$_SelectRoute _value, $Res Function(_$_SelectRoute) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? route = freezed,
+  }) {
+    return _then(_$_SelectRoute(
+      freezed == route
+          ? _value.route
+          : route // ignore: cast_nullable_to_non_nullable
+              as MapRoute?,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $MapRouteCopyWith<$Res>? get route {
+    if (_value.route == null) {
+      return null;
+    }
+
+    return $MapRouteCopyWith<$Res>(_value.route!, (value) {
+      return _then(_value.copyWith(route: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_SelectRoute implements _SelectRoute {
+  const _$_SelectRoute(this.route);
+
+  @override
+  final MapRoute? route;
+
+  @override
+  String toString() {
+    return 'MapDestinationsEvent.selectRoute(route: $route)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_SelectRoute &&
+            (identical(other.route, route) || other.route == route));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, route);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_SelectRouteCopyWith<_$_SelectRoute> get copyWith =>
+      __$$_SelectRouteCopyWithImpl<_$_SelectRoute>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() load,
+    required TResult Function() save,
+    required TResult Function(String name, LatLng location) createDestination,
+    required TResult Function(MapDestination destination) deleteDestination,
+    required TResult Function(String name) createRoute,
+    required TResult Function(MapRoute route) deleteRoute,
+    required TResult Function(MapRoute? route) selectRoute,
+    required TResult Function(MapDestination destination, MapRoute route)
+        addToRoute,
+    required TResult Function(String name, LatLng location, MapRoute route)
+        createDestAndAddToRoute,
+  }) {
+    return selectRoute(route);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? load,
+    TResult? Function()? save,
+    TResult? Function(String name, LatLng location)? createDestination,
+    TResult? Function(MapDestination destination)? deleteDestination,
+    TResult? Function(String name)? createRoute,
+    TResult? Function(MapRoute route)? deleteRoute,
+    TResult? Function(MapRoute? route)? selectRoute,
+    TResult? Function(MapDestination destination, MapRoute route)? addToRoute,
+    TResult? Function(String name, LatLng location, MapRoute route)?
+        createDestAndAddToRoute,
+  }) {
+    return selectRoute?.call(route);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? load,
+    TResult Function()? save,
+    TResult Function(String name, LatLng location)? createDestination,
+    TResult Function(MapDestination destination)? deleteDestination,
+    TResult Function(String name)? createRoute,
+    TResult Function(MapRoute route)? deleteRoute,
+    TResult Function(MapRoute? route)? selectRoute,
+    TResult Function(MapDestination destination, MapRoute route)? addToRoute,
+    TResult Function(String name, LatLng location, MapRoute route)?
+        createDestAndAddToRoute,
+    required TResult orElse(),
+  }) {
+    if (selectRoute != null) {
+      return selectRoute(route);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Load value) load,
+    required TResult Function(_Save value) save,
+    required TResult Function(_CreateDestination value) createDestination,
+    required TResult Function(_DeleteDestination value) deleteDestination,
+    required TResult Function(_CreateRoute value) createRoute,
+    required TResult Function(_DeleteRoute value) deleteRoute,
+    required TResult Function(_SelectRoute value) selectRoute,
+    required TResult Function(_AddToRoute value) addToRoute,
+    required TResult Function(_CreateDestAndAddToRoute value)
+        createDestAndAddToRoute,
+  }) {
+    return selectRoute(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Load value)? load,
+    TResult? Function(_Save value)? save,
+    TResult? Function(_CreateDestination value)? createDestination,
+    TResult? Function(_DeleteDestination value)? deleteDestination,
+    TResult? Function(_CreateRoute value)? createRoute,
+    TResult? Function(_DeleteRoute value)? deleteRoute,
+    TResult? Function(_SelectRoute value)? selectRoute,
+    TResult? Function(_AddToRoute value)? addToRoute,
+    TResult? Function(_CreateDestAndAddToRoute value)? createDestAndAddToRoute,
+  }) {
+    return selectRoute?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Load value)? load,
+    TResult Function(_Save value)? save,
+    TResult Function(_CreateDestination value)? createDestination,
+    TResult Function(_DeleteDestination value)? deleteDestination,
+    TResult Function(_CreateRoute value)? createRoute,
+    TResult Function(_DeleteRoute value)? deleteRoute,
+    TResult Function(_SelectRoute value)? selectRoute,
+    TResult Function(_AddToRoute value)? addToRoute,
+    TResult Function(_CreateDestAndAddToRoute value)? createDestAndAddToRoute,
+    required TResult orElse(),
+  }) {
+    if (selectRoute != null) {
+      return selectRoute(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SelectRoute implements MapDestinationsEvent {
+  const factory _SelectRoute(final MapRoute? route) = _$_SelectRoute;
+
+  MapRoute? get route;
+  @JsonKey(ignore: true)
+  _$$_SelectRouteCopyWith<_$_SelectRoute> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1227,6 +1463,7 @@ class _$_AddToRoute implements _AddToRoute {
     required TResult Function(MapDestination destination) deleteDestination,
     required TResult Function(String name) createRoute,
     required TResult Function(MapRoute route) deleteRoute,
+    required TResult Function(MapRoute? route) selectRoute,
     required TResult Function(MapDestination destination, MapRoute route)
         addToRoute,
     required TResult Function(String name, LatLng location, MapRoute route)
@@ -1244,6 +1481,7 @@ class _$_AddToRoute implements _AddToRoute {
     TResult? Function(MapDestination destination)? deleteDestination,
     TResult? Function(String name)? createRoute,
     TResult? Function(MapRoute route)? deleteRoute,
+    TResult? Function(MapRoute? route)? selectRoute,
     TResult? Function(MapDestination destination, MapRoute route)? addToRoute,
     TResult? Function(String name, LatLng location, MapRoute route)?
         createDestAndAddToRoute,
@@ -1260,6 +1498,7 @@ class _$_AddToRoute implements _AddToRoute {
     TResult Function(MapDestination destination)? deleteDestination,
     TResult Function(String name)? createRoute,
     TResult Function(MapRoute route)? deleteRoute,
+    TResult Function(MapRoute? route)? selectRoute,
     TResult Function(MapDestination destination, MapRoute route)? addToRoute,
     TResult Function(String name, LatLng location, MapRoute route)?
         createDestAndAddToRoute,
@@ -1280,6 +1519,7 @@ class _$_AddToRoute implements _AddToRoute {
     required TResult Function(_DeleteDestination value) deleteDestination,
     required TResult Function(_CreateRoute value) createRoute,
     required TResult Function(_DeleteRoute value) deleteRoute,
+    required TResult Function(_SelectRoute value) selectRoute,
     required TResult Function(_AddToRoute value) addToRoute,
     required TResult Function(_CreateDestAndAddToRoute value)
         createDestAndAddToRoute,
@@ -1296,6 +1536,7 @@ class _$_AddToRoute implements _AddToRoute {
     TResult? Function(_DeleteDestination value)? deleteDestination,
     TResult? Function(_CreateRoute value)? createRoute,
     TResult? Function(_DeleteRoute value)? deleteRoute,
+    TResult? Function(_SelectRoute value)? selectRoute,
     TResult? Function(_AddToRoute value)? addToRoute,
     TResult? Function(_CreateDestAndAddToRoute value)? createDestAndAddToRoute,
   }) {
@@ -1311,6 +1552,7 @@ class _$_AddToRoute implements _AddToRoute {
     TResult Function(_DeleteDestination value)? deleteDestination,
     TResult Function(_CreateRoute value)? createRoute,
     TResult Function(_DeleteRoute value)? deleteRoute,
+    TResult Function(_SelectRoute value)? selectRoute,
     TResult Function(_AddToRoute value)? addToRoute,
     TResult Function(_CreateDestAndAddToRoute value)? createDestAndAddToRoute,
     required TResult orElse(),
@@ -1432,6 +1674,7 @@ class _$_CreateDestAndAddToRoute implements _CreateDestAndAddToRoute {
     required TResult Function(MapDestination destination) deleteDestination,
     required TResult Function(String name) createRoute,
     required TResult Function(MapRoute route) deleteRoute,
+    required TResult Function(MapRoute? route) selectRoute,
     required TResult Function(MapDestination destination, MapRoute route)
         addToRoute,
     required TResult Function(String name, LatLng location, MapRoute route)
@@ -1449,6 +1692,7 @@ class _$_CreateDestAndAddToRoute implements _CreateDestAndAddToRoute {
     TResult? Function(MapDestination destination)? deleteDestination,
     TResult? Function(String name)? createRoute,
     TResult? Function(MapRoute route)? deleteRoute,
+    TResult? Function(MapRoute? route)? selectRoute,
     TResult? Function(MapDestination destination, MapRoute route)? addToRoute,
     TResult? Function(String name, LatLng location, MapRoute route)?
         createDestAndAddToRoute,
@@ -1465,6 +1709,7 @@ class _$_CreateDestAndAddToRoute implements _CreateDestAndAddToRoute {
     TResult Function(MapDestination destination)? deleteDestination,
     TResult Function(String name)? createRoute,
     TResult Function(MapRoute route)? deleteRoute,
+    TResult Function(MapRoute? route)? selectRoute,
     TResult Function(MapDestination destination, MapRoute route)? addToRoute,
     TResult Function(String name, LatLng location, MapRoute route)?
         createDestAndAddToRoute,
@@ -1485,6 +1730,7 @@ class _$_CreateDestAndAddToRoute implements _CreateDestAndAddToRoute {
     required TResult Function(_DeleteDestination value) deleteDestination,
     required TResult Function(_CreateRoute value) createRoute,
     required TResult Function(_DeleteRoute value) deleteRoute,
+    required TResult Function(_SelectRoute value) selectRoute,
     required TResult Function(_AddToRoute value) addToRoute,
     required TResult Function(_CreateDestAndAddToRoute value)
         createDestAndAddToRoute,
@@ -1501,6 +1747,7 @@ class _$_CreateDestAndAddToRoute implements _CreateDestAndAddToRoute {
     TResult? Function(_DeleteDestination value)? deleteDestination,
     TResult? Function(_CreateRoute value)? createRoute,
     TResult? Function(_DeleteRoute value)? deleteRoute,
+    TResult? Function(_SelectRoute value)? selectRoute,
     TResult? Function(_AddToRoute value)? addToRoute,
     TResult? Function(_CreateDestAndAddToRoute value)? createDestAndAddToRoute,
   }) {
@@ -1516,6 +1763,7 @@ class _$_CreateDestAndAddToRoute implements _CreateDestAndAddToRoute {
     TResult Function(_DeleteDestination value)? deleteDestination,
     TResult Function(_CreateRoute value)? createRoute,
     TResult Function(_DeleteRoute value)? deleteRoute,
+    TResult Function(_SelectRoute value)? selectRoute,
     TResult Function(_AddToRoute value)? addToRoute,
     TResult Function(_CreateDestAndAddToRoute value)? createDestAndAddToRoute,
     required TResult orElse(),
@@ -1546,8 +1794,8 @@ mixin _$MapDestinationsState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            List<MapDestination> destinations, List<MapRoute> routes)
+    required TResult Function(List<MapDestination> destinations,
+            List<MapRoute> routes, MapRoute? selectedRoute)
         loaded,
   }) =>
       throw _privateConstructorUsedError;
@@ -1555,7 +1803,8 @@ mixin _$MapDestinationsState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<MapDestination> destinations, List<MapRoute> routes)?
+    TResult? Function(List<MapDestination> destinations, List<MapRoute> routes,
+            MapRoute? selectedRoute)?
         loaded,
   }) =>
       throw _privateConstructorUsedError;
@@ -1563,7 +1812,8 @@ mixin _$MapDestinationsState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<MapDestination> destinations, List<MapRoute> routes)?
+    TResult Function(List<MapDestination> destinations, List<MapRoute> routes,
+            MapRoute? selectedRoute)?
         loaded,
     required TResult orElse(),
   }) =>
@@ -1650,8 +1900,8 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            List<MapDestination> destinations, List<MapRoute> routes)
+    required TResult Function(List<MapDestination> destinations,
+            List<MapRoute> routes, MapRoute? selectedRoute)
         loaded,
   }) {
     return initial();
@@ -1662,7 +1912,8 @@ class _$_Initial implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<MapDestination> destinations, List<MapRoute> routes)?
+    TResult? Function(List<MapDestination> destinations, List<MapRoute> routes,
+            MapRoute? selectedRoute)?
         loaded,
   }) {
     return initial?.call();
@@ -1673,7 +1924,8 @@ class _$_Initial implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<MapDestination> destinations, List<MapRoute> routes)?
+    TResult Function(List<MapDestination> destinations, List<MapRoute> routes,
+            MapRoute? selectedRoute)?
         loaded,
     required TResult orElse(),
   }) {
@@ -1761,8 +2013,8 @@ class _$_Loading implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            List<MapDestination> destinations, List<MapRoute> routes)
+    required TResult Function(List<MapDestination> destinations,
+            List<MapRoute> routes, MapRoute? selectedRoute)
         loaded,
   }) {
     return loading();
@@ -1773,7 +2025,8 @@ class _$_Loading implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<MapDestination> destinations, List<MapRoute> routes)?
+    TResult? Function(List<MapDestination> destinations, List<MapRoute> routes,
+            MapRoute? selectedRoute)?
         loaded,
   }) {
     return loading?.call();
@@ -1784,7 +2037,8 @@ class _$_Loading implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<MapDestination> destinations, List<MapRoute> routes)?
+    TResult Function(List<MapDestination> destinations, List<MapRoute> routes,
+            MapRoute? selectedRoute)?
         loaded,
     required TResult orElse(),
   }) {
@@ -1838,7 +2092,12 @@ abstract class _$$_LoadedCopyWith<$Res> {
   factory _$$_LoadedCopyWith(_$_Loaded value, $Res Function(_$_Loaded) then) =
       __$$_LoadedCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<MapDestination> destinations, List<MapRoute> routes});
+  $Res call(
+      {List<MapDestination> destinations,
+      List<MapRoute> routes,
+      MapRoute? selectedRoute});
+
+  $MapRouteCopyWith<$Res>? get selectedRoute;
 }
 
 /// @nodoc
@@ -1853,6 +2112,7 @@ class __$$_LoadedCopyWithImpl<$Res>
   $Res call({
     Object? destinations = null,
     Object? routes = null,
+    Object? selectedRoute = freezed,
   }) {
     return _then(_$_Loaded(
       destinations: null == destinations
@@ -1863,7 +2123,23 @@ class __$$_LoadedCopyWithImpl<$Res>
           ? _value._routes
           : routes // ignore: cast_nullable_to_non_nullable
               as List<MapRoute>,
+      selectedRoute: freezed == selectedRoute
+          ? _value.selectedRoute
+          : selectedRoute // ignore: cast_nullable_to_non_nullable
+              as MapRoute?,
     ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $MapRouteCopyWith<$Res>? get selectedRoute {
+    if (_value.selectedRoute == null) {
+      return null;
+    }
+
+    return $MapRouteCopyWith<$Res>(_value.selectedRoute!, (value) {
+      return _then(_value.copyWith(selectedRoute: value));
+    });
   }
 }
 
@@ -1872,7 +2148,8 @@ class __$$_LoadedCopyWithImpl<$Res>
 class _$_Loaded implements _Loaded {
   const _$_Loaded(
       {required final List<MapDestination> destinations,
-      required final List<MapRoute> routes})
+      required final List<MapRoute> routes,
+      this.selectedRoute})
       : _destinations = destinations,
         _routes = routes;
 
@@ -1893,8 +2170,11 @@ class _$_Loaded implements _Loaded {
   }
 
   @override
+  final MapRoute? selectedRoute;
+
+  @override
   String toString() {
-    return 'MapDestinationsState.loaded(destinations: $destinations, routes: $routes)';
+    return 'MapDestinationsState.loaded(destinations: $destinations, routes: $routes, selectedRoute: $selectedRoute)';
   }
 
   @override
@@ -1904,14 +2184,17 @@ class _$_Loaded implements _Loaded {
             other is _$_Loaded &&
             const DeepCollectionEquality()
                 .equals(other._destinations, _destinations) &&
-            const DeepCollectionEquality().equals(other._routes, _routes));
+            const DeepCollectionEquality().equals(other._routes, _routes) &&
+            (identical(other.selectedRoute, selectedRoute) ||
+                other.selectedRoute == selectedRoute));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_destinations),
-      const DeepCollectionEquality().hash(_routes));
+      const DeepCollectionEquality().hash(_routes),
+      selectedRoute);
 
   @JsonKey(ignore: true)
   @override
@@ -1924,11 +2207,11 @@ class _$_Loaded implements _Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            List<MapDestination> destinations, List<MapRoute> routes)
+    required TResult Function(List<MapDestination> destinations,
+            List<MapRoute> routes, MapRoute? selectedRoute)
         loaded,
   }) {
-    return loaded(destinations, routes);
+    return loaded(destinations, routes, selectedRoute);
   }
 
   @override
@@ -1936,10 +2219,11 @@ class _$_Loaded implements _Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<MapDestination> destinations, List<MapRoute> routes)?
+    TResult? Function(List<MapDestination> destinations, List<MapRoute> routes,
+            MapRoute? selectedRoute)?
         loaded,
   }) {
-    return loaded?.call(destinations, routes);
+    return loaded?.call(destinations, routes, selectedRoute);
   }
 
   @override
@@ -1947,12 +2231,13 @@ class _$_Loaded implements _Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<MapDestination> destinations, List<MapRoute> routes)?
+    TResult Function(List<MapDestination> destinations, List<MapRoute> routes,
+            MapRoute? selectedRoute)?
         loaded,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(destinations, routes);
+      return loaded(destinations, routes, selectedRoute);
     }
     return orElse();
   }
@@ -1995,10 +2280,12 @@ class _$_Loaded implements _Loaded {
 abstract class _Loaded implements MapDestinationsState {
   const factory _Loaded(
       {required final List<MapDestination> destinations,
-      required final List<MapRoute> routes}) = _$_Loaded;
+      required final List<MapRoute> routes,
+      final MapRoute? selectedRoute}) = _$_Loaded;
 
   List<MapDestination> get destinations;
   List<MapRoute> get routes;
+  MapRoute? get selectedRoute;
   @JsonKey(ignore: true)
   _$$_LoadedCopyWith<_$_Loaded> get copyWith =>
       throw _privateConstructorUsedError;

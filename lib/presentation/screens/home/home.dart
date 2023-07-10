@@ -4,7 +4,7 @@ import 'package:bike_compass/logic/map_destinations_bloc/map_destinations_bloc.d
 import 'package:bike_compass/logic/toolbar_cubit/toolbar_cubit.dart';
 import 'package:bike_compass/presentation/screens/home/toolbar/get_name_dialog.dart';
 import 'package:bike_compass/presentation/screens/home/map/maps_with_markers.dart';
-import 'package:bike_compass/presentation/screens/home/route_destinations_list/route_destination_list_view.dart';
+import 'package:bike_compass/presentation/screens/home/route_destinations_list/map_points_manager.dart';
 import 'package:bike_compass/presentation/screens/home/toolbar/toolbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -72,7 +72,6 @@ class _HomeScreenLayoutState extends State<HomeScreenLayout>
             height: 50,
             child: Toolbar(
               onTapAdd: () async {
-                var bloc = context.read<MapDestinationsBloc>();
                 LatLngBounds pos = await _controller.future
                     .then((value) => value.getVisibleRegion());
                 LatLng center = LatLng(
@@ -80,14 +79,9 @@ class _HomeScreenLayoutState extends State<HomeScreenLayout>
                   (pos.northeast.longitude + pos.southwest.longitude) / 2,
                 );
                 // ignore: use_build_context_synchronously
-                showDialog<String>(
-                  context: context,
-                  barrierDismissible: false,
-                  builder: (context) => GetNameDialog(
-                    onSubmitted: (name) => Navigator.pop(context, name),
-                  ),
-                ).then((String? value) {
+                GetNameDialog.showStandardDialog(context).then((String? value) {
                   if (value != null) {
+                    final bloc = context.read<MapDestinationsBloc>();
                     bloc.add(MapDestinationsEvent.createDestination(
                       value,
                       center,
@@ -99,7 +93,7 @@ class _HomeScreenLayoutState extends State<HomeScreenLayout>
           ),
           Flexible(
             flex: 300 - _animation.value,
-            child: const RouteDestinationListView(),
+            child: const MapPointsManager(),
           ),
         ],
       ),

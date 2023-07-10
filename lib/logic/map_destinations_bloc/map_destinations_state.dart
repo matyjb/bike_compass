@@ -7,5 +7,6 @@ class MapDestinationsState with _$MapDestinationsState {
   const factory MapDestinationsState.loaded({
     required List<MapDestination> destinations,
     required List<MapRoute> routes,
+    MapRoute? selectedRoute,
   }) = _Loaded;
 }
