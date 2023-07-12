@@ -5,8 +5,8 @@ class MapDestinationsState with _$MapDestinationsState {
   const factory MapDestinationsState.initial() = _Initial;
   const factory MapDestinationsState.loading() = _Loading;
   const factory MapDestinationsState.loaded({
-    required Map<int, MapDestination> destinations,
-    required Map<int, MapRoute> routes,
+    @Default({}) Map<int, MapDestination> destinations,
+    @Default({}) Map<int, MapRoute> routes,
     int? selectedRouteId,
   }) = _Loaded;
 }

@@ -27,12 +27,12 @@ void main() {
       verify: (bloc) => bloc.state == const MapDestinationsState.initial(),
     );
     blocTest<MapDestinationsBloc, MapDestinationsState>(
-      'emits [Loading,Loaded] when load event is added.',
+      'emits [Loading, Loaded] when load event is added.',
       build: () => MapDestinationsBloc(),
       act: (bloc) => bloc.add(const MapDestinationsEvent.load()),
       expect: () => const <MapDestinationsState>[
         MapDestinationsState.loading(),
-        MapDestinationsState.loaded(destinations: {}, routes: {})
+        MapDestinationsState.loaded(),
       ],
     );
   });
@@ -43,15 +43,14 @@ void main() {
 
     blocTest<MapDestinationsBloc, MapDestinationsState>(
       'emits [Loaded] with added destination when Add event is added.',
-      build: () => MapDestinationsBloc()
-        ..emit(const MapDestinationsState.loaded(destinations: {}, routes: {})),
+      build: () =>
+          MapDestinationsBloc()..emit(const MapDestinationsState.loaded()),
       act: (bloc) {
         bloc.add(const MapDestinationsEvent.addDestination(testDestination));
       },
       expect: () => [
         const MapDestinationsState.loaded(
           destinations: {0: testDestination},
-          routes: {},
         ),
       ],
     );
@@ -61,7 +60,6 @@ void main() {
       build: () => MapDestinationsBloc()
         ..emit(const MapDestinationsState.loaded(
           destinations: {0: testDestination},
-          routes: {},
         )),
       act: (bloc) {
         bloc.add(const MapDestinationsEvent.editDestination(
@@ -72,7 +70,6 @@ void main() {
       expect: () => [
         const MapDestinationsState.loaded(
           destinations: {0: testDestinationEdit},
-          routes: {},
         ),
       ],
     );
@@ -82,16 +79,12 @@ void main() {
       build: () => MapDestinationsBloc()
         ..emit(const MapDestinationsState.loaded(
           destinations: {0: testDestination},
-          routes: {},
         )),
       act: (bloc) {
         bloc.add(const MapDestinationsEvent.deleteDestination(0));
       },
       expect: () => [
-        const MapDestinationsState.loaded(
-          destinations: {},
-          routes: {},
-        ),
+        const MapDestinationsState.loaded(),
       ],
     );
 
@@ -132,17 +125,13 @@ void main() {
     const testRoute = MapRoute(name: "test", destinations: []);
     blocTest<MapDestinationsBloc, MapDestinationsState>(
       'emits [Loaded] with added route when Add event is added.',
-      build: () => MapDestinationsBloc()
-        ..emit(const MapDestinationsState.loaded(
-          destinations: {},
-          routes: {},
-        )),
+      build: () =>
+          MapDestinationsBloc()..emit(const MapDestinationsState.loaded()),
       act: (bloc) {
         bloc.add(const MapDestinationsEvent.addRoute(testRoute));
       },
       expect: () => [
         const MapDestinationsState.loaded(
-          destinations: {},
           routes: {0: testRoute},
         ),
       ],
@@ -152,7 +141,6 @@ void main() {
       'emits [Loaded] with edited route when Edit event is added.',
       build: () => MapDestinationsBloc()
         ..emit(const MapDestinationsState.loaded(
-          destinations: {},
           routes: {0: testRoute},
         )),
       act: (bloc) {
@@ -160,7 +148,6 @@ void main() {
       },
       expect: () => [
         const MapDestinationsState.loaded(
-          destinations: {},
           routes: {0: testRouteEdit},
         ),
       ],
@@ -170,14 +157,13 @@ void main() {
       'emits [Loaded] with deleted route when Delete event is added.',
       build: () => MapDestinationsBloc()
         ..emit(const MapDestinationsState.loaded(
-          destinations: {},
           routes: {0: testRoute},
         )),
       act: (bloc) {
         bloc.add(const MapDestinationsEvent.deleteRoute(0));
       },
       expect: () => [
-        const MapDestinationsState.loaded(destinations: {}, routes: {}),
+        const MapDestinationsState.loaded(),
       ],
     );
   });
@@ -190,7 +176,6 @@ void main() {
       'Selecting route with idx that exists should select it.',
       build: () => MapDestinationsBloc()
         ..emit(const MapDestinationsState.loaded(
-          destinations: {},
           routes: {0: testRoute},
           selectedRouteId: null,
         )),
@@ -199,7 +184,6 @@ void main() {
       },
       expect: () => [
         const MapDestinationsState.loaded(
-          destinations: {},
           routes: {0: testRoute},
           selectedRouteId: 0,
         ),
@@ -210,7 +194,6 @@ void main() {
       'Selecting route with idx that DOESN\'T exists should NOT select it.',
       build: () => MapDestinationsBloc()
         ..emit(const MapDestinationsState.loaded(
-          destinations: {},
           routes: {0: testRoute},
         )),
       act: (bloc) {
@@ -220,7 +203,6 @@ void main() {
       verify: (bloc) =>
           bloc.state ==
           const MapDestinationsState.loaded(
-            destinations: {},
             routes: {0: testRoute},
             selectedRouteId: null,
           ),
@@ -230,7 +212,6 @@ void main() {
       'Deselecting route should set selected route to null.',
       build: () => MapDestinationsBloc()
         ..emit(const MapDestinationsState.loaded(
-          destinations: {},
           routes: {0: testRoute},
           selectedRouteId: 0,
         )),
@@ -239,7 +220,6 @@ void main() {
       },
       expect: () => [
         const MapDestinationsState.loaded(
-          destinations: {},
           routes: {0: testRoute},
           selectedRouteId: null,
         ),
@@ -276,7 +256,6 @@ void main() {
       'Adding new destination to db and adding it to the route',
       build: () => MapDestinationsBloc()
         ..emit(const MapDestinationsState.loaded(
-          destinations: {},
           routes: {0: testRoute},
         )),
       act: (bloc) {
@@ -320,7 +299,6 @@ void main() {
       'on destination add action bloc creates new destination if there is NO selected route.',
       build: () => MapDestinationsBloc()
         ..emit(const MapDestinationsState.loaded(
-          destinations: {},
           routes: {0: testRoute},
         )),
       act: (bloc) {
@@ -337,10 +315,9 @@ void main() {
     );
 
     blocTest<MapDestinationsBloc, MapDestinationsState>(
-      'on destination add action bloc creates new destination if there is selected route.',
+      'on destination add action bloc creates new destination if there is selected route and adds it to the selected route.',
       build: () => MapDestinationsBloc()
         ..emit(const MapDestinationsState.loaded(
-          destinations: {},
           routes: {0: testRoute},
           selectedRouteId: 0,
         )),

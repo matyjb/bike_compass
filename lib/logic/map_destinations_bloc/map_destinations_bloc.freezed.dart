@@ -3288,14 +3288,15 @@ class __$$_LoadedCopyWithImpl<$Res>
 
 class _$_Loaded implements _Loaded {
   const _$_Loaded(
-      {required final Map<int, MapDestination> destinations,
-      required final Map<int, MapRoute> routes,
+      {final Map<int, MapDestination> destinations = const {},
+      final Map<int, MapRoute> routes = const {},
       this.selectedRouteId})
       : _destinations = destinations,
         _routes = routes;
 
   final Map<int, MapDestination> _destinations;
   @override
+  @JsonKey()
   Map<int, MapDestination> get destinations {
     if (_destinations is EqualUnmodifiableMapView) return _destinations;
     // ignore: implicit_dynamic_type
@@ -3304,6 +3305,7 @@ class _$_Loaded implements _Loaded {
 
   final Map<int, MapRoute> _routes;
   @override
+  @JsonKey()
   Map<int, MapRoute> get routes {
     if (_routes is EqualUnmodifiableMapView) return _routes;
     // ignore: implicit_dynamic_type
@@ -3420,8 +3422,8 @@ class _$_Loaded implements _Loaded {
 
 abstract class _Loaded implements MapDestinationsState {
   const factory _Loaded(
-      {required final Map<int, MapDestination> destinations,
-      required final Map<int, MapRoute> routes,
+      {final Map<int, MapDestination> destinations,
+      final Map<int, MapRoute> routes,
       final int? selectedRouteId}) = _$_Loaded;
 
   Map<int, MapDestination> get destinations;
