@@ -334,6 +334,7 @@ void main() {
               destinations: [...testRoute.destinations, 0],
             )
           },
+          selectedRouteId: 0,
         ),
       ],
     );

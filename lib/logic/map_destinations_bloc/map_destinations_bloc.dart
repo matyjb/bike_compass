@@ -84,19 +84,20 @@ class MapDestinationsBloc
         final newDestinations = Map.of(prevState.destinations)
           ..remove(event.destinationId);
 
-        // todo: replace with remove destination from route event
-        prevState.routes.forEach((key, route) => add(
-              MapDestinationsEvent.editRoute(
-                key,
-                route.copyWith(
-                  destinations: List.of(route.destinations)
-                    ..remove(event.destinationId),
-                ),
-              ),
-            ));
+        final newRoutes = Map.of(prevState.routes).map(
+          (key, value) => MapEntry(
+            key,
+            value.copyWith(
+              destinations: value.destinations
+                  .where((destId) => destId != event.destinationId)
+                  .toList(),
+            ),
+          ),
+        );
 
         emit(prevState.copyWith(
           destinations: newDestinations,
+          routes: newRoutes,
         ));
         add(const _Save());
       }
@@ -171,10 +172,22 @@ class MapDestinationsBloc
     on<_AddDestAndAddToRoute>((event, emit) {
       if (state is _Loaded) {
         final prevState = (state as _Loaded);
-        add(_AddDestination(event.newDestination));
-        add(_AddToRoute(getNewKey(prevState.destinations), event.routeId));
+        int destKey = getNewKey(prevState.destinations);
+        final newDestinations = Map.of(prevState.destinations)
+          ..putIfAbsent(destKey, () => event.newDestination);
+        final newRoutes = Map.of(prevState.routes);
+
+        newRoutes[event.routeId] = newRoutes[event.routeId]!.copyWith(
+            destinations: [...newRoutes[event.routeId]!.destinations, destKey]);
+
+        emit(prevState.copyWith(
+          destinations: newDestinations,
+          routes: newRoutes,
+        ));
       }
     });
+    
+    // todo: replace it to remove destination at index
     on<_RemoveFromRoute>((event, emit) {
       if (state is _Loaded) {
         final prevState = (state as _Loaded);
