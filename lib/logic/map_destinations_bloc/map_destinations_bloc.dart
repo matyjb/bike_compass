@@ -144,9 +144,12 @@ class MapDestinationsBloc
       if (state is _Loaded) {
         final prevState = (state as _Loaded);
 
-        emit(prevState.copyWith(
-          selectedRouteId: event.routeId,
-        ));
+        if (event.routeId == null ||
+            prevState.routes.keys.contains(event.routeId)) {
+          emit(prevState.copyWith(
+            selectedRouteId: event.routeId,
+          ));
+        }
       }
     });
 

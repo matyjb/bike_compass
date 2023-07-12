@@ -38,7 +38,7 @@ class MapDestinationsEvent with _$MapDestinationsEvent {
   // extra events
   /// ###########
   const factory MapDestinationsEvent.addToRoute(
-    int destinatinId,
+    int destinationId,
     int routeId,
   ) = _AddToRoute;
   const factory MapDestinationsEvent.addDestAndAddToRoute(
@@ -46,7 +46,9 @@ class MapDestinationsEvent with _$MapDestinationsEvent {
     int routeId,
   ) = _AddDestAndAddToRoute;
   const factory MapDestinationsEvent.removeDestinationFromRoute(
-      int routeId, int destinatinId) = _RemoveFromRoute;
+    int routeId,
+    int destinationId,
+  ) = _RemoveFromRoute;
   const factory MapDestinationsEvent.onDestinationAdd(
     MapDestination newDestination,
   ) = _OnDestinationAdd;
