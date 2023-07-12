@@ -184,6 +184,7 @@ class MapDestinationsBloc
           destinations: newDestinations,
           routes: newRoutes,
         ));
+        add(const _Save());
       }
     });
     
