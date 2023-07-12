@@ -4,12 +4,12 @@ part 'map_route.freezed.dart';
 part 'map_route.g.dart';
 
 @freezed
-class MapRoute with _$MapRoute  {
+class MapRoute with _$MapRoute {
   const factory MapRoute({
     required String name,
-    required List<int> destinations,
+    @Default([]) List<int> destinations,
   }) = _MapRoute;
 
-  factory MapRoute.fromJson(Map<String, Object?> json)
-      => _$MapRouteFromJson(json);
+  factory MapRoute.fromJson(Map<String, Object?> json) =>
+      _$MapRouteFromJson(json);
 }

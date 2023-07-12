@@ -106,7 +106,8 @@ class __$$_MapRouteCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_MapRoute implements _MapRoute {
-  const _$_MapRoute({required this.name, required final List<int> destinations})
+  const _$_MapRoute(
+      {required this.name, final List<int> destinations = const []})
       : _destinations = destinations;
 
   factory _$_MapRoute.fromJson(Map<String, dynamic> json) =>
@@ -116,6 +117,7 @@ class _$_MapRoute implements _MapRoute {
   final String name;
   final List<int> _destinations;
   @override
+  @JsonKey()
   List<int> get destinations {
     if (_destinations is EqualUnmodifiableListView) return _destinations;
     // ignore: implicit_dynamic_type
@@ -158,8 +160,7 @@ class _$_MapRoute implements _MapRoute {
 
 abstract class _MapRoute implements MapRoute {
   const factory _MapRoute(
-      {required final String name,
-      required final List<int> destinations}) = _$_MapRoute;
+      {required final String name, final List<int> destinations}) = _$_MapRoute;
 
   factory _MapRoute.fromJson(Map<String, dynamic> json) = _$_MapRoute.fromJson;
 
