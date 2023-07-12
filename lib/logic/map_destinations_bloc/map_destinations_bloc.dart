@@ -158,7 +158,7 @@ class MapDestinationsBloc
         final prevState = (state as _Loaded);
         final prevRoute = prevState.routes[event.routeId]!;
         final prevRouteNewDestinations = List.of(prevRoute.destinations)
-          ..add(event.destinatinId);
+          ..add(event.destinationId);
 
         add(_EditRoute(
           event.routeId,
@@ -180,7 +180,7 @@ class MapDestinationsBloc
         final prevState = (state as _Loaded);
         final prevRoute = prevState.routes[event.routeId]!;
         final prevRouteNewDestinations = List.of(prevRoute.destinations)
-          ..remove(event.destinatinId);
+          ..remove(event.destinationId);
 
         add(_EditRoute(
           event.routeId,
