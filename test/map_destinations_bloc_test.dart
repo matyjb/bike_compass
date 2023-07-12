@@ -42,7 +42,7 @@ void main() {
     tearDown(() async => await cleanUpHive());
 
     blocTest<MapDestinationsBloc, MapDestinationsState>(
-      'emits [Loaded] with added destination when Add event is added.',
+      '_AddDestination event: emits _Loaded state with added destination.',
       build: () =>
           MapDestinationsBloc()..emit(const MapDestinationsState.loaded()),
       act: (bloc) {
@@ -56,7 +56,7 @@ void main() {
     );
 
     blocTest<MapDestinationsBloc, MapDestinationsState>(
-      'emits [Loaded] with edited destination when Edit event is added.',
+      '_EditDestination event: emits _Loaded state with edited destination.',
       build: () => MapDestinationsBloc()
         ..emit(const MapDestinationsState.loaded(
           destinations: {0: testDestination},
@@ -75,7 +75,7 @@ void main() {
     );
 
     blocTest<MapDestinationsBloc, MapDestinationsState>(
-      'emits [Loaded] with deleted destination when Delete event is added.',
+      '_DeleteDestination event: emits _Loaded state with deleted destination.',
       build: () => MapDestinationsBloc()
         ..emit(const MapDestinationsState.loaded(
           destinations: {0: testDestination},
@@ -89,7 +89,7 @@ void main() {
     );
 
     blocTest<MapDestinationsBloc, MapDestinationsState>(
-      'Deleting destination should remove this destination from all routes.',
+      '_DeleteDestination event: deleting destination should remove this destination from all routes.',
       build: () => MapDestinationsBloc()
         ..emit(const MapDestinationsState.loaded(
           destinations: {
@@ -124,7 +124,7 @@ void main() {
 
     const testRoute = MapRoute(name: "test", destinations: []);
     blocTest<MapDestinationsBloc, MapDestinationsState>(
-      'emits [Loaded] with added route when Add event is added.',
+      '_AddRoute event: emits _Loaded state with added route.',
       build: () =>
           MapDestinationsBloc()..emit(const MapDestinationsState.loaded()),
       act: (bloc) {
@@ -138,7 +138,7 @@ void main() {
     );
 
     blocTest<MapDestinationsBloc, MapDestinationsState>(
-      'emits [Loaded] with edited route when Edit event is added.',
+      '_EditRoute event: emits _Loaded state with edited route.',
       build: () => MapDestinationsBloc()
         ..emit(const MapDestinationsState.loaded(
           routes: {0: testRoute},
@@ -154,7 +154,7 @@ void main() {
     );
 
     blocTest<MapDestinationsBloc, MapDestinationsState>(
-      'emits [Loaded] with deleted route when Delete event is added.',
+      '_DeleteRoute event: emits _Loaded state with deleted route.',
       build: () => MapDestinationsBloc()
         ..emit(const MapDestinationsState.loaded(
           routes: {0: testRoute},
@@ -173,7 +173,7 @@ void main() {
     tearDown(() async => await cleanUpHive());
 
     blocTest<MapDestinationsBloc, MapDestinationsState>(
-      'Selecting route with idx that exists should select it.',
+      '_SelectRoute event: emits _Loaded state with selected route id if it exists.',
       build: () => MapDestinationsBloc()
         ..emit(const MapDestinationsState.loaded(
           routes: {0: testRoute},
@@ -191,7 +191,7 @@ void main() {
     );
 
     blocTest<MapDestinationsBloc, MapDestinationsState>(
-      'Selecting route with idx that DOESN\'T exists should NOT select it.',
+      '_SelectRoute event: does nothing if selectedRoute id doesn\'t exist.',
       build: () => MapDestinationsBloc()
         ..emit(const MapDestinationsState.loaded(
           routes: {0: testRoute},
@@ -209,7 +209,7 @@ void main() {
     );
 
     blocTest<MapDestinationsBloc, MapDestinationsState>(
-      'Deselecting route should set selected route to null.',
+      '_SelectRoute event: emits _Loaded state with selectedRouteId set to null if user deselects route.',
       build: () => MapDestinationsBloc()
         ..emit(const MapDestinationsState.loaded(
           routes: {0: testRoute},
@@ -232,7 +232,7 @@ void main() {
     tearDown(() async => await cleanUpHive());
 
     blocTest<MapDestinationsBloc, MapDestinationsState>(
-      'Adding destination to the route',
+      '_AddToRoute event: emits _Loaded state with added destination id to given route if it exists.',
       build: () => MapDestinationsBloc()
         ..emit(const MapDestinationsState.loaded(
           destinations: {0: testDestination},
@@ -253,7 +253,7 @@ void main() {
       ],
     );
     blocTest<MapDestinationsBloc, MapDestinationsState>(
-      'Adding new destination to db and adding it to the route',
+      '_AddDestAndAddToRoute event: emits _Loaded state with added new destination to given route.',
       build: () => MapDestinationsBloc()
         ..emit(const MapDestinationsState.loaded(
           routes: {0: testRoute},
@@ -277,7 +277,7 @@ void main() {
     );
 
     blocTest<MapDestinationsBloc, MapDestinationsState>(
-      'Remove destination from to the route',
+      '_RemoveDestinationFromRoute event: emits _Loaded state with removed destination id from given route.',
       build: () => MapDestinationsBloc()
         ..emit(MapDestinationsState.loaded(
           destinations: {0: testDestination},
@@ -296,7 +296,7 @@ void main() {
       ],
     );
     blocTest<MapDestinationsBloc, MapDestinationsState>(
-      'on destination add action bloc creates new destination if there is NO selected route.',
+      '_OnDestinationAdd event: Creates new destination if there is NO selected route.',
       build: () => MapDestinationsBloc()
         ..emit(const MapDestinationsState.loaded(
           routes: {0: testRoute},
@@ -315,7 +315,7 @@ void main() {
     );
 
     blocTest<MapDestinationsBloc, MapDestinationsState>(
-      'on destination add action bloc creates new destination if there is selected route and adds it to the selected route.',
+      '_OnDestinationAdd event: Creates new destination if there is selected route and adds it to the selected route.',
       build: () => MapDestinationsBloc()
         ..emit(const MapDestinationsState.loaded(
           routes: {0: testRoute},
