@@ -15,6 +15,15 @@ class MapDestinationsBloc
     extends Bloc<MapDestinationsEvent, MapDestinationsState> {
   final box = HiveBoxes.i!.boxes[HiveBoxesNames.mapDestinations]!;
 
+  @override
+  void onChange(Change<MapDestinationsState> change) {
+    super.onChange(change);
+
+    if (change.nextState is _Loaded) {
+      add(const _Save());
+    }
+  }
+
   MapDestinationsBloc() : super(const _Initial()) {
     on<_Load>((event, emit) async {
       emit(const MapDestinationsState.loading());
@@ -63,7 +72,6 @@ class MapDestinationsBloc
         emit(prevState.copyWith(
           destinations: newDestinations,
         ));
-        add(const _Save());
       }
     });
     on<_EditDestination>((event, emit) {
@@ -75,7 +83,6 @@ class MapDestinationsBloc
         emit(prevState.copyWith(
           destinations: newDestinations,
         ));
-        add(const _Save());
       }
     });
     on<_DeleteDestination>((event, emit) {
@@ -99,7 +106,6 @@ class MapDestinationsBloc
           destinations: newDestinations,
           routes: newRoutes,
         ));
-        add(const _Save());
       }
     });
 
@@ -112,7 +118,6 @@ class MapDestinationsBloc
         emit(prevState.copyWith(
           routes: newRoutes,
         ));
-        add(const _Save());
       }
     });
     on<_EditRoute>((event, emit) {
@@ -124,7 +129,6 @@ class MapDestinationsBloc
         emit(prevState.copyWith(
           routes: newRoutes,
         ));
-        add(const _Save());
       }
     });
     on<_DeleteRoute>((event, emit) {
@@ -138,7 +142,6 @@ class MapDestinationsBloc
               ? null
               : prevState.selectedRouteId,
         ));
-        add(const _Save());
       }
     });
     on<_SelectRoute>((event, emit) {
@@ -184,10 +187,9 @@ class MapDestinationsBloc
           destinations: newDestinations,
           routes: newRoutes,
         ));
-        add(const _Save());
       }
     });
-    
+
     // todo: replace it to remove destination at index
     on<_RemoveFromRoute>((event, emit) {
       if (state is _Loaded) {

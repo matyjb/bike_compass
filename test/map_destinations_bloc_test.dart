@@ -35,6 +35,23 @@ void main() {
         MapDestinationsState.loaded(),
       ],
     );
+    final testLoadedState = MapDestinationsState.loaded(
+      destinations: {0: testDestination},
+      routes: {
+        0: testRoute.copyWith(destinations: [0])
+      },
+    );
+    blocTest<MapDestinationsBloc, MapDestinationsState>(
+      'State should be saved to disk after each _Loaded state emitted',
+      build: () => MapDestinationsBloc()..emit(testLoadedState),
+      act: (bloc) => bloc
+        ..add(const MapDestinationsEvent.save())
+        ..add(const MapDestinationsEvent.load()),
+      expect: () => <MapDestinationsState>[
+        const MapDestinationsState.loading(),
+        testLoadedState,
+      ],
+    );
   });
 
   group('MapDestinationsBloc destinations crud tests', () {
