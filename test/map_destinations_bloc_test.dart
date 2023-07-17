@@ -313,6 +313,68 @@ void main() {
       ],
     );
     blocTest<MapDestinationsBloc, MapDestinationsState>(
+      '_MoveDestinationInRoute event: emits _Loaded state with moved destination to another position within given route. (case 0)',
+      build: () => MapDestinationsBloc()
+        ..emit(MapDestinationsState.loaded(
+          destinations: {
+            0: testDestination,
+            1: testDestinationEdit,
+            2: testDestination
+          },
+          routes: {
+            0: testRoute.copyWith(destinations: [0, 1, 2]),
+            1: testRouteEdit.copyWith(destinations: [0, 1, 2])
+          },
+        )),
+      act: (bloc) {
+        bloc.add(const MapDestinationsEvent.moveDestinationInRoute(0, 1, 2));
+      },
+      expect: () => [
+        MapDestinationsState.loaded(
+          destinations: {
+            0: testDestination,
+            1: testDestinationEdit,
+            2: testDestination
+          },
+          routes: {
+            0: testRoute.copyWith(destinations: [0, 2, 1]),
+            1: testRouteEdit.copyWith(destinations: [0, 1, 2])
+          },
+        ),
+      ],
+    );
+    blocTest<MapDestinationsBloc, MapDestinationsState>(
+      '_MoveDestinationInRoute event: emits _Loaded state with moved destination to another position within given route. (case 1)',
+      build: () => MapDestinationsBloc()
+        ..emit(MapDestinationsState.loaded(
+          destinations: {
+            0: testDestination,
+            1: testDestinationEdit,
+            2: testDestination
+          },
+          routes: {
+            0: testRoute.copyWith(destinations: [0, 1, 2]),
+            1: testRouteEdit.copyWith(destinations: [0, 1, 2])
+          },
+        )),
+      act: (bloc) {
+        bloc.add(const MapDestinationsEvent.moveDestinationInRoute(0, 2, 1));
+      },
+      expect: () => [
+        MapDestinationsState.loaded(
+          destinations: {
+            0: testDestination,
+            1: testDestinationEdit,
+            2: testDestination
+          },
+          routes: {
+            0: testRoute.copyWith(destinations: [0, 2, 1]),
+            1: testRouteEdit.copyWith(destinations: [0, 1, 2])
+          },
+        ),
+      ],
+    );
+    blocTest<MapDestinationsBloc, MapDestinationsState>(
       '_OnDestinationAdd event: Creates new destination if there is NO selected route.',
       build: () => MapDestinationsBloc()
         ..emit(const MapDestinationsState.loaded(

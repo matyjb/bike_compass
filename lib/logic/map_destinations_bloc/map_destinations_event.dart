@@ -47,8 +47,13 @@ class MapDestinationsEvent with _$MapDestinationsEvent {
   ) = _AddDestAndAddToRoute;
   const factory MapDestinationsEvent.removeDestinationFromRoute(
     int routeId,
-    int destinationId,
+    int destinationIndex,
   ) = _RemoveFromRoute;
+  const factory MapDestinationsEvent.moveDestinationInRoute(
+    int routeId,
+    int destinationIndex,
+    int toIndex,
+  ) = _MoveDestinationInRoute;
   const factory MapDestinationsEvent.onDestinationAdd(
     MapDestination newDestination,
   ) = _OnDestinationAdd;

@@ -5,3 +5,18 @@ int getNewKey<T>(Map<int, T> m) {
     return 0;
   }
 }
+
+extension ListExtensions on List {
+  void moveItemWithinList<T>(int oldIndex, int newIndex) {
+    if (isEmpty ||
+        oldIndex < 0 ||
+        oldIndex >= length ||
+        newIndex < 0 ||
+        newIndex >= length ||
+        oldIndex == newIndex) {
+      return;
+    }
+    T item = removeAt(oldIndex);
+    insert(newIndex, item);
+  }
+}

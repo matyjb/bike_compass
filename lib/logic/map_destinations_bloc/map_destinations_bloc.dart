@@ -44,10 +44,7 @@ class MapDestinationsBloc
           routes: routes,
         ));
       } catch (e) {
-        emit(const MapDestinationsState.loaded(
-          destinations: {},
-          routes: {},
-        ));
+        emit(const MapDestinationsState.loaded());
       }
     });
     on<_Save>((event, emit) async {
@@ -190,13 +187,28 @@ class MapDestinationsBloc
       }
     });
 
-    // todo: replace it to remove destination at index
+    
     on<_RemoveFromRoute>((event, emit) {
       if (state is _Loaded) {
         final prevState = (state as _Loaded);
         final prevRoute = prevState.routes[event.routeId]!;
         final prevRouteNewDestinations = List.of(prevRoute.destinations)
-          ..remove(event.destinationId);
+          ..removeAt(event.destinationIndex);
+
+        add(_EditRoute(
+          event.routeId,
+          prevRoute.copyWith(
+            destinations: prevRouteNewDestinations,
+          ),
+        ));
+      }
+    });
+    on<_MoveDestinationInRoute>((event, emit) {
+      if (state is _Loaded) {
+        final prevState = (state as _Loaded);
+        final prevRoute = prevState.routes[event.routeId]!;
+        final prevRouteNewDestinations = List.of(prevRoute.destinations)
+          ..moveItemWithinList(event.destinationIndex, event.toIndex);
 
         add(_EditRoute(
           event.routeId,
