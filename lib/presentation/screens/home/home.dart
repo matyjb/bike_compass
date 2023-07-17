@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bike_compass/logic/map_destinations_bloc/map_destinations_bloc.dart';
 import 'package:bike_compass/logic/toolbar_cubit/toolbar_cubit.dart';
+import 'package:bike_compass/models/map_destination.dart';
 import 'package:bike_compass/presentation/screens/home/toolbar/get_name_dialog.dart';
 import 'package:bike_compass/presentation/screens/home/map/maps_with_markers.dart';
 import 'package:bike_compass/presentation/screens/home/route_destinations_list/map_points_manager.dart';
@@ -82,9 +83,8 @@ class _HomeScreenLayoutState extends State<HomeScreenLayout>
                 GetNameDialog.showStandardDialog(context).then((String? value) {
                   if (value != null) {
                     final bloc = context.read<MapDestinationsBloc>();
-                    bloc.add(MapDestinationsEvent.createDestination(
-                      value,
-                      center,
+                    bloc.add(MapDestinationsEvent.onDestinationAdd(
+                      MapDestination(name: value, location: center),
                     ));
                   }
                 });

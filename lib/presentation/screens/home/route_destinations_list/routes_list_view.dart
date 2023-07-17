@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class RoutesListView extends StatelessWidget {
-  final List<MapRoute> routes;
+  final List<MapEntry<int,MapRoute>> routes;
   const RoutesListView({super.key, required this.routes});
 
   @override
@@ -18,11 +18,11 @@ class RoutesListView extends StatelessWidget {
             itemCount: routes.length,
             itemBuilder: (_, i) => RouteListTile(
                 id: i.toString(),
-                name: routes[i].name,
+                name: routes[i].value.name,
                 onTap: () {
                   context
                       .read<MapDestinationsBloc>()
-                      .add(MapDestinationsEvent.selectRoute(routes[i]));
+                      .add(MapDestinationsEvent.selectRoute(routes[i].key));
                 }),
           ),
         ),
@@ -32,7 +32,10 @@ class RoutesListView extends StatelessWidget {
               GetNameDialog.showStandardDialog(context).then((String? name) {
                 if (name != null) {
                   final bloc = context.read<MapDestinationsBloc>();
-                  bloc.add(MapDestinationsEvent.createRoute(name));
+                  bloc.add(MapDestinationsEvent.addRoute(MapRoute(
+                    name: name,
+                    destinations: [],
+                  )));
                 }
               });
             },

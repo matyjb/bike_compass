@@ -16,7 +16,7 @@ class MapPointsManager extends StatelessWidget {
         return state.mapOrNull(
               loaded: (state) {
                 if (state.selectedRoute == null) {
-                  return RoutesListView(routes: state.routes);
+                  return RoutesListView(routes: state.routes.entries.toList());
                 } else {
                   return WillPopScope(
                     onWillPop: () async {
