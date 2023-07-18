@@ -3333,8 +3333,8 @@ mixin _$MapDestinationsState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(Map<int, MapDestination> destinations,
-            Map<int, MapRoute> routes, int? selectedRouteId)
+    required TResult Function(
+            Map<int, MapDestination> destinations, Map<int, MapRoute> routes)
         loaded,
   }) =>
       throw _privateConstructorUsedError;
@@ -3342,8 +3342,8 @@ mixin _$MapDestinationsState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(Map<int, MapDestination> destinations,
-            Map<int, MapRoute> routes, int? selectedRouteId)?
+    TResult? Function(
+            Map<int, MapDestination> destinations, Map<int, MapRoute> routes)?
         loaded,
   }) =>
       throw _privateConstructorUsedError;
@@ -3351,8 +3351,8 @@ mixin _$MapDestinationsState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(Map<int, MapDestination> destinations,
-            Map<int, MapRoute> routes, int? selectedRouteId)?
+    TResult Function(
+            Map<int, MapDestination> destinations, Map<int, MapRoute> routes)?
         loaded,
     required TResult orElse(),
   }) =>
@@ -3439,8 +3439,8 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(Map<int, MapDestination> destinations,
-            Map<int, MapRoute> routes, int? selectedRouteId)
+    required TResult Function(
+            Map<int, MapDestination> destinations, Map<int, MapRoute> routes)
         loaded,
   }) {
     return initial();
@@ -3451,8 +3451,8 @@ class _$_Initial implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(Map<int, MapDestination> destinations,
-            Map<int, MapRoute> routes, int? selectedRouteId)?
+    TResult? Function(
+            Map<int, MapDestination> destinations, Map<int, MapRoute> routes)?
         loaded,
   }) {
     return initial?.call();
@@ -3463,8 +3463,8 @@ class _$_Initial implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(Map<int, MapDestination> destinations,
-            Map<int, MapRoute> routes, int? selectedRouteId)?
+    TResult Function(
+            Map<int, MapDestination> destinations, Map<int, MapRoute> routes)?
         loaded,
     required TResult orElse(),
   }) {
@@ -3552,8 +3552,8 @@ class _$_Loading implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(Map<int, MapDestination> destinations,
-            Map<int, MapRoute> routes, int? selectedRouteId)
+    required TResult Function(
+            Map<int, MapDestination> destinations, Map<int, MapRoute> routes)
         loaded,
   }) {
     return loading();
@@ -3564,8 +3564,8 @@ class _$_Loading implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(Map<int, MapDestination> destinations,
-            Map<int, MapRoute> routes, int? selectedRouteId)?
+    TResult? Function(
+            Map<int, MapDestination> destinations, Map<int, MapRoute> routes)?
         loaded,
   }) {
     return loading?.call();
@@ -3576,8 +3576,8 @@ class _$_Loading implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(Map<int, MapDestination> destinations,
-            Map<int, MapRoute> routes, int? selectedRouteId)?
+    TResult Function(
+            Map<int, MapDestination> destinations, Map<int, MapRoute> routes)?
         loaded,
     required TResult orElse(),
   }) {
@@ -3631,10 +3631,7 @@ abstract class _$$_LoadedCopyWith<$Res> {
   factory _$$_LoadedCopyWith(_$_Loaded value, $Res Function(_$_Loaded) then) =
       __$$_LoadedCopyWithImpl<$Res>;
   @useResult
-  $Res call(
-      {Map<int, MapDestination> destinations,
-      Map<int, MapRoute> routes,
-      int? selectedRouteId});
+  $Res call({Map<int, MapDestination> destinations, Map<int, MapRoute> routes});
 }
 
 /// @nodoc
@@ -3649,7 +3646,6 @@ class __$$_LoadedCopyWithImpl<$Res>
   $Res call({
     Object? destinations = null,
     Object? routes = null,
-    Object? selectedRouteId = freezed,
   }) {
     return _then(_$_Loaded(
       destinations: null == destinations
@@ -3660,10 +3656,6 @@ class __$$_LoadedCopyWithImpl<$Res>
           ? _value._routes
           : routes // ignore: cast_nullable_to_non_nullable
               as Map<int, MapRoute>,
-      selectedRouteId: freezed == selectedRouteId
-          ? _value.selectedRouteId
-          : selectedRouteId // ignore: cast_nullable_to_non_nullable
-              as int?,
     ));
   }
 }
@@ -3673,8 +3665,7 @@ class __$$_LoadedCopyWithImpl<$Res>
 class _$_Loaded implements _Loaded {
   const _$_Loaded(
       {final Map<int, MapDestination> destinations = const {},
-      final Map<int, MapRoute> routes = const {},
-      this.selectedRouteId})
+      final Map<int, MapRoute> routes = const {}})
       : _destinations = destinations,
         _routes = routes;
 
@@ -3697,11 +3688,8 @@ class _$_Loaded implements _Loaded {
   }
 
   @override
-  final int? selectedRouteId;
-
-  @override
   String toString() {
-    return 'MapDestinationsState.loaded(destinations: $destinations, routes: $routes, selectedRouteId: $selectedRouteId)';
+    return 'MapDestinationsState.loaded(destinations: $destinations, routes: $routes)';
   }
 
   @override
@@ -3711,17 +3699,14 @@ class _$_Loaded implements _Loaded {
             other is _$_Loaded &&
             const DeepCollectionEquality()
                 .equals(other._destinations, _destinations) &&
-            const DeepCollectionEquality().equals(other._routes, _routes) &&
-            (identical(other.selectedRouteId, selectedRouteId) ||
-                other.selectedRouteId == selectedRouteId));
+            const DeepCollectionEquality().equals(other._routes, _routes));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_destinations),
-      const DeepCollectionEquality().hash(_routes),
-      selectedRouteId);
+      const DeepCollectionEquality().hash(_routes));
 
   @JsonKey(ignore: true)
   @override
@@ -3734,11 +3719,11 @@ class _$_Loaded implements _Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(Map<int, MapDestination> destinations,
-            Map<int, MapRoute> routes, int? selectedRouteId)
+    required TResult Function(
+            Map<int, MapDestination> destinations, Map<int, MapRoute> routes)
         loaded,
   }) {
-    return loaded(destinations, routes, selectedRouteId);
+    return loaded(destinations, routes);
   }
 
   @override
@@ -3746,11 +3731,11 @@ class _$_Loaded implements _Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(Map<int, MapDestination> destinations,
-            Map<int, MapRoute> routes, int? selectedRouteId)?
+    TResult? Function(
+            Map<int, MapDestination> destinations, Map<int, MapRoute> routes)?
         loaded,
   }) {
-    return loaded?.call(destinations, routes, selectedRouteId);
+    return loaded?.call(destinations, routes);
   }
 
   @override
@@ -3758,13 +3743,13 @@ class _$_Loaded implements _Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(Map<int, MapDestination> destinations,
-            Map<int, MapRoute> routes, int? selectedRouteId)?
+    TResult Function(
+            Map<int, MapDestination> destinations, Map<int, MapRoute> routes)?
         loaded,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(destinations, routes, selectedRouteId);
+      return loaded(destinations, routes);
     }
     return orElse();
   }
@@ -3807,12 +3792,10 @@ class _$_Loaded implements _Loaded {
 abstract class _Loaded implements MapDestinationsState {
   const factory _Loaded(
       {final Map<int, MapDestination> destinations,
-      final Map<int, MapRoute> routes,
-      final int? selectedRouteId}) = _$_Loaded;
+      final Map<int, MapRoute> routes}) = _$_Loaded;
 
   Map<int, MapDestination> get destinations;
   Map<int, MapRoute> get routes;
-  int? get selectedRouteId;
   @JsonKey(ignore: true)
   _$$_LoadedCopyWith<_$_Loaded> get copyWith =>
       throw _privateConstructorUsedError;

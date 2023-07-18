@@ -1,3 +1,4 @@
+import 'package:bike_compass/logic/app_map_cubit/app_map_cubit.dart';
 import 'package:bike_compass/logic/map_destinations_bloc/map_destinations_bloc.dart';
 import 'package:bike_compass/models/map_route.dart';
 import 'package:bike_compass/presentation/screens/home/route_destinations_list/route_list_tile.dart';
@@ -6,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class RoutesListView extends StatelessWidget {
-  final List<MapEntry<int,MapRoute>> routes;
+  final List<MapEntry<int, MapRoute>> routes;
   const RoutesListView({super.key, required this.routes});
 
   @override
@@ -20,9 +21,7 @@ class RoutesListView extends StatelessWidget {
                 id: i.toString(),
                 name: routes[i].value.name,
                 onTap: () {
-                  context
-                      .read<MapDestinationsBloc>()
-                      .add(MapDestinationsEvent.selectRoute(routes[i].key));
+                  context.read<AppMapCubit>().selectRouteIndex(routes[i].key);
                 }),
           ),
         ),

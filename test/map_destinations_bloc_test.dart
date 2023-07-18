@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:bike_compass/logic/app_map_cubit/app_map_cubit.dart';
 import 'package:bike_compass/models/map_destination.dart';
 import 'package:bike_compass/models/map_route.dart';
 import 'package:bloc_test/bloc_test.dart';
@@ -23,12 +24,12 @@ void main() {
     tearDown(() async => await cleanUpHive());
     blocTest<MapDestinationsBloc, MapDestinationsState>(
       'initial state should be .initial()',
-      build: () => MapDestinationsBloc(),
+      build: () => MapDestinationsBloc(AppMapCubit()),
       verify: (bloc) => bloc.state == const MapDestinationsState.initial(),
     );
     blocTest<MapDestinationsBloc, MapDestinationsState>(
       'emits [Loading, Loaded] when load event is added.',
-      build: () => MapDestinationsBloc(),
+      build: () => MapDestinationsBloc(AppMapCubit()),
       act: (bloc) => bloc.add(const MapDestinationsEvent.load()),
       expect: () => const <MapDestinationsState>[
         MapDestinationsState.loading(),
@@ -43,7 +44,7 @@ void main() {
     );
     blocTest<MapDestinationsBloc, MapDestinationsState>(
       'State should be saved to disk after each _Loaded state emitted',
-      build: () => MapDestinationsBloc()..emit(testLoadedState),
+      build: () => MapDestinationsBloc(AppMapCubit())..emit(testLoadedState),
       act: (bloc) => bloc
         ..add(const MapDestinationsEvent.save())
         ..add(const MapDestinationsEvent.load()),
@@ -60,8 +61,8 @@ void main() {
 
     blocTest<MapDestinationsBloc, MapDestinationsState>(
       '_AddDestination event: emits _Loaded state with added destination.',
-      build: () =>
-          MapDestinationsBloc()..emit(const MapDestinationsState.loaded()),
+      build: () => MapDestinationsBloc(AppMapCubit())
+        ..emit(const MapDestinationsState.loaded()),
       act: (bloc) {
         bloc.add(const MapDestinationsEvent.addDestination(testDestination));
       },
@@ -74,7 +75,7 @@ void main() {
 
     blocTest<MapDestinationsBloc, MapDestinationsState>(
       '_EditDestination event: emits _Loaded state with edited destination.',
-      build: () => MapDestinationsBloc()
+      build: () => MapDestinationsBloc(AppMapCubit())
         ..emit(const MapDestinationsState.loaded(
           destinations: {0: testDestination},
         )),
@@ -93,7 +94,7 @@ void main() {
 
     blocTest<MapDestinationsBloc, MapDestinationsState>(
       '_DeleteDestination event: emits _Loaded state with deleted destination.',
-      build: () => MapDestinationsBloc()
+      build: () => MapDestinationsBloc(AppMapCubit())
         ..emit(const MapDestinationsState.loaded(
           destinations: {0: testDestination},
         )),
@@ -107,7 +108,7 @@ void main() {
 
     blocTest<MapDestinationsBloc, MapDestinationsState>(
       '_DeleteDestination event: deleting destination should remove this destination from all routes.',
-      build: () => MapDestinationsBloc()
+      build: () => MapDestinationsBloc(AppMapCubit())
         ..emit(const MapDestinationsState.loaded(
           destinations: {
             0: testDestination,
@@ -142,8 +143,8 @@ void main() {
     const testRoute = MapRoute(name: "test", destinations: []);
     blocTest<MapDestinationsBloc, MapDestinationsState>(
       '_AddRoute event: emits _Loaded state with added route.',
-      build: () =>
-          MapDestinationsBloc()..emit(const MapDestinationsState.loaded()),
+      build: () => MapDestinationsBloc(AppMapCubit())
+        ..emit(const MapDestinationsState.loaded()),
       act: (bloc) {
         bloc.add(const MapDestinationsEvent.addRoute(testRoute));
       },
@@ -156,7 +157,7 @@ void main() {
 
     blocTest<MapDestinationsBloc, MapDestinationsState>(
       '_EditRoute event: emits _Loaded state with edited route.',
-      build: () => MapDestinationsBloc()
+      build: () => MapDestinationsBloc(AppMapCubit())
         ..emit(const MapDestinationsState.loaded(
           routes: {0: testRoute},
         )),
@@ -172,7 +173,7 @@ void main() {
 
     blocTest<MapDestinationsBloc, MapDestinationsState>(
       '_DeleteRoute event: emits _Loaded state with deleted route.',
-      build: () => MapDestinationsBloc()
+      build: () => MapDestinationsBloc(AppMapCubit())
         ..emit(const MapDestinationsState.loaded(
           routes: {0: testRoute},
         )),
@@ -185,64 +186,64 @@ void main() {
     );
   });
 
-  group('MapDestination route selection tests', () {
-    setUp(() async => await setUpHive("$fakeStoragePath\\route_selection"));
-    tearDown(() async => await cleanUpHive());
+  // group('MapDestination route selection tests', () {
+  //   setUp(() async => await setUpHive("$fakeStoragePath\\route_selection"));
+  //   tearDown(() async => await cleanUpHive());
 
-    blocTest<MapDestinationsBloc, MapDestinationsState>(
-      '_SelectRoute event: emits _Loaded state with selected route id if it exists.',
-      build: () => MapDestinationsBloc()
-        ..emit(const MapDestinationsState.loaded(
-          routes: {0: testRoute},
-          selectedRouteId: null,
-        )),
-      act: (bloc) {
-        bloc.add(const MapDestinationsEvent.selectRoute(0));
-      },
-      expect: () => [
-        const MapDestinationsState.loaded(
-          routes: {0: testRoute},
-          selectedRouteId: 0,
-        ),
-      ],
-    );
+  //   blocTest<MapDestinationsBloc, MapDestinationsState>(
+  //     '_SelectRoute event: emits _Loaded state with selected route id if it exists.',
+  //     build: () => MapDestinationsBloc(AppMapCubit())
+  //       ..emit(const MapDestinationsState.loaded(
+  //         routes: {0: testRoute},
+  //         selectedRouteId: null,
+  //       )),
+  //     act: (bloc) {
+  //       bloc.add(const MapDestinationsEvent.selectRoute(0));
+  //     },
+  //     expect: () => [
+  //       const MapDestinationsState.loaded(
+  //         routes: {0: testRoute},
+  //         selectedRouteId: 0,
+  //       ),
+  //     ],
+  //   );
 
-    blocTest<MapDestinationsBloc, MapDestinationsState>(
-      '_SelectRoute event: does nothing if selectedRoute id doesn\'t exist.',
-      build: () => MapDestinationsBloc()
-        ..emit(const MapDestinationsState.loaded(
-          routes: {0: testRoute},
-        )),
-      act: (bloc) {
-        bloc.add(const MapDestinationsEvent.selectRoute(9999));
-      },
-      expect: () => [],
-      verify: (bloc) =>
-          bloc.state ==
-          const MapDestinationsState.loaded(
-            routes: {0: testRoute},
-            selectedRouteId: null,
-          ),
-    );
+  //   blocTest<MapDestinationsBloc, MapDestinationsState>(
+  //     '_SelectRoute event: does nothing if selectedRoute id doesn\'t exist.',
+  //     build: () => MapDestinationsBloc(AppMapCubit())
+  //       ..emit(const MapDestinationsState.loaded(
+  //         routes: {0: testRoute},
+  //       )),
+  //     act: (bloc) {
+  //       bloc.add(const MapDestinationsEvent.selectRoute(9999));
+  //     },
+  //     expect: () => [],
+  //     verify: (bloc) =>
+  //         bloc.state ==
+  //         const MapDestinationsState.loaded(
+  //           routes: {0: testRoute},
+  //           selectedRouteId: null,
+  //         ),
+  //   );
 
-    blocTest<MapDestinationsBloc, MapDestinationsState>(
-      '_SelectRoute event: emits _Loaded state with selectedRouteId set to null if user deselects route.',
-      build: () => MapDestinationsBloc()
-        ..emit(const MapDestinationsState.loaded(
-          routes: {0: testRoute},
-          selectedRouteId: 0,
-        )),
-      act: (bloc) {
-        bloc.add(const MapDestinationsEvent.selectRoute(null));
-      },
-      expect: () => [
-        const MapDestinationsState.loaded(
-          routes: {0: testRoute},
-          selectedRouteId: null,
-        ),
-      ],
-    );
-  });
+  //   blocTest<MapDestinationsBloc, MapDestinationsState>(
+  //     '_SelectRoute event: emits _Loaded state with selectedRouteId set to null if user deselects route.',
+  //     build: () => MapDestinationsBloc(AppMapCubit())
+  //       ..emit(const MapDestinationsState.loaded(
+  //         routes: {0: testRoute},
+  //         selectedRouteId: 0,
+  //       )),
+  //     act: (bloc) {
+  //       bloc.add(const MapDestinationsEvent.selectRoute(null));
+  //     },
+  //     expect: () => [
+  //       const MapDestinationsState.loaded(
+  //         routes: {0: testRoute},
+  //         selectedRouteId: null,
+  //       ),
+  //     ],
+  //   );
+  // });
 
   group('MapDestinationBloc extra events tests', () {
     setUp(() async => await setUpHive("$fakeStoragePath\\extra_events"));
@@ -250,7 +251,7 @@ void main() {
 
     blocTest<MapDestinationsBloc, MapDestinationsState>(
       '_AddToRoute event: emits _Loaded state with added destination id to given route if it exists.',
-      build: () => MapDestinationsBloc()
+      build: () => MapDestinationsBloc(AppMapCubit())
         ..emit(const MapDestinationsState.loaded(
           destinations: {0: testDestination},
           routes: {0: testRoute},
@@ -271,7 +272,7 @@ void main() {
     );
     blocTest<MapDestinationsBloc, MapDestinationsState>(
       '_AddDestAndAddToRoute event: emits _Loaded state with added new destination to given route.',
-      build: () => MapDestinationsBloc()
+      build: () => MapDestinationsBloc(AppMapCubit())
         ..emit(const MapDestinationsState.loaded(
           routes: {0: testRoute},
         )),
@@ -295,7 +296,7 @@ void main() {
 
     blocTest<MapDestinationsBloc, MapDestinationsState>(
       '_RemoveDestinationFromRoute event: emits _Loaded state with removed destination id from given route.',
-      build: () => MapDestinationsBloc()
+      build: () => MapDestinationsBloc(AppMapCubit())
         ..emit(MapDestinationsState.loaded(
           destinations: {0: testDestination},
           routes: {
@@ -314,7 +315,7 @@ void main() {
     );
     blocTest<MapDestinationsBloc, MapDestinationsState>(
       '_MoveDestinationInRoute event: emits _Loaded state with moved destination to another position within given route. (case 0)',
-      build: () => MapDestinationsBloc()
+      build: () => MapDestinationsBloc(AppMapCubit())
         ..emit(MapDestinationsState.loaded(
           destinations: {
             0: testDestination,
@@ -345,7 +346,7 @@ void main() {
     );
     blocTest<MapDestinationsBloc, MapDestinationsState>(
       '_MoveDestinationInRoute event: emits _Loaded state with moved destination to another position within given route. (case 1)',
-      build: () => MapDestinationsBloc()
+      build: () => MapDestinationsBloc(AppMapCubit())
         ..emit(MapDestinationsState.loaded(
           destinations: {
             0: testDestination,
@@ -376,7 +377,7 @@ void main() {
     );
     blocTest<MapDestinationsBloc, MapDestinationsState>(
       '_OnDestinationAdd event: Creates new destination if there is NO selected route.',
-      build: () => MapDestinationsBloc()
+      build: () => MapDestinationsBloc(AppMapCubit())
         ..emit(const MapDestinationsState.loaded(
           routes: {0: testRoute},
         )),
@@ -395,10 +396,9 @@ void main() {
 
     blocTest<MapDestinationsBloc, MapDestinationsState>(
       '_OnDestinationAdd event: Creates new destination if there is selected route and adds it to the selected route.',
-      build: () => MapDestinationsBloc()
+      build: () => MapDestinationsBloc(AppMapCubit()..selectRouteIndex(0))
         ..emit(const MapDestinationsState.loaded(
           routes: {0: testRoute},
-          selectedRouteId: 0,
         )),
       act: (bloc) {
         bloc.add(const MapDestinationsEvent.onDestinationAdd(
@@ -413,7 +413,6 @@ void main() {
               destinations: [...testRoute.destinations, 0],
             )
           },
-          selectedRouteId: 0,
         ),
       ],
     );
