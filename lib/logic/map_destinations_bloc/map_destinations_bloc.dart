@@ -18,9 +18,15 @@ class MapDestinationsBloc
   @override
   void onChange(Change<MapDestinationsState> change) {
     super.onChange(change);
-
-    if (change.nextState is _Loaded) {
-      add(const _Save());
+    if (change.nextState is _Loaded && change.currentState is _Loaded) {
+      // a change in state detected
+      final next = change.nextState as _Loaded;
+      final current = change.currentState as _Loaded;
+      // save only changes in destinations or routes
+      if (next.destinations != current.destinations ||
+          next.routes != current.routes) {
+        add(const _Save());
+      }
     }
   }
 
@@ -187,7 +193,6 @@ class MapDestinationsBloc
       }
     });
 
-    
     on<_RemoveFromRoute>((event, emit) {
       if (state is _Loaded) {
         final prevState = (state as _Loaded);
