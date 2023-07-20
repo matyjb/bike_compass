@@ -2,7 +2,7 @@ import 'package:bike_compass/data/providers/hive.dart';
 import 'package:bike_compass/logic/compass_bloc/compass_bloc.dart';
 import 'package:bike_compass/logic/location_bloc/location_bloc.dart';
 import 'package:bike_compass/logic/location_permission_cubit/location_permission_cubit.dart';
-import 'package:bike_compass/logic/map_destinations_bloc/map_destinations_bloc.dart';
+import 'package:bike_compass/logic/map_data_bloc/map_data_bloc.dart';
 import 'package:bike_compass/router.dart';
 import 'package:bike_compass/theme_data.dart';
 import 'package:flutter/material.dart';
@@ -45,7 +45,7 @@ class _MyAppState extends State<MyApp> {
           ),
           BlocProvider(
             create: (_) =>
-                MapDestinationsBloc()..add(const MapDestinationsEvent.load()),
+                MapDataBloc()..add(const MapDataEvent.load()),
           ),
         ],
         child: MaterialApp(

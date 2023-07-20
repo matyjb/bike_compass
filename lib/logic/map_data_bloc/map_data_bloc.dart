@@ -5,14 +5,14 @@ import 'package:bike_compass/helpers.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'map_destinations_event.dart';
-part 'map_destinations_state.dart';
-part 'map_destinations_bloc.freezed.dart';
+part 'map_data_event.dart';
+part 'map_data_state.dart';
+part 'map_data_bloc.freezed.dart';
 
-class MapDestinationsBloc
-    extends Bloc<MapDestinationsEvent, MapDestinationsState> {
+class MapDataBloc
+    extends Bloc<MapDataEvent, MapDataState> {
   @override
-  void onChange(Change<MapDestinationsState> change) {
+  void onChange(Change<MapDataState> change) {
     super.onChange(change);
     if (change.nextState is _Loaded && change.currentState is _Loaded) {
       // a change in state detected
@@ -26,19 +26,19 @@ class MapDestinationsBloc
     }
   }
 
-  MapDestinationsBloc() : super(const _Initial()) {
+  MapDataBloc() : super(const _Initial()) {
     on<_Load>((event, emit) async {
-      emit(const MapDestinationsState.loading());
+      emit(const MapDataState.loading());
       try {
         final destinations = MapDataRepo.getDestinations();
         final routes = MapDataRepo.getRoutes();
 
-        emit(MapDestinationsState.loaded(
+        emit(MapDataState.loaded(
           destinations: destinations,
           routes: routes,
         ));
       } catch (e) {
-        emit(const MapDestinationsState.loaded());
+        emit(const MapDataState.loaded());
       }
     });
     on<_Save>((event, emit) async {

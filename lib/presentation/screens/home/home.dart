@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:bike_compass/data/models/map_destination.dart';
-import 'package:bike_compass/logic/map_destinations_bloc/map_destinations_bloc.dart';
+import 'package:bike_compass/logic/map_data_bloc/map_data_bloc.dart';
 import 'package:bike_compass/logic/toolbar_cubit/toolbar_cubit.dart';
 import 'package:bike_compass/presentation/screens/home/toolbar/get_name_dialog.dart';
 import 'package:bike_compass/presentation/screens/home/map/maps_with_markers.dart';
@@ -82,8 +82,8 @@ class _HomeScreenLayoutState extends State<HomeScreenLayout>
                 // ignore: use_build_context_synchronously
                 GetNameDialog.showStandardDialog(context).then((String? value) {
                   if (value != null) {
-                    final bloc = context.read<MapDestinationsBloc>();
-                    bloc.add(MapDestinationsEvent.onDestinationAdd(
+                    final bloc = context.read<MapDataBloc>();
+                    bloc.add(MapDataEvent.onDestinationAdd(
                       MapDestination(name: value, location: center),
                     ));
                   }

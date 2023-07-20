@@ -1,10 +1,10 @@
-part of 'map_destinations_bloc.dart';
+part of 'map_data_bloc.dart';
 
 @freezed
-class MapDestinationsState with _$MapDestinationsState {
-  const factory MapDestinationsState.initial() = _Initial;
-  const factory MapDestinationsState.loading() = _Loading;
-  const factory MapDestinationsState.loaded({
+class MapDataState with _$MapDataState {
+  const factory MapDataState.initial() = _Initial;
+  const factory MapDataState.loading() = _Loading;
+  const factory MapDataState.loaded({
     @Default({}) Map<int, MapDestination> destinations,
     @Default({}) Map<int, MapRoute> routes,
     int? selectedRouteId,
