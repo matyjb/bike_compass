@@ -1,61 +1,51 @@
-import 'dart:convert';
-
+import 'package:bike_compass/data/models/map_destination.dart';
+import 'package:bike_compass/data/models/map_route.dart';
+import 'package:bike_compass/data/repositories/map_data_repo.dart';
 import 'package:bike_compass/helpers.dart';
-import 'package:bike_compass/logic/hive_boxes.dart';
-import 'package:bike_compass/models/map_destination.dart';
-import 'package:bike_compass/models/map_route.dart';
+import 'package:bike_compass/logic/app_map_cubit/app_map_cubit.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'map_destinations_event.dart';
-part 'map_destinations_state.dart';
-part 'map_destinations_bloc.freezed.dart';
+part 'map_data_event.dart';
+part 'map_data_state.dart';
+part 'map_data_bloc.freezed.dart';
 
-class MapDestinationsBloc
-    extends Bloc<MapDestinationsEvent, MapDestinationsState> {
-  final box = HiveBoxes.i!.boxes[HiveBoxesNames.mapDestinations]!;
-
+class MapDataBloc extends Bloc<MapDataEvent, MapDataState> {
+  final AppMapCubit appMapCubit;
   @override
-  void onChange(Change<MapDestinationsState> change) {
+  void onChange(Change<MapDataState> change) {
     super.onChange(change);
-
-    if (change.nextState is _Loaded) {
-      add(const _Save());
+    if (change.nextState is _Loaded && change.currentState is _Loaded) {
+      // a change in state detected
+      final next = change.nextState as _Loaded;
+      final current = change.currentState as _Loaded;
+      // save only changes in destinations or routes
+      if (next.destinations != current.destinations ||
+          next.routes != current.routes) {
+        add(const _Save());
+      }
     }
   }
 
-  MapDestinationsBloc() : super(const _Initial()) {
+  MapDataBloc(this.appMapCubit) : super(const _Initial()) {
     on<_Load>((event, emit) async {
-      emit(const MapDestinationsState.loading());
+      emit(const MapDataState.loading());
       try {
-        final destinationsJson =
-            jsonDecode(box.get("destinations", defaultValue: "{}")) as Map;
-        final destinations = destinationsJson.map((k, v) =>
-            MapEntry<int, MapDestination>(
-                int.parse(k), MapDestination.fromJson(v)));
+        final destinations = MapDataRepo.getDestinations();
+        final routes = MapDataRepo.getRoutes();
 
-        final routesJson =
-            jsonDecode(box.get("routes", defaultValue: "{}")) as Map;
-        final routes = routesJson.map((k, v) =>
-            MapEntry<int, MapRoute>(int.parse(k), MapRoute.fromJson(v)));
-
-        emit(MapDestinationsState.loaded(
+        emit(MapDataState.loaded(
           destinations: destinations,
           routes: routes,
         ));
       } catch (e) {
-        emit(const MapDestinationsState.loaded());
+        emit(const MapDataState.loaded());
       }
     });
     on<_Save>((event, emit) async {
       if (state is _Loaded) {
         final s = state as _Loaded;
-        box.putAll({
-          "destinations": jsonEncode(s.destinations
-              .map((key, value) => MapEntry(key.toString(), value))),
-          "routes": jsonEncode(
-              s.routes.map((key, value) => MapEntry(key.toString(), value))),
-        });
+        MapDataRepo.saveData(s.destinations, s.routes);
       }
     });
 
@@ -133,24 +123,13 @@ class MapDestinationsBloc
         final prevState = (state as _Loaded);
         final newRoutes = Map.of(prevState.routes)..remove(event.routeId);
 
+        if (appMapCubit.state.selectedRouteIndex == event.routeId) {
+          // deselect route if it was selected
+          appMapCubit.selectRouteIndex(null);
+        }
         emit(prevState.copyWith(
           routes: newRoutes,
-          selectedRouteId: event.routeId == prevState.selectedRouteId
-              ? null
-              : prevState.selectedRouteId,
         ));
-      }
-    });
-    on<_SelectRoute>((event, emit) {
-      if (state is _Loaded) {
-        final prevState = (state as _Loaded);
-
-        if (event.routeId == null ||
-            prevState.routes.keys.contains(event.routeId)) {
-          emit(prevState.copyWith(
-            selectedRouteId: event.routeId,
-          ));
-        }
       }
     });
 
@@ -187,7 +166,6 @@ class MapDestinationsBloc
       }
     });
 
-    
     on<_RemoveFromRoute>((event, emit) {
       if (state is _Loaded) {
         final prevState = (state as _Loaded);
@@ -220,11 +198,11 @@ class MapDestinationsBloc
     });
     on<_OnDestinationAdd>((event, emit) {
       if (state is _Loaded) {
-        final prevState = (state as _Loaded);
-        if (prevState.selectedRouteId != null) {
+        final selectedRouteIndex = appMapCubit.state.selectedRouteIndex;
+        if (selectedRouteIndex != null) {
           add(_AddDestAndAddToRoute(
             event.newDestination,
-            prevState.selectedRouteId!,
+            selectedRouteIndex,
           ));
         } else {
           add(_AddDestination(event.newDestination));

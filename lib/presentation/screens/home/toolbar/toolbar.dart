@@ -1,4 +1,4 @@
-import 'package:bike_compass/logic/toolbar_cubit/toolbar_cubit.dart';
+import 'package:bike_compass/logic/app_map_cubit/app_map_cubit.dart';
 import 'package:bike_compass/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,10 +10,10 @@ class Toolbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      child: BlocBuilder<ToolbarCubit, ToolbarState>(
+      child: BlocBuilder<AppMapCubit, AppMapState>(
         builder: (context, state) {
-          bool? followMode = state.mapOrNull(loaded: (s) => s.followMode);
-          bool? expandedMap = state.mapOrNull(loaded: (s) => s.expandedMap);
+          bool followMode = state.followMode;
+          bool expandedMap = state.expandedMap;
           return Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -25,9 +25,7 @@ class Toolbar extends StatelessWidget {
                 icon: const Icon(Icons.settings),
               ),
               IconButton(
-                onPressed: expandedMap == null
-                    ? null
-                    : context.read<ToolbarCubit>().toggleExpandedMap,
+                onPressed: context.read<AppMapCubit>().toggleExpandedMap,
                 icon: Icon(
                   expandedMap == true
                       ? Icons.keyboard_arrow_up_rounded
@@ -35,9 +33,7 @@ class Toolbar extends StatelessWidget {
                 ),
               ),
               IconButton(
-                onPressed: followMode == null
-                    ? null
-                    : context.read<ToolbarCubit>().toggleFollowMode,
+                onPressed: context.read<AppMapCubit>().toggleFollowMode,
                 icon: Icon(
                   followMode == true
                       ? Icons.location_searching_rounded

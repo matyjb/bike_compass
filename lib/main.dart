@@ -1,8 +1,9 @@
+import 'package:bike_compass/data/providers/hive.dart';
+import 'package:bike_compass/logic/app_map_cubit/app_map_cubit.dart';
 import 'package:bike_compass/logic/compass_bloc/compass_bloc.dart';
-import 'package:bike_compass/logic/hive_boxes.dart';
 import 'package:bike_compass/logic/location_bloc/location_bloc.dart';
 import 'package:bike_compass/logic/location_permission_cubit/location_permission_cubit.dart';
-import 'package:bike_compass/logic/map_destinations_bloc/map_destinations_bloc.dart';
+import 'package:bike_compass/logic/map_data_bloc/map_data_bloc.dart';
 import 'package:bike_compass/router.dart';
 import 'package:bike_compass/theme_data.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +13,7 @@ const String appName = "bike_compass";
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await HiveBoxes().init();
+  await HiveBoxProvider.init();
   runApp(const MyApp());
 }
 
@@ -26,6 +27,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   final _appRouter = AppRouter();
   final _locPermissionCubit = LocationPermissionCubit()..requestPermission();
+  final _appMapCubit = AppMapCubit();
 
   @override
   Widget build(BuildContext context) {
@@ -43,9 +45,12 @@ class _MyAppState extends State<MyApp> {
               locationPermissionCubit: _locPermissionCubit,
             ),
           ),
+          BlocProvider.value(
+            value: _appMapCubit,
+          ),
           BlocProvider(
             create: (_) =>
-                MapDestinationsBloc()..add(const MapDestinationsEvent.load()),
+                MapDataBloc(_appMapCubit)..add(const MapDataEvent.load()),
           ),
         ],
         child: MaterialApp(
