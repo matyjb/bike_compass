@@ -1,4 +1,4 @@
-import 'package:bike_compass/models/map_route.dart';
+import 'package:bike_compass/data/models/map_route.dart';
 import 'package:bike_compass/presentation/screens/home/route_destinations_list/route_destination_list_tile.dart';
 import 'package:flutter/material.dart';
 
@@ -42,10 +42,9 @@ class RouteDestinationsListView extends StatelessWidget {
               child: ListView.builder(
                 itemCount: route.destinations.length,
                 itemBuilder: (_, i) => RouteDestinationListTile(
-                  id: i.toString(),
-                  // name: route.destinations[i].name,
-                  name: "test destination"
-                ),
+                    id: i.toString(),
+                    // name: route.destinations[i].name,
+                    name: "test destination"),
               ),
             ),
           ],

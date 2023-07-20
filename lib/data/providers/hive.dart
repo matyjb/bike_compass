@@ -9,25 +9,27 @@ sealed class HiveBoxesNames {
   }
 }
 
-class HiveBoxes {
-  final Map<String, Box?> boxes = {};
-  static HiveBoxes? instance;
-  static HiveBoxes? get i => instance;
+class HiveBoxProvider {
+  static final HiveBoxProvider i = HiveBoxProvider._internal();
+  HiveBoxProvider._internal();
 
-  Future<HiveBoxes> init() async {
-    instance = this;
+  final Map<String, Box?> _boxes = {};
+  static Map<String, Box?> get boxes => i._boxes;
+  static Box? get mapDataBox => i._boxes[HiveBoxesNames.mapDestinations];
+
+  static Future<HiveBoxProvider> init() async {
     if (!kIsWeb) {
       Hive.init((await getApplicationDocumentsDirectory()).path);
     }
 
     for (var boxName in HiveBoxesNames.getAll()) {
       if (!Hive.isBoxOpen(boxName)) {
-        boxes[boxName] = await Hive.openBox(boxName);
+        i._boxes[boxName] = await Hive.openBox(boxName);
       } else {
-        boxes[boxName] = Hive.box(boxName);
+        i._boxes[boxName] = Hive.box(boxName);
       }
     }
 
-    return this;
+    return i;
   }
 }

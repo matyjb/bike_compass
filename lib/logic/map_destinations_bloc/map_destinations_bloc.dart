@@ -1,9 +1,7 @@
-import 'dart:convert';
-
+import 'package:bike_compass/data/models/map_destination.dart';
+import 'package:bike_compass/data/models/map_route.dart';
+import 'package:bike_compass/data/repositories/map_data_repo.dart';
 import 'package:bike_compass/helpers.dart';
-import 'package:bike_compass/logic/hive_boxes.dart';
-import 'package:bike_compass/models/map_destination.dart';
-import 'package:bike_compass/models/map_route.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -13,8 +11,6 @@ part 'map_destinations_bloc.freezed.dart';
 
 class MapDestinationsBloc
     extends Bloc<MapDestinationsEvent, MapDestinationsState> {
-  final box = HiveBoxes.i!.boxes[HiveBoxesNames.mapDestinations]!;
-
   @override
   void onChange(Change<MapDestinationsState> change) {
     super.onChange(change);
@@ -34,16 +30,8 @@ class MapDestinationsBloc
     on<_Load>((event, emit) async {
       emit(const MapDestinationsState.loading());
       try {
-        final destinationsJson =
-            jsonDecode(box.get("destinations", defaultValue: "{}")) as Map;
-        final destinations = destinationsJson.map((k, v) =>
-            MapEntry<int, MapDestination>(
-                int.parse(k), MapDestination.fromJson(v)));
-
-        final routesJson =
-            jsonDecode(box.get("routes", defaultValue: "{}")) as Map;
-        final routes = routesJson.map((k, v) =>
-            MapEntry<int, MapRoute>(int.parse(k), MapRoute.fromJson(v)));
+        final destinations = MapDataRepo.getDestinations();
+        final routes = MapDataRepo.getRoutes();
 
         emit(MapDestinationsState.loaded(
           destinations: destinations,
@@ -56,12 +44,7 @@ class MapDestinationsBloc
     on<_Save>((event, emit) async {
       if (state is _Loaded) {
         final s = state as _Loaded;
-        box.putAll({
-          "destinations": jsonEncode(s.destinations
-              .map((key, value) => MapEntry(key.toString(), value))),
-          "routes": jsonEncode(
-              s.routes.map((key, value) => MapEntry(key.toString(), value))),
-        });
+        MapDataRepo.saveData(s.destinations, s.routes);
       }
     });
 

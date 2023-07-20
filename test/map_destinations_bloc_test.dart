@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:bike_compass/models/map_destination.dart';
-import 'package:bike_compass/models/map_route.dart';
+import 'package:bike_compass/data/models/map_destination.dart';
+import 'package:bike_compass/data/models/map_route.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:bike_compass/logic/map_destinations_bloc/map_destinations_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';

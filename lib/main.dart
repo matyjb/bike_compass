@@ -1,5 +1,5 @@
+import 'package:bike_compass/data/providers/hive.dart';
 import 'package:bike_compass/logic/compass_bloc/compass_bloc.dart';
-import 'package:bike_compass/logic/hive_boxes.dart';
 import 'package:bike_compass/logic/location_bloc/location_bloc.dart';
 import 'package:bike_compass/logic/location_permission_cubit/location_permission_cubit.dart';
 import 'package:bike_compass/logic/map_destinations_bloc/map_destinations_bloc.dart';
@@ -12,7 +12,7 @@ const String appName = "bike_compass";
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await HiveBoxes().init();
+  await HiveBoxProvider.init();
   runApp(const MyApp());
 }
 
