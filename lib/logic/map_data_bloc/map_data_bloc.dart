@@ -2,6 +2,7 @@ import 'package:bike_compass/data/models/map_destination.dart';
 import 'package:bike_compass/data/models/map_route.dart';
 import 'package:bike_compass/data/repositories/map_data_repo.dart';
 import 'package:bike_compass/helpers.dart';
+import 'package:bike_compass/logic/app_map_cubit/app_map_cubit.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -9,8 +10,8 @@ part 'map_data_event.dart';
 part 'map_data_state.dart';
 part 'map_data_bloc.freezed.dart';
 
-class MapDataBloc
-    extends Bloc<MapDataEvent, MapDataState> {
+class MapDataBloc extends Bloc<MapDataEvent, MapDataState> {
+  final AppMapCubit appMapCubit;
   @override
   void onChange(Change<MapDataState> change) {
     super.onChange(change);
@@ -26,7 +27,7 @@ class MapDataBloc
     }
   }
 
-  MapDataBloc() : super(const _Initial()) {
+  MapDataBloc(this.appMapCubit) : super(const _Initial()) {
     on<_Load>((event, emit) async {
       emit(const MapDataState.loading());
       try {
@@ -122,24 +123,13 @@ class MapDataBloc
         final prevState = (state as _Loaded);
         final newRoutes = Map.of(prevState.routes)..remove(event.routeId);
 
+        if (appMapCubit.state.selectedRouteIndex == event.routeId) {
+          // deselect route if it was selected
+          appMapCubit.selectRouteIndex(null);
+        }
         emit(prevState.copyWith(
           routes: newRoutes,
-          selectedRouteId: event.routeId == prevState.selectedRouteId
-              ? null
-              : prevState.selectedRouteId,
         ));
-      }
-    });
-    on<_SelectRoute>((event, emit) {
-      if (state is _Loaded) {
-        final prevState = (state as _Loaded);
-
-        if (event.routeId == null ||
-            prevState.routes.keys.contains(event.routeId)) {
-          emit(prevState.copyWith(
-            selectedRouteId: event.routeId,
-          ));
-        }
       }
     });
 
@@ -208,11 +198,11 @@ class MapDataBloc
     });
     on<_OnDestinationAdd>((event, emit) {
       if (state is _Loaded) {
-        final prevState = (state as _Loaded);
-        if (prevState.selectedRouteId != null) {
+        final selectedRouteIndex = appMapCubit.state.selectedRouteIndex;
+        if (selectedRouteIndex != null) {
           add(_AddDestAndAddToRoute(
             event.newDestination,
-            prevState.selectedRouteId!,
+            selectedRouteIndex,
           ));
         } else {
           add(_AddDestination(event.newDestination));

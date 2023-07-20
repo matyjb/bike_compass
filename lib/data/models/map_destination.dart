@@ -7,13 +7,12 @@ part 'map_destination.freezed.dart';
 part 'map_destination.g.dart';
 
 @freezed
-class MapDestination with _$MapDestination  {
+class MapDestination with _$MapDestination {
   const factory MapDestination({
     required String name,
-    @LatLngJsonConverter()
-    required LatLng location,
+    @LatLngJsonConverter() required LatLng location,
   }) = _MapDestination;
 
-  factory MapDestination.fromJson(Map<String, Object?> json)
-      => _$MapDestinationFromJson(json);
+  factory MapDestination.fromJson(Map<String, Object?> json) =>
+      _$MapDestinationFromJson(json);
 }

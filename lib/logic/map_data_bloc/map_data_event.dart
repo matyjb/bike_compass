@@ -30,10 +30,6 @@ class MapDataEvent with _$MapDataEvent {
     int routeId,
   ) = _DeleteRoute;
 
-  const factory MapDataEvent.selectRoute(
-    int? routeId,
-  ) = _SelectRoute;
-
   /// ###########
   // extra events
   /// ###########
