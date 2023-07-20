@@ -1,56 +1,56 @@
-part of 'map_destinations_bloc.dart';
+part of 'map_data_bloc.dart';
 
 @freezed
-class MapDestinationsEvent with _$MapDestinationsEvent {
-  const factory MapDestinationsEvent.load() = _Load;
-  const factory MapDestinationsEvent.save() = _Save;
+class MapDataEvent with _$MapDataEvent {
+  const factory MapDataEvent.load() = _Load;
+  const factory MapDataEvent.save() = _Save;
 
   /// ###########
   // crud events
   /// ###########
-  const factory MapDestinationsEvent.addDestination(
+  const factory MapDataEvent.addDestination(
     MapDestination destination,
   ) = _AddDestination;
-  const factory MapDestinationsEvent.editDestination(
+  const factory MapDataEvent.editDestination(
     int destinationId,
     MapDestination editedDestination,
   ) = _EditDestination;
-  const factory MapDestinationsEvent.deleteDestination(
+  const factory MapDataEvent.deleteDestination(
     int destinationId,
   ) = _DeleteDestination;
 
-  const factory MapDestinationsEvent.addRoute(
+  const factory MapDataEvent.addRoute(
     MapRoute route,
   ) = _AddRoute;
-  const factory MapDestinationsEvent.editRoute(
+  const factory MapDataEvent.editRoute(
     int routeId,
     MapRoute editedRoute,
   ) = _EditRoute;
-  const factory MapDestinationsEvent.deleteRoute(
+  const factory MapDataEvent.deleteRoute(
     int routeId,
   ) = _DeleteRoute;
 
   /// ###########
   // extra events
   /// ###########
-  const factory MapDestinationsEvent.addToRoute(
+  const factory MapDataEvent.addToRoute(
     int destinationId,
     int routeId,
   ) = _AddToRoute;
-  const factory MapDestinationsEvent.addDestAndAddToRoute(
+  const factory MapDataEvent.addDestAndAddToRoute(
     MapDestination newDestination,
     int routeId,
   ) = _AddDestAndAddToRoute;
-  const factory MapDestinationsEvent.removeDestinationFromRoute(
+  const factory MapDataEvent.removeDestinationFromRoute(
     int routeId,
     int destinationIndex,
   ) = _RemoveFromRoute;
-  const factory MapDestinationsEvent.moveDestinationInRoute(
+  const factory MapDataEvent.moveDestinationInRoute(
     int routeId,
     int destinationIndex,
     int toIndex,
   ) = _MoveDestinationInRoute;
-  const factory MapDestinationsEvent.onDestinationAdd(
+  const factory MapDataEvent.onDestinationAdd(
     MapDestination newDestination,
   ) = _OnDestinationAdd;
 }

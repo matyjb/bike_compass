@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:bike_compass/models/map_destination.dart';
-import 'package:bike_compass/models/map_route.dart';
+import 'package:bike_compass/data/models/map_destination.dart';
+import 'package:bike_compass/data/models/map_route.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 final fakeStoragePath =

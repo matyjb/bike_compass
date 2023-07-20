@@ -1,24 +1,19 @@
-import 'dart:convert';
-
+import 'package:bike_compass/data/models/map_destination.dart';
+import 'package:bike_compass/data/models/map_route.dart';
+import 'package:bike_compass/data/repositories/map_data_repo.dart';
 import 'package:bike_compass/helpers.dart';
 import 'package:bike_compass/logic/app_map_cubit/app_map_cubit.dart';
-import 'package:bike_compass/logic/hive_boxes.dart';
-import 'package:bike_compass/models/map_destination.dart';
-import 'package:bike_compass/models/map_route.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'map_destinations_event.dart';
-part 'map_destinations_state.dart';
-part 'map_destinations_bloc.freezed.dart';
+part 'map_data_event.dart';
+part 'map_data_state.dart';
+part 'map_data_bloc.freezed.dart';
 
-class MapDestinationsBloc
-    extends Bloc<MapDestinationsEvent, MapDestinationsState> {
-  final box = HiveBoxes.i!.boxes[HiveBoxesNames.mapDestinations]!;
+class MapDataBloc extends Bloc<MapDataEvent, MapDataState> {
   final AppMapCubit appMapCubit;
-
   @override
-  void onChange(Change<MapDestinationsState> change) {
+  void onChange(Change<MapDataState> change) {
     super.onChange(change);
     if (change.nextState is _Loaded && change.currentState is _Loaded) {
       // a change in state detected
@@ -32,38 +27,25 @@ class MapDestinationsBloc
     }
   }
 
-  MapDestinationsBloc(this.appMapCubit) : super(const _Initial()) {
+  MapDataBloc(this.appMapCubit) : super(const _Initial()) {
     on<_Load>((event, emit) async {
-      emit(const MapDestinationsState.loading());
+      emit(const MapDataState.loading());
       try {
-        final destinationsJson =
-            jsonDecode(box.get("destinations", defaultValue: "{}")) as Map;
-        final destinations = destinationsJson.map((k, v) =>
-            MapEntry<int, MapDestination>(
-                int.parse(k), MapDestination.fromJson(v)));
+        final destinations = MapDataRepo.getDestinations();
+        final routes = MapDataRepo.getRoutes();
 
-        final routesJson =
-            jsonDecode(box.get("routes", defaultValue: "{}")) as Map;
-        final routes = routesJson.map((k, v) =>
-            MapEntry<int, MapRoute>(int.parse(k), MapRoute.fromJson(v)));
-
-        emit(MapDestinationsState.loaded(
+        emit(MapDataState.loaded(
           destinations: destinations,
           routes: routes,
         ));
       } catch (e) {
-        emit(const MapDestinationsState.loaded());
+        emit(const MapDataState.loaded());
       }
     });
     on<_Save>((event, emit) async {
       if (state is _Loaded) {
         final s = state as _Loaded;
-        box.putAll({
-          "destinations": jsonEncode(s.destinations
-              .map((key, value) => MapEntry(key.toString(), value))),
-          "routes": jsonEncode(
-              s.routes.map((key, value) => MapEntry(key.toString(), value))),
-        });
+        MapDataRepo.saveData(s.destinations, s.routes);
       }
     });
 

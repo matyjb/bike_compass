@@ -1,6 +1,6 @@
+import 'package:bike_compass/data/models/map_route.dart';
+import 'package:bike_compass/logic/map_data_bloc/map_data_bloc.dart';
 import 'package:bike_compass/logic/app_map_cubit/app_map_cubit.dart';
-import 'package:bike_compass/logic/map_destinations_bloc/map_destinations_bloc.dart';
-import 'package:bike_compass/models/map_route.dart';
 import 'package:bike_compass/presentation/screens/home/route_destinations_list/route_list_tile.dart';
 import 'package:bike_compass/presentation/screens/home/toolbar/get_name_dialog.dart';
 import 'package:flutter/material.dart';
@@ -30,8 +30,8 @@ class RoutesListView extends StatelessWidget {
             onPressed: () {
               GetNameDialog.showStandardDialog(context).then((String? name) {
                 if (name != null) {
-                  final bloc = context.read<MapDestinationsBloc>();
-                  bloc.add(MapDestinationsEvent.addRoute(MapRoute(
+                  final bloc = context.read<MapDataBloc>();
+                  bloc.add(MapDataEvent.addRoute(MapRoute(
                     name: name,
                     destinations: [],
                   )));

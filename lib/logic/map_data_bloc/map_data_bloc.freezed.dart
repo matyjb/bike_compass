@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'map_destinations_bloc.dart';
+part of 'map_data_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$MapDestinationsEvent {
+mixin _$MapDataEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
@@ -144,17 +144,16 @@ mixin _$MapDestinationsEvent {
 }
 
 /// @nodoc
-abstract class $MapDestinationsEventCopyWith<$Res> {
-  factory $MapDestinationsEventCopyWith(MapDestinationsEvent value,
-          $Res Function(MapDestinationsEvent) then) =
-      _$MapDestinationsEventCopyWithImpl<$Res, MapDestinationsEvent>;
+abstract class $MapDataEventCopyWith<$Res> {
+  factory $MapDataEventCopyWith(
+          MapDataEvent value, $Res Function(MapDataEvent) then) =
+      _$MapDataEventCopyWithImpl<$Res, MapDataEvent>;
 }
 
 /// @nodoc
-class _$MapDestinationsEventCopyWithImpl<$Res,
-        $Val extends MapDestinationsEvent>
-    implements $MapDestinationsEventCopyWith<$Res> {
-  _$MapDestinationsEventCopyWithImpl(this._value, this._then);
+class _$MapDataEventCopyWithImpl<$Res, $Val extends MapDataEvent>
+    implements $MapDataEventCopyWith<$Res> {
+  _$MapDataEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -170,7 +169,7 @@ abstract class _$$_LoadCopyWith<$Res> {
 
 /// @nodoc
 class __$$_LoadCopyWithImpl<$Res>
-    extends _$MapDestinationsEventCopyWithImpl<$Res, _$_Load>
+    extends _$MapDataEventCopyWithImpl<$Res, _$_Load>
     implements _$$_LoadCopyWith<$Res> {
   __$$_LoadCopyWithImpl(_$_Load _value, $Res Function(_$_Load) _then)
       : super(_value, _then);
@@ -183,7 +182,7 @@ class _$_Load implements _Load {
 
   @override
   String toString() {
-    return 'MapDestinationsEvent.load()';
+    return 'MapDataEvent.load()';
   }
 
   @override
@@ -345,7 +344,7 @@ class _$_Load implements _Load {
   }
 }
 
-abstract class _Load implements MapDestinationsEvent {
+abstract class _Load implements MapDataEvent {
   const factory _Load() = _$_Load;
 }
 
@@ -357,7 +356,7 @@ abstract class _$$_SaveCopyWith<$Res> {
 
 /// @nodoc
 class __$$_SaveCopyWithImpl<$Res>
-    extends _$MapDestinationsEventCopyWithImpl<$Res, _$_Save>
+    extends _$MapDataEventCopyWithImpl<$Res, _$_Save>
     implements _$$_SaveCopyWith<$Res> {
   __$$_SaveCopyWithImpl(_$_Save _value, $Res Function(_$_Save) _then)
       : super(_value, _then);
@@ -370,7 +369,7 @@ class _$_Save implements _Save {
 
   @override
   String toString() {
-    return 'MapDestinationsEvent.save()';
+    return 'MapDataEvent.save()';
   }
 
   @override
@@ -532,7 +531,7 @@ class _$_Save implements _Save {
   }
 }
 
-abstract class _Save implements MapDestinationsEvent {
+abstract class _Save implements MapDataEvent {
   const factory _Save() = _$_Save;
 }
 
@@ -549,7 +548,7 @@ abstract class _$$_AddDestinationCopyWith<$Res> {
 
 /// @nodoc
 class __$$_AddDestinationCopyWithImpl<$Res>
-    extends _$MapDestinationsEventCopyWithImpl<$Res, _$_AddDestination>
+    extends _$MapDataEventCopyWithImpl<$Res, _$_AddDestination>
     implements _$$_AddDestinationCopyWith<$Res> {
   __$$_AddDestinationCopyWithImpl(
       _$_AddDestination _value, $Res Function(_$_AddDestination) _then)
@@ -587,7 +586,7 @@ class _$_AddDestination implements _AddDestination {
 
   @override
   String toString() {
-    return 'MapDestinationsEvent.addDestination(destination: $destination)';
+    return 'MapDataEvent.addDestination(destination: $destination)';
   }
 
   @override
@@ -758,7 +757,7 @@ class _$_AddDestination implements _AddDestination {
   }
 }
 
-abstract class _AddDestination implements MapDestinationsEvent {
+abstract class _AddDestination implements MapDataEvent {
   const factory _AddDestination(final MapDestination destination) =
       _$_AddDestination;
 
@@ -781,7 +780,7 @@ abstract class _$$_EditDestinationCopyWith<$Res> {
 
 /// @nodoc
 class __$$_EditDestinationCopyWithImpl<$Res>
-    extends _$MapDestinationsEventCopyWithImpl<$Res, _$_EditDestination>
+    extends _$MapDataEventCopyWithImpl<$Res, _$_EditDestination>
     implements _$$_EditDestinationCopyWith<$Res> {
   __$$_EditDestinationCopyWithImpl(
       _$_EditDestination _value, $Res Function(_$_EditDestination) _then)
@@ -826,7 +825,7 @@ class _$_EditDestination implements _EditDestination {
 
   @override
   String toString() {
-    return 'MapDestinationsEvent.editDestination(destinationId: $destinationId, editedDestination: $editedDestination)';
+    return 'MapDataEvent.editDestination(destinationId: $destinationId, editedDestination: $editedDestination)';
   }
 
   @override
@@ -1000,7 +999,7 @@ class _$_EditDestination implements _EditDestination {
   }
 }
 
-abstract class _EditDestination implements MapDestinationsEvent {
+abstract class _EditDestination implements MapDataEvent {
   const factory _EditDestination(
           final int destinationId, final MapDestination editedDestination) =
       _$_EditDestination;
@@ -1023,7 +1022,7 @@ abstract class _$$_DeleteDestinationCopyWith<$Res> {
 
 /// @nodoc
 class __$$_DeleteDestinationCopyWithImpl<$Res>
-    extends _$MapDestinationsEventCopyWithImpl<$Res, _$_DeleteDestination>
+    extends _$MapDataEventCopyWithImpl<$Res, _$_DeleteDestination>
     implements _$$_DeleteDestinationCopyWith<$Res> {
   __$$_DeleteDestinationCopyWithImpl(
       _$_DeleteDestination _value, $Res Function(_$_DeleteDestination) _then)
@@ -1053,7 +1052,7 @@ class _$_DeleteDestination implements _DeleteDestination {
 
   @override
   String toString() {
-    return 'MapDestinationsEvent.deleteDestination(destinationId: $destinationId)';
+    return 'MapDataEvent.deleteDestination(destinationId: $destinationId)';
   }
 
   @override
@@ -1225,7 +1224,7 @@ class _$_DeleteDestination implements _DeleteDestination {
   }
 }
 
-abstract class _DeleteDestination implements MapDestinationsEvent {
+abstract class _DeleteDestination implements MapDataEvent {
   const factory _DeleteDestination(final int destinationId) =
       _$_DeleteDestination;
 
@@ -1248,7 +1247,7 @@ abstract class _$$_AddRouteCopyWith<$Res> {
 
 /// @nodoc
 class __$$_AddRouteCopyWithImpl<$Res>
-    extends _$MapDestinationsEventCopyWithImpl<$Res, _$_AddRoute>
+    extends _$MapDataEventCopyWithImpl<$Res, _$_AddRoute>
     implements _$$_AddRouteCopyWith<$Res> {
   __$$_AddRouteCopyWithImpl(
       _$_AddRoute _value, $Res Function(_$_AddRoute) _then)
@@ -1286,7 +1285,7 @@ class _$_AddRoute implements _AddRoute {
 
   @override
   String toString() {
-    return 'MapDestinationsEvent.addRoute(route: $route)';
+    return 'MapDataEvent.addRoute(route: $route)';
   }
 
   @override
@@ -1456,7 +1455,7 @@ class _$_AddRoute implements _AddRoute {
   }
 }
 
-abstract class _AddRoute implements MapDestinationsEvent {
+abstract class _AddRoute implements MapDataEvent {
   const factory _AddRoute(final MapRoute route) = _$_AddRoute;
 
   MapRoute get route;
@@ -1478,7 +1477,7 @@ abstract class _$$_EditRouteCopyWith<$Res> {
 
 /// @nodoc
 class __$$_EditRouteCopyWithImpl<$Res>
-    extends _$MapDestinationsEventCopyWithImpl<$Res, _$_EditRoute>
+    extends _$MapDataEventCopyWithImpl<$Res, _$_EditRoute>
     implements _$$_EditRouteCopyWith<$Res> {
   __$$_EditRouteCopyWithImpl(
       _$_EditRoute _value, $Res Function(_$_EditRoute) _then)
@@ -1523,7 +1522,7 @@ class _$_EditRoute implements _EditRoute {
 
   @override
   String toString() {
-    return 'MapDestinationsEvent.editRoute(routeId: $routeId, editedRoute: $editedRoute)';
+    return 'MapDataEvent.editRoute(routeId: $routeId, editedRoute: $editedRoute)';
   }
 
   @override
@@ -1695,7 +1694,7 @@ class _$_EditRoute implements _EditRoute {
   }
 }
 
-abstract class _EditRoute implements MapDestinationsEvent {
+abstract class _EditRoute implements MapDataEvent {
   const factory _EditRoute(final int routeId, final MapRoute editedRoute) =
       _$_EditRoute;
 
@@ -1717,7 +1716,7 @@ abstract class _$$_DeleteRouteCopyWith<$Res> {
 
 /// @nodoc
 class __$$_DeleteRouteCopyWithImpl<$Res>
-    extends _$MapDestinationsEventCopyWithImpl<$Res, _$_DeleteRoute>
+    extends _$MapDataEventCopyWithImpl<$Res, _$_DeleteRoute>
     implements _$$_DeleteRouteCopyWith<$Res> {
   __$$_DeleteRouteCopyWithImpl(
       _$_DeleteRoute _value, $Res Function(_$_DeleteRoute) _then)
@@ -1747,7 +1746,7 @@ class _$_DeleteRoute implements _DeleteRoute {
 
   @override
   String toString() {
-    return 'MapDestinationsEvent.deleteRoute(routeId: $routeId)';
+    return 'MapDataEvent.deleteRoute(routeId: $routeId)';
   }
 
   @override
@@ -1917,7 +1916,7 @@ class _$_DeleteRoute implements _DeleteRoute {
   }
 }
 
-abstract class _DeleteRoute implements MapDestinationsEvent {
+abstract class _DeleteRoute implements MapDataEvent {
   const factory _DeleteRoute(final int routeId) = _$_DeleteRoute;
 
   int get routeId;
@@ -1937,7 +1936,7 @@ abstract class _$$_SelectRouteCopyWith<$Res> {
 
 /// @nodoc
 class __$$_SelectRouteCopyWithImpl<$Res>
-    extends _$MapDestinationsEventCopyWithImpl<$Res, _$_SelectRoute>
+    extends _$MapDataEventCopyWithImpl<$Res, _$_SelectRoute>
     implements _$$_SelectRouteCopyWith<$Res> {
   __$$_SelectRouteCopyWithImpl(
       _$_SelectRoute _value, $Res Function(_$_SelectRoute) _then)
@@ -1967,7 +1966,7 @@ class _$_SelectRoute implements _SelectRoute {
 
   @override
   String toString() {
-    return 'MapDestinationsEvent.selectRoute(routeId: $routeId)';
+    return 'MapDataEvent.selectRoute(routeId: $routeId)';
   }
 
   @override
@@ -2137,7 +2136,7 @@ class _$_SelectRoute implements _SelectRoute {
   }
 }
 
-abstract class _SelectRoute implements MapDestinationsEvent {
+abstract class _SelectRoute implements MapDataEvent {
   const factory _SelectRoute(final int? routeId) = _$_SelectRoute;
 
   int? get routeId;
@@ -2157,7 +2156,7 @@ abstract class _$$_AddToRouteCopyWith<$Res> {
 
 /// @nodoc
 class __$$_AddToRouteCopyWithImpl<$Res>
-    extends _$MapDestinationsEventCopyWithImpl<$Res, _$_AddToRoute>
+    extends _$MapDataEventCopyWithImpl<$Res, _$_AddToRoute>
     implements _$$_AddToRouteCopyWith<$Res> {
   __$$_AddToRouteCopyWithImpl(
       _$_AddToRoute _value, $Res Function(_$_AddToRoute) _then)
@@ -2194,7 +2193,7 @@ class _$_AddToRoute implements _AddToRoute {
 
   @override
   String toString() {
-    return 'MapDestinationsEvent.addToRoute(destinationId: $destinationId, routeId: $routeId)';
+    return 'MapDataEvent.addToRoute(destinationId: $destinationId, routeId: $routeId)';
   }
 
   @override
@@ -2366,7 +2365,7 @@ class _$_AddToRoute implements _AddToRoute {
   }
 }
 
-abstract class _AddToRoute implements MapDestinationsEvent {
+abstract class _AddToRoute implements MapDataEvent {
   const factory _AddToRoute(final int destinationId, final int routeId) =
       _$_AddToRoute;
 
@@ -2390,7 +2389,7 @@ abstract class _$$_AddDestAndAddToRouteCopyWith<$Res> {
 
 /// @nodoc
 class __$$_AddDestAndAddToRouteCopyWithImpl<$Res>
-    extends _$MapDestinationsEventCopyWithImpl<$Res, _$_AddDestAndAddToRoute>
+    extends _$MapDataEventCopyWithImpl<$Res, _$_AddDestAndAddToRoute>
     implements _$$_AddDestAndAddToRouteCopyWith<$Res> {
   __$$_AddDestAndAddToRouteCopyWithImpl(_$_AddDestAndAddToRoute _value,
       $Res Function(_$_AddDestAndAddToRoute) _then)
@@ -2435,7 +2434,7 @@ class _$_AddDestAndAddToRoute implements _AddDestAndAddToRoute {
 
   @override
   String toString() {
-    return 'MapDestinationsEvent.addDestAndAddToRoute(newDestination: $newDestination, routeId: $routeId)';
+    return 'MapDataEvent.addDestAndAddToRoute(newDestination: $newDestination, routeId: $routeId)';
   }
 
   @override
@@ -2608,7 +2607,7 @@ class _$_AddDestAndAddToRoute implements _AddDestAndAddToRoute {
   }
 }
 
-abstract class _AddDestAndAddToRoute implements MapDestinationsEvent {
+abstract class _AddDestAndAddToRoute implements MapDataEvent {
   const factory _AddDestAndAddToRoute(
           final MapDestination newDestination, final int routeId) =
       _$_AddDestAndAddToRoute;
@@ -2631,7 +2630,7 @@ abstract class _$$_RemoveFromRouteCopyWith<$Res> {
 
 /// @nodoc
 class __$$_RemoveFromRouteCopyWithImpl<$Res>
-    extends _$MapDestinationsEventCopyWithImpl<$Res, _$_RemoveFromRoute>
+    extends _$MapDataEventCopyWithImpl<$Res, _$_RemoveFromRoute>
     implements _$$_RemoveFromRouteCopyWith<$Res> {
   __$$_RemoveFromRouteCopyWithImpl(
       _$_RemoveFromRoute _value, $Res Function(_$_RemoveFromRoute) _then)
@@ -2668,7 +2667,7 @@ class _$_RemoveFromRoute implements _RemoveFromRoute {
 
   @override
   String toString() {
-    return 'MapDestinationsEvent.removeDestinationFromRoute(routeId: $routeId, destinationIndex: $destinationIndex)';
+    return 'MapDataEvent.removeDestinationFromRoute(routeId: $routeId, destinationIndex: $destinationIndex)';
   }
 
   @override
@@ -2840,7 +2839,7 @@ class _$_RemoveFromRoute implements _RemoveFromRoute {
   }
 }
 
-abstract class _RemoveFromRoute implements MapDestinationsEvent {
+abstract class _RemoveFromRoute implements MapDataEvent {
   const factory _RemoveFromRoute(
       final int routeId, final int destinationIndex) = _$_RemoveFromRoute;
 
@@ -2862,7 +2861,7 @@ abstract class _$$_MoveDestinationInRouteCopyWith<$Res> {
 
 /// @nodoc
 class __$$_MoveDestinationInRouteCopyWithImpl<$Res>
-    extends _$MapDestinationsEventCopyWithImpl<$Res, _$_MoveDestinationInRoute>
+    extends _$MapDataEventCopyWithImpl<$Res, _$_MoveDestinationInRoute>
     implements _$$_MoveDestinationInRouteCopyWith<$Res> {
   __$$_MoveDestinationInRouteCopyWithImpl(_$_MoveDestinationInRoute _value,
       $Res Function(_$_MoveDestinationInRoute) _then)
@@ -2907,7 +2906,7 @@ class _$_MoveDestinationInRoute implements _MoveDestinationInRoute {
 
   @override
   String toString() {
-    return 'MapDestinationsEvent.moveDestinationInRoute(routeId: $routeId, destinationIndex: $destinationIndex, toIndex: $toIndex)';
+    return 'MapDataEvent.moveDestinationInRoute(routeId: $routeId, destinationIndex: $destinationIndex, toIndex: $toIndex)';
   }
 
   @override
@@ -3082,7 +3081,7 @@ class _$_MoveDestinationInRoute implements _MoveDestinationInRoute {
   }
 }
 
-abstract class _MoveDestinationInRoute implements MapDestinationsEvent {
+abstract class _MoveDestinationInRoute implements MapDataEvent {
   const factory _MoveDestinationInRoute(
           final int routeId, final int destinationIndex, final int toIndex) =
       _$_MoveDestinationInRoute;
@@ -3108,7 +3107,7 @@ abstract class _$$_OnDestinationAddCopyWith<$Res> {
 
 /// @nodoc
 class __$$_OnDestinationAddCopyWithImpl<$Res>
-    extends _$MapDestinationsEventCopyWithImpl<$Res, _$_OnDestinationAdd>
+    extends _$MapDataEventCopyWithImpl<$Res, _$_OnDestinationAdd>
     implements _$$_OnDestinationAddCopyWith<$Res> {
   __$$_OnDestinationAddCopyWithImpl(
       _$_OnDestinationAdd _value, $Res Function(_$_OnDestinationAdd) _then)
@@ -3146,7 +3145,7 @@ class _$_OnDestinationAdd implements _OnDestinationAdd {
 
   @override
   String toString() {
-    return 'MapDestinationsEvent.onDestinationAdd(newDestination: $newDestination)';
+    return 'MapDataEvent.onDestinationAdd(newDestination: $newDestination)';
   }
 
   @override
@@ -3317,7 +3316,7 @@ class _$_OnDestinationAdd implements _OnDestinationAdd {
   }
 }
 
-abstract class _OnDestinationAdd implements MapDestinationsEvent {
+abstract class _OnDestinationAdd implements MapDataEvent {
   const factory _OnDestinationAdd(final MapDestination newDestination) =
       _$_OnDestinationAdd;
 
@@ -3328,7 +3327,7 @@ abstract class _OnDestinationAdd implements MapDestinationsEvent {
 }
 
 /// @nodoc
-mixin _$MapDestinationsState {
+mixin _$MapDataState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
@@ -3382,17 +3381,16 @@ mixin _$MapDestinationsState {
 }
 
 /// @nodoc
-abstract class $MapDestinationsStateCopyWith<$Res> {
-  factory $MapDestinationsStateCopyWith(MapDestinationsState value,
-          $Res Function(MapDestinationsState) then) =
-      _$MapDestinationsStateCopyWithImpl<$Res, MapDestinationsState>;
+abstract class $MapDataStateCopyWith<$Res> {
+  factory $MapDataStateCopyWith(
+          MapDataState value, $Res Function(MapDataState) then) =
+      _$MapDataStateCopyWithImpl<$Res, MapDataState>;
 }
 
 /// @nodoc
-class _$MapDestinationsStateCopyWithImpl<$Res,
-        $Val extends MapDestinationsState>
-    implements $MapDestinationsStateCopyWith<$Res> {
-  _$MapDestinationsStateCopyWithImpl(this._value, this._then);
+class _$MapDataStateCopyWithImpl<$Res, $Val extends MapDataState>
+    implements $MapDataStateCopyWith<$Res> {
+  _$MapDataStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -3409,7 +3407,7 @@ abstract class _$$_InitialCopyWith<$Res> {
 
 /// @nodoc
 class __$$_InitialCopyWithImpl<$Res>
-    extends _$MapDestinationsStateCopyWithImpl<$Res, _$_Initial>
+    extends _$MapDataStateCopyWithImpl<$Res, _$_Initial>
     implements _$$_InitialCopyWith<$Res> {
   __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
       : super(_value, _then);
@@ -3422,7 +3420,7 @@ class _$_Initial implements _Initial {
 
   @override
   String toString() {
-    return 'MapDestinationsState.initial()';
+    return 'MapDataState.initial()';
   }
 
   @override
@@ -3509,7 +3507,7 @@ class _$_Initial implements _Initial {
   }
 }
 
-abstract class _Initial implements MapDestinationsState {
+abstract class _Initial implements MapDataState {
   const factory _Initial() = _$_Initial;
 }
 
@@ -3522,7 +3520,7 @@ abstract class _$$_LoadingCopyWith<$Res> {
 
 /// @nodoc
 class __$$_LoadingCopyWithImpl<$Res>
-    extends _$MapDestinationsStateCopyWithImpl<$Res, _$_Loading>
+    extends _$MapDataStateCopyWithImpl<$Res, _$_Loading>
     implements _$$_LoadingCopyWith<$Res> {
   __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
       : super(_value, _then);
@@ -3535,7 +3533,7 @@ class _$_Loading implements _Loading {
 
   @override
   String toString() {
-    return 'MapDestinationsState.loading()';
+    return 'MapDataState.loading()';
   }
 
   @override
@@ -3622,7 +3620,7 @@ class _$_Loading implements _Loading {
   }
 }
 
-abstract class _Loading implements MapDestinationsState {
+abstract class _Loading implements MapDataState {
   const factory _Loading() = _$_Loading;
 }
 
@@ -3636,7 +3634,7 @@ abstract class _$$_LoadedCopyWith<$Res> {
 
 /// @nodoc
 class __$$_LoadedCopyWithImpl<$Res>
-    extends _$MapDestinationsStateCopyWithImpl<$Res, _$_Loaded>
+    extends _$MapDataStateCopyWithImpl<$Res, _$_Loaded>
     implements _$$_LoadedCopyWith<$Res> {
   __$$_LoadedCopyWithImpl(_$_Loaded _value, $Res Function(_$_Loaded) _then)
       : super(_value, _then);
@@ -3689,7 +3687,7 @@ class _$_Loaded implements _Loaded {
 
   @override
   String toString() {
-    return 'MapDestinationsState.loaded(destinations: $destinations, routes: $routes)';
+    return 'MapDataState.loaded(destinations: $destinations, routes: $routes)';
   }
 
   @override
@@ -3789,7 +3787,7 @@ class _$_Loaded implements _Loaded {
   }
 }
 
-abstract class _Loaded implements MapDestinationsState {
+abstract class _Loaded implements MapDataState {
   const factory _Loaded(
       {final Map<int, MapDestination> destinations,
       final Map<int, MapRoute> routes}) = _$_Loaded;
