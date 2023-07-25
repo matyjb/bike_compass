@@ -1,3 +1,6 @@
+import 'package:bloc/bloc.dart';
+import 'package:stream_transform/stream_transform.dart';
+
 int getNewKey<T>(Map<int, T> m) {
   if (m.isNotEmpty) {
     return m.keys.last + 1;
@@ -19,4 +22,10 @@ extension ListExtensions on List {
     T item = removeAt(oldIndex);
     insert(newIndex, item);
   }
+}
+
+EventTransformer<E> debounce<E>(Duration duration) {
+  return (events, mapper) {
+    return events.debounce(duration).switchMap(mapper);
+  };
 }
