@@ -16,42 +16,43 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$LocationEvent {
-  LocationData? get data => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(LocationData? data) locationChange,
+    required TResult Function(LocationData data) locationChange,
+    required TResult Function() noLocation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(LocationData? data)? locationChange,
+    TResult? Function(LocationData data)? locationChange,
+    TResult? Function()? noLocation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(LocationData? data)? locationChange,
+    TResult Function(LocationData data)? locationChange,
+    TResult Function()? noLocation,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_LocationChange value) locationChange,
+    required TResult Function(_NoLocation value) noLocation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_LocationChange value)? locationChange,
+    TResult? Function(_NoLocation value)? noLocation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LocationChange value)? locationChange,
+    TResult Function(_NoLocation value)? noLocation,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $LocationEventCopyWith<LocationEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -60,8 +61,6 @@ abstract class $LocationEventCopyWith<$Res> {
   factory $LocationEventCopyWith(
           LocationEvent value, $Res Function(LocationEvent) then) =
       _$LocationEventCopyWithImpl<$Res, LocationEvent>;
-  @useResult
-  $Res call({LocationData? data});
 }
 
 /// @nodoc
@@ -73,30 +72,15 @@ class _$LocationEventCopyWithImpl<$Res, $Val extends LocationEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? data = freezed,
-  }) {
-    return _then(_value.copyWith(
-      data: freezed == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as LocationData?,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$_LocationChangeCopyWith<$Res>
-    implements $LocationEventCopyWith<$Res> {
+abstract class _$$_LocationChangeCopyWith<$Res> {
   factory _$$_LocationChangeCopyWith(
           _$_LocationChange value, $Res Function(_$_LocationChange) then) =
       __$$_LocationChangeCopyWithImpl<$Res>;
-  @override
   @useResult
-  $Res call({LocationData? data});
+  $Res call({LocationData data});
 }
 
 /// @nodoc
@@ -110,13 +94,13 @@ class __$$_LocationChangeCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? data = freezed,
+    Object? data = null,
   }) {
     return _then(_$_LocationChange(
-      data: freezed == data
+      data: null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as LocationData?,
+              as LocationData,
     ));
   }
 }
@@ -124,10 +108,10 @@ class __$$_LocationChangeCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_LocationChange implements _LocationChange {
-  const _$_LocationChange({this.data});
+  const _$_LocationChange({required this.data});
 
   @override
-  final LocationData? data;
+  final LocationData data;
 
   @override
   String toString() {
@@ -154,7 +138,8 @@ class _$_LocationChange implements _LocationChange {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(LocationData? data) locationChange,
+    required TResult Function(LocationData data) locationChange,
+    required TResult Function() noLocation,
   }) {
     return locationChange(data);
   }
@@ -162,7 +147,8 @@ class _$_LocationChange implements _LocationChange {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(LocationData? data)? locationChange,
+    TResult? Function(LocationData data)? locationChange,
+    TResult? Function()? noLocation,
   }) {
     return locationChange?.call(data);
   }
@@ -170,7 +156,8 @@ class _$_LocationChange implements _LocationChange {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(LocationData? data)? locationChange,
+    TResult Function(LocationData data)? locationChange,
+    TResult Function()? noLocation,
     required TResult orElse(),
   }) {
     if (locationChange != null) {
@@ -183,6 +170,7 @@ class _$_LocationChange implements _LocationChange {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_LocationChange value) locationChange,
+    required TResult Function(_NoLocation value) noLocation,
   }) {
     return locationChange(this);
   }
@@ -191,6 +179,7 @@ class _$_LocationChange implements _LocationChange {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_LocationChange value)? locationChange,
+    TResult? Function(_NoLocation value)? noLocation,
   }) {
     return locationChange?.call(this);
   }
@@ -199,6 +188,7 @@ class _$_LocationChange implements _LocationChange {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LocationChange value)? locationChange,
+    TResult Function(_NoLocation value)? noLocation,
     required TResult orElse(),
   }) {
     if (locationChange != null) {
@@ -209,14 +199,115 @@ class _$_LocationChange implements _LocationChange {
 }
 
 abstract class _LocationChange implements LocationEvent {
-  const factory _LocationChange({final LocationData? data}) = _$_LocationChange;
+  const factory _LocationChange({required final LocationData data}) =
+      _$_LocationChange;
 
-  @override
-  LocationData? get data;
-  @override
+  LocationData get data;
   @JsonKey(ignore: true)
   _$$_LocationChangeCopyWith<_$_LocationChange> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_NoLocationCopyWith<$Res> {
+  factory _$$_NoLocationCopyWith(
+          _$_NoLocation value, $Res Function(_$_NoLocation) then) =
+      __$$_NoLocationCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_NoLocationCopyWithImpl<$Res>
+    extends _$LocationEventCopyWithImpl<$Res, _$_NoLocation>
+    implements _$$_NoLocationCopyWith<$Res> {
+  __$$_NoLocationCopyWithImpl(
+      _$_NoLocation _value, $Res Function(_$_NoLocation) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_NoLocation implements _NoLocation {
+  const _$_NoLocation();
+
+  @override
+  String toString() {
+    return 'LocationEvent.noLocation()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_NoLocation);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(LocationData data) locationChange,
+    required TResult Function() noLocation,
+  }) {
+    return noLocation();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(LocationData data)? locationChange,
+    TResult? Function()? noLocation,
+  }) {
+    return noLocation?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(LocationData data)? locationChange,
+    TResult Function()? noLocation,
+    required TResult orElse(),
+  }) {
+    if (noLocation != null) {
+      return noLocation();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_LocationChange value) locationChange,
+    required TResult Function(_NoLocation value) noLocation,
+  }) {
+    return noLocation(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_LocationChange value)? locationChange,
+    TResult? Function(_NoLocation value)? noLocation,
+  }) {
+    return noLocation?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_LocationChange value)? locationChange,
+    TResult Function(_NoLocation value)? noLocation,
+    required TResult orElse(),
+  }) {
+    if (noLocation != null) {
+      return noLocation(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _NoLocation implements LocationEvent {
+  const factory _NoLocation() = _$_NoLocation;
 }
 
 /// @nodoc
@@ -247,21 +338,21 @@ mixin _$LocationState {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_HasLocation value) hasLocation,
-    required TResult Function(_NoLocation value) noLocation,
+    required TResult Function(_NoLocationState value) noLocation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_HasLocation value)? hasLocation,
-    TResult? Function(_NoLocation value)? noLocation,
+    TResult? Function(_NoLocationState value)? noLocation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_HasLocation value)? hasLocation,
-    TResult Function(_NoLocation value)? noLocation,
+    TResult Function(_NoLocationState value)? noLocation,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -358,7 +449,7 @@ class _$_Initial implements _Initial {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_HasLocation value) hasLocation,
-    required TResult Function(_NoLocation value) noLocation,
+    required TResult Function(_NoLocationState value) noLocation,
   }) {
     return initial(this);
   }
@@ -368,7 +459,7 @@ class _$_Initial implements _Initial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_HasLocation value)? hasLocation,
-    TResult? Function(_NoLocation value)? noLocation,
+    TResult? Function(_NoLocationState value)? noLocation,
   }) {
     return initial?.call(this);
   }
@@ -378,7 +469,7 @@ class _$_Initial implements _Initial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_HasLocation value)? hasLocation,
-    TResult Function(_NoLocation value)? noLocation,
+    TResult Function(_NoLocationState value)? noLocation,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -492,7 +583,7 @@ class _$_HasLocation implements _HasLocation {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_HasLocation value) hasLocation,
-    required TResult Function(_NoLocation value) noLocation,
+    required TResult Function(_NoLocationState value) noLocation,
   }) {
     return hasLocation(this);
   }
@@ -502,7 +593,7 @@ class _$_HasLocation implements _HasLocation {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_HasLocation value)? hasLocation,
-    TResult? Function(_NoLocation value)? noLocation,
+    TResult? Function(_NoLocationState value)? noLocation,
   }) {
     return hasLocation?.call(this);
   }
@@ -512,7 +603,7 @@ class _$_HasLocation implements _HasLocation {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_HasLocation value)? hasLocation,
-    TResult Function(_NoLocation value)? noLocation,
+    TResult Function(_NoLocationState value)? noLocation,
     required TResult orElse(),
   }) {
     if (hasLocation != null) {
@@ -533,25 +624,25 @@ abstract class _HasLocation implements LocationState {
 }
 
 /// @nodoc
-abstract class _$$_NoLocationCopyWith<$Res> {
-  factory _$$_NoLocationCopyWith(
-          _$_NoLocation value, $Res Function(_$_NoLocation) then) =
-      __$$_NoLocationCopyWithImpl<$Res>;
+abstract class _$$_NoLocationStateCopyWith<$Res> {
+  factory _$$_NoLocationStateCopyWith(
+          _$_NoLocationState value, $Res Function(_$_NoLocationState) then) =
+      __$$_NoLocationStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_NoLocationCopyWithImpl<$Res>
-    extends _$LocationStateCopyWithImpl<$Res, _$_NoLocation>
-    implements _$$_NoLocationCopyWith<$Res> {
-  __$$_NoLocationCopyWithImpl(
-      _$_NoLocation _value, $Res Function(_$_NoLocation) _then)
+class __$$_NoLocationStateCopyWithImpl<$Res>
+    extends _$LocationStateCopyWithImpl<$Res, _$_NoLocationState>
+    implements _$$_NoLocationStateCopyWith<$Res> {
+  __$$_NoLocationStateCopyWithImpl(
+      _$_NoLocationState _value, $Res Function(_$_NoLocationState) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_NoLocation implements _NoLocation {
-  const _$_NoLocation();
+class _$_NoLocationState implements _NoLocationState {
+  const _$_NoLocationState();
 
   @override
   String toString() {
@@ -561,7 +652,7 @@ class _$_NoLocation implements _NoLocation {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_NoLocation);
+        (other.runtimeType == runtimeType && other is _$_NoLocationState);
   }
 
   @override
@@ -606,7 +697,7 @@ class _$_NoLocation implements _NoLocation {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_HasLocation value) hasLocation,
-    required TResult Function(_NoLocation value) noLocation,
+    required TResult Function(_NoLocationState value) noLocation,
   }) {
     return noLocation(this);
   }
@@ -616,7 +707,7 @@ class _$_NoLocation implements _NoLocation {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_HasLocation value)? hasLocation,
-    TResult? Function(_NoLocation value)? noLocation,
+    TResult? Function(_NoLocationState value)? noLocation,
   }) {
     return noLocation?.call(this);
   }
@@ -626,7 +717,7 @@ class _$_NoLocation implements _NoLocation {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_HasLocation value)? hasLocation,
-    TResult Function(_NoLocation value)? noLocation,
+    TResult Function(_NoLocationState value)? noLocation,
     required TResult orElse(),
   }) {
     if (noLocation != null) {
@@ -636,6 +727,6 @@ class _$_NoLocation implements _NoLocation {
   }
 }
 
-abstract class _NoLocation implements LocationState {
-  const factory _NoLocation() = _$_NoLocation;
+abstract class _NoLocationState implements LocationState {
+  const factory _NoLocationState() = _$_NoLocationState;
 }

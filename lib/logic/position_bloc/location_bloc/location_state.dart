@@ -6,5 +6,5 @@ class LocationState with _$LocationState {
   const factory LocationState.hasLocation({
     required LocationData data,
   }) = _HasLocation;
-  const factory LocationState.noLocation() = _NoLocation;
+  const factory LocationState.noLocation() = _NoLocationState;
 }
