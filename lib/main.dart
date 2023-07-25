@@ -4,6 +4,7 @@ import 'package:bike_compass/logic/compass_bloc/compass_bloc.dart';
 import 'package:bike_compass/logic/location_bloc/location_bloc.dart';
 import 'package:bike_compass/logic/location_permission_cubit/location_permission_cubit.dart';
 import 'package:bike_compass/logic/map_data_bloc/map_data_bloc.dart';
+import 'package:bike_compass/logic/position_bloc/position_bloc.dart';
 import 'package:bike_compass/router.dart';
 import 'package:bike_compass/theme_data.dart';
 import 'package:flutter/material.dart';
@@ -28,6 +29,13 @@ class _MyAppState extends State<MyApp> {
   final _appRouter = AppRouter();
   final _locPermissionCubit = LocationPermissionCubit()..requestPermission();
   final _appMapCubit = AppMapCubit();
+  late final LocationBloc _locationBloc;
+  late final CompassBloc _compassBloc;
+
+  _MyAppState() {
+    _locationBloc = LocationBloc(locationPermissionCubit: _locPermissionCubit);
+    _compassBloc = CompassBloc(locationPermissionCubit: _locPermissionCubit);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,18 +43,20 @@ class _MyAppState extends State<MyApp> {
       value: _locPermissionCubit,
       child: MultiBlocProvider(
         providers: [
-          BlocProvider(
-            create: (_) => LocationBloc(
-              locationPermissionCubit: _locPermissionCubit,
-            ),
+          BlocProvider.value(
+            value: _locationBloc,
           ),
-          BlocProvider(
-            create: (_) => CompassBloc(
-              locationPermissionCubit: _locPermissionCubit,
-            ),
+          BlocProvider.value(
+            value: _compassBloc,
           ),
           BlocProvider.value(
             value: _appMapCubit,
+          ),
+          BlocProvider(
+            create: (_) => PositionBloc(
+              locationBloc: _locationBloc,
+              compassBloc: _compassBloc,
+            ),
           ),
           BlocProvider(
             create: (_) =>
@@ -67,6 +77,8 @@ class _MyAppState extends State<MyApp> {
   @override
   void dispose() {
     _locPermissionCubit.close();
+    _locationBloc.close();
+    _compassBloc.close();
     super.dispose();
   }
 }

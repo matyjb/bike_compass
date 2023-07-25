@@ -4,7 +4,6 @@ import 'package:bike_compass/logic/location_permission_cubit/location_permission
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter_compass/flutter_compass.dart' as fc;
-import 'package:stream_transform/stream_transform.dart';
 
 part 'compass_event.dart';
 part 'compass_state.dart';
@@ -21,15 +20,8 @@ class CompassBloc extends Bloc<CompassEvent, CompassState> {
       event.mapOrNull(
         granted: (s) {
           compassSub?.cancel();
-          final StreamTransformer<fc.CompassEvent, dynamic> debounce =
-              StreamTransformer.fromBind(
-            (s) => s.debounce(
-              const Duration(milliseconds: 500),
-              leading: true,
-            ),
-          );
           compassSub =
-              fc.FlutterCompass.events?.transform(debounce).listen((event) {
+              fc.FlutterCompass.events?.listen((event) {
             add(CompassEvent.update(event: event));
           });
         },

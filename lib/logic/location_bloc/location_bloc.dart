@@ -20,7 +20,6 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
       event.mapOrNull(
         granted: (s) {
           // start listening for location
-          Location().changeSettings(interval: 500);
           locationSub = Location().onLocationChanged.listen((event) {
             add(LocationEvent.locationChange(data: event));
           });

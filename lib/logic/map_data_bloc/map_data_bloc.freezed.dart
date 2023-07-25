@@ -28,7 +28,6 @@ mixin _$MapDataEvent {
     required TResult Function(MapRoute route) addRoute,
     required TResult Function(int routeId, MapRoute editedRoute) editRoute,
     required TResult Function(int routeId) deleteRoute,
-    required TResult Function(int? routeId) selectRoute,
     required TResult Function(int destinationId, int routeId) addToRoute,
     required TResult Function(MapDestination newDestination, int routeId)
         addDestAndAddToRoute,
@@ -50,7 +49,6 @@ mixin _$MapDataEvent {
     TResult? Function(MapRoute route)? addRoute,
     TResult? Function(int routeId, MapRoute editedRoute)? editRoute,
     TResult? Function(int routeId)? deleteRoute,
-    TResult? Function(int? routeId)? selectRoute,
     TResult? Function(int destinationId, int routeId)? addToRoute,
     TResult? Function(MapDestination newDestination, int routeId)?
         addDestAndAddToRoute,
@@ -72,7 +70,6 @@ mixin _$MapDataEvent {
     TResult Function(MapRoute route)? addRoute,
     TResult Function(int routeId, MapRoute editedRoute)? editRoute,
     TResult Function(int routeId)? deleteRoute,
-    TResult Function(int? routeId)? selectRoute,
     TResult Function(int destinationId, int routeId)? addToRoute,
     TResult Function(MapDestination newDestination, int routeId)?
         addDestAndAddToRoute,
@@ -94,7 +91,6 @@ mixin _$MapDataEvent {
     required TResult Function(_AddRoute value) addRoute,
     required TResult Function(_EditRoute value) editRoute,
     required TResult Function(_DeleteRoute value) deleteRoute,
-    required TResult Function(_SelectRoute value) selectRoute,
     required TResult Function(_AddToRoute value) addToRoute,
     required TResult Function(_AddDestAndAddToRoute value) addDestAndAddToRoute,
     required TResult Function(_RemoveFromRoute value)
@@ -114,7 +110,6 @@ mixin _$MapDataEvent {
     TResult? Function(_AddRoute value)? addRoute,
     TResult? Function(_EditRoute value)? editRoute,
     TResult? Function(_DeleteRoute value)? deleteRoute,
-    TResult? Function(_SelectRoute value)? selectRoute,
     TResult? Function(_AddToRoute value)? addToRoute,
     TResult? Function(_AddDestAndAddToRoute value)? addDestAndAddToRoute,
     TResult? Function(_RemoveFromRoute value)? removeDestinationFromRoute,
@@ -132,7 +127,6 @@ mixin _$MapDataEvent {
     TResult Function(_AddRoute value)? addRoute,
     TResult Function(_EditRoute value)? editRoute,
     TResult Function(_DeleteRoute value)? deleteRoute,
-    TResult Function(_SelectRoute value)? selectRoute,
     TResult Function(_AddToRoute value)? addToRoute,
     TResult Function(_AddDestAndAddToRoute value)? addDestAndAddToRoute,
     TResult Function(_RemoveFromRoute value)? removeDestinationFromRoute,
@@ -207,7 +201,6 @@ class _$_Load implements _Load {
     required TResult Function(MapRoute route) addRoute,
     required TResult Function(int routeId, MapRoute editedRoute) editRoute,
     required TResult Function(int routeId) deleteRoute,
-    required TResult Function(int? routeId) selectRoute,
     required TResult Function(int destinationId, int routeId) addToRoute,
     required TResult Function(MapDestination newDestination, int routeId)
         addDestAndAddToRoute,
@@ -232,7 +225,6 @@ class _$_Load implements _Load {
     TResult? Function(MapRoute route)? addRoute,
     TResult? Function(int routeId, MapRoute editedRoute)? editRoute,
     TResult? Function(int routeId)? deleteRoute,
-    TResult? Function(int? routeId)? selectRoute,
     TResult? Function(int destinationId, int routeId)? addToRoute,
     TResult? Function(MapDestination newDestination, int routeId)?
         addDestAndAddToRoute,
@@ -257,7 +249,6 @@ class _$_Load implements _Load {
     TResult Function(MapRoute route)? addRoute,
     TResult Function(int routeId, MapRoute editedRoute)? editRoute,
     TResult Function(int routeId)? deleteRoute,
-    TResult Function(int? routeId)? selectRoute,
     TResult Function(int destinationId, int routeId)? addToRoute,
     TResult Function(MapDestination newDestination, int routeId)?
         addDestAndAddToRoute,
@@ -285,7 +276,6 @@ class _$_Load implements _Load {
     required TResult Function(_AddRoute value) addRoute,
     required TResult Function(_EditRoute value) editRoute,
     required TResult Function(_DeleteRoute value) deleteRoute,
-    required TResult Function(_SelectRoute value) selectRoute,
     required TResult Function(_AddToRoute value) addToRoute,
     required TResult Function(_AddDestAndAddToRoute value) addDestAndAddToRoute,
     required TResult Function(_RemoveFromRoute value)
@@ -308,7 +298,6 @@ class _$_Load implements _Load {
     TResult? Function(_AddRoute value)? addRoute,
     TResult? Function(_EditRoute value)? editRoute,
     TResult? Function(_DeleteRoute value)? deleteRoute,
-    TResult? Function(_SelectRoute value)? selectRoute,
     TResult? Function(_AddToRoute value)? addToRoute,
     TResult? Function(_AddDestAndAddToRoute value)? addDestAndAddToRoute,
     TResult? Function(_RemoveFromRoute value)? removeDestinationFromRoute,
@@ -329,7 +318,6 @@ class _$_Load implements _Load {
     TResult Function(_AddRoute value)? addRoute,
     TResult Function(_EditRoute value)? editRoute,
     TResult Function(_DeleteRoute value)? deleteRoute,
-    TResult Function(_SelectRoute value)? selectRoute,
     TResult Function(_AddToRoute value)? addToRoute,
     TResult Function(_AddDestAndAddToRoute value)? addDestAndAddToRoute,
     TResult Function(_RemoveFromRoute value)? removeDestinationFromRoute,
@@ -394,7 +382,6 @@ class _$_Save implements _Save {
     required TResult Function(MapRoute route) addRoute,
     required TResult Function(int routeId, MapRoute editedRoute) editRoute,
     required TResult Function(int routeId) deleteRoute,
-    required TResult Function(int? routeId) selectRoute,
     required TResult Function(int destinationId, int routeId) addToRoute,
     required TResult Function(MapDestination newDestination, int routeId)
         addDestAndAddToRoute,
@@ -419,7 +406,6 @@ class _$_Save implements _Save {
     TResult? Function(MapRoute route)? addRoute,
     TResult? Function(int routeId, MapRoute editedRoute)? editRoute,
     TResult? Function(int routeId)? deleteRoute,
-    TResult? Function(int? routeId)? selectRoute,
     TResult? Function(int destinationId, int routeId)? addToRoute,
     TResult? Function(MapDestination newDestination, int routeId)?
         addDestAndAddToRoute,
@@ -444,7 +430,6 @@ class _$_Save implements _Save {
     TResult Function(MapRoute route)? addRoute,
     TResult Function(int routeId, MapRoute editedRoute)? editRoute,
     TResult Function(int routeId)? deleteRoute,
-    TResult Function(int? routeId)? selectRoute,
     TResult Function(int destinationId, int routeId)? addToRoute,
     TResult Function(MapDestination newDestination, int routeId)?
         addDestAndAddToRoute,
@@ -472,7 +457,6 @@ class _$_Save implements _Save {
     required TResult Function(_AddRoute value) addRoute,
     required TResult Function(_EditRoute value) editRoute,
     required TResult Function(_DeleteRoute value) deleteRoute,
-    required TResult Function(_SelectRoute value) selectRoute,
     required TResult Function(_AddToRoute value) addToRoute,
     required TResult Function(_AddDestAndAddToRoute value) addDestAndAddToRoute,
     required TResult Function(_RemoveFromRoute value)
@@ -495,7 +479,6 @@ class _$_Save implements _Save {
     TResult? Function(_AddRoute value)? addRoute,
     TResult? Function(_EditRoute value)? editRoute,
     TResult? Function(_DeleteRoute value)? deleteRoute,
-    TResult? Function(_SelectRoute value)? selectRoute,
     TResult? Function(_AddToRoute value)? addToRoute,
     TResult? Function(_AddDestAndAddToRoute value)? addDestAndAddToRoute,
     TResult? Function(_RemoveFromRoute value)? removeDestinationFromRoute,
@@ -516,7 +499,6 @@ class _$_Save implements _Save {
     TResult Function(_AddRoute value)? addRoute,
     TResult Function(_EditRoute value)? editRoute,
     TResult Function(_DeleteRoute value)? deleteRoute,
-    TResult Function(_SelectRoute value)? selectRoute,
     TResult Function(_AddToRoute value)? addToRoute,
     TResult Function(_AddDestAndAddToRoute value)? addDestAndAddToRoute,
     TResult Function(_RemoveFromRoute value)? removeDestinationFromRoute,
@@ -620,7 +602,6 @@ class _$_AddDestination implements _AddDestination {
     required TResult Function(MapRoute route) addRoute,
     required TResult Function(int routeId, MapRoute editedRoute) editRoute,
     required TResult Function(int routeId) deleteRoute,
-    required TResult Function(int? routeId) selectRoute,
     required TResult Function(int destinationId, int routeId) addToRoute,
     required TResult Function(MapDestination newDestination, int routeId)
         addDestAndAddToRoute,
@@ -645,7 +626,6 @@ class _$_AddDestination implements _AddDestination {
     TResult? Function(MapRoute route)? addRoute,
     TResult? Function(int routeId, MapRoute editedRoute)? editRoute,
     TResult? Function(int routeId)? deleteRoute,
-    TResult? Function(int? routeId)? selectRoute,
     TResult? Function(int destinationId, int routeId)? addToRoute,
     TResult? Function(MapDestination newDestination, int routeId)?
         addDestAndAddToRoute,
@@ -670,7 +650,6 @@ class _$_AddDestination implements _AddDestination {
     TResult Function(MapRoute route)? addRoute,
     TResult Function(int routeId, MapRoute editedRoute)? editRoute,
     TResult Function(int routeId)? deleteRoute,
-    TResult Function(int? routeId)? selectRoute,
     TResult Function(int destinationId, int routeId)? addToRoute,
     TResult Function(MapDestination newDestination, int routeId)?
         addDestAndAddToRoute,
@@ -698,7 +677,6 @@ class _$_AddDestination implements _AddDestination {
     required TResult Function(_AddRoute value) addRoute,
     required TResult Function(_EditRoute value) editRoute,
     required TResult Function(_DeleteRoute value) deleteRoute,
-    required TResult Function(_SelectRoute value) selectRoute,
     required TResult Function(_AddToRoute value) addToRoute,
     required TResult Function(_AddDestAndAddToRoute value) addDestAndAddToRoute,
     required TResult Function(_RemoveFromRoute value)
@@ -721,7 +699,6 @@ class _$_AddDestination implements _AddDestination {
     TResult? Function(_AddRoute value)? addRoute,
     TResult? Function(_EditRoute value)? editRoute,
     TResult? Function(_DeleteRoute value)? deleteRoute,
-    TResult? Function(_SelectRoute value)? selectRoute,
     TResult? Function(_AddToRoute value)? addToRoute,
     TResult? Function(_AddDestAndAddToRoute value)? addDestAndAddToRoute,
     TResult? Function(_RemoveFromRoute value)? removeDestinationFromRoute,
@@ -742,7 +719,6 @@ class _$_AddDestination implements _AddDestination {
     TResult Function(_AddRoute value)? addRoute,
     TResult Function(_EditRoute value)? editRoute,
     TResult Function(_DeleteRoute value)? deleteRoute,
-    TResult Function(_SelectRoute value)? selectRoute,
     TResult Function(_AddToRoute value)? addToRoute,
     TResult Function(_AddDestAndAddToRoute value)? addDestAndAddToRoute,
     TResult Function(_RemoveFromRoute value)? removeDestinationFromRoute,
@@ -862,7 +838,6 @@ class _$_EditDestination implements _EditDestination {
     required TResult Function(MapRoute route) addRoute,
     required TResult Function(int routeId, MapRoute editedRoute) editRoute,
     required TResult Function(int routeId) deleteRoute,
-    required TResult Function(int? routeId) selectRoute,
     required TResult Function(int destinationId, int routeId) addToRoute,
     required TResult Function(MapDestination newDestination, int routeId)
         addDestAndAddToRoute,
@@ -887,7 +862,6 @@ class _$_EditDestination implements _EditDestination {
     TResult? Function(MapRoute route)? addRoute,
     TResult? Function(int routeId, MapRoute editedRoute)? editRoute,
     TResult? Function(int routeId)? deleteRoute,
-    TResult? Function(int? routeId)? selectRoute,
     TResult? Function(int destinationId, int routeId)? addToRoute,
     TResult? Function(MapDestination newDestination, int routeId)?
         addDestAndAddToRoute,
@@ -912,7 +886,6 @@ class _$_EditDestination implements _EditDestination {
     TResult Function(MapRoute route)? addRoute,
     TResult Function(int routeId, MapRoute editedRoute)? editRoute,
     TResult Function(int routeId)? deleteRoute,
-    TResult Function(int? routeId)? selectRoute,
     TResult Function(int destinationId, int routeId)? addToRoute,
     TResult Function(MapDestination newDestination, int routeId)?
         addDestAndAddToRoute,
@@ -940,7 +913,6 @@ class _$_EditDestination implements _EditDestination {
     required TResult Function(_AddRoute value) addRoute,
     required TResult Function(_EditRoute value) editRoute,
     required TResult Function(_DeleteRoute value) deleteRoute,
-    required TResult Function(_SelectRoute value) selectRoute,
     required TResult Function(_AddToRoute value) addToRoute,
     required TResult Function(_AddDestAndAddToRoute value) addDestAndAddToRoute,
     required TResult Function(_RemoveFromRoute value)
@@ -963,7 +935,6 @@ class _$_EditDestination implements _EditDestination {
     TResult? Function(_AddRoute value)? addRoute,
     TResult? Function(_EditRoute value)? editRoute,
     TResult? Function(_DeleteRoute value)? deleteRoute,
-    TResult? Function(_SelectRoute value)? selectRoute,
     TResult? Function(_AddToRoute value)? addToRoute,
     TResult? Function(_AddDestAndAddToRoute value)? addDestAndAddToRoute,
     TResult? Function(_RemoveFromRoute value)? removeDestinationFromRoute,
@@ -984,7 +955,6 @@ class _$_EditDestination implements _EditDestination {
     TResult Function(_AddRoute value)? addRoute,
     TResult Function(_EditRoute value)? editRoute,
     TResult Function(_DeleteRoute value)? deleteRoute,
-    TResult Function(_SelectRoute value)? selectRoute,
     TResult Function(_AddToRoute value)? addToRoute,
     TResult Function(_AddDestAndAddToRoute value)? addDestAndAddToRoute,
     TResult Function(_RemoveFromRoute value)? removeDestinationFromRoute,
@@ -1087,7 +1057,6 @@ class _$_DeleteDestination implements _DeleteDestination {
     required TResult Function(MapRoute route) addRoute,
     required TResult Function(int routeId, MapRoute editedRoute) editRoute,
     required TResult Function(int routeId) deleteRoute,
-    required TResult Function(int? routeId) selectRoute,
     required TResult Function(int destinationId, int routeId) addToRoute,
     required TResult Function(MapDestination newDestination, int routeId)
         addDestAndAddToRoute,
@@ -1112,7 +1081,6 @@ class _$_DeleteDestination implements _DeleteDestination {
     TResult? Function(MapRoute route)? addRoute,
     TResult? Function(int routeId, MapRoute editedRoute)? editRoute,
     TResult? Function(int routeId)? deleteRoute,
-    TResult? Function(int? routeId)? selectRoute,
     TResult? Function(int destinationId, int routeId)? addToRoute,
     TResult? Function(MapDestination newDestination, int routeId)?
         addDestAndAddToRoute,
@@ -1137,7 +1105,6 @@ class _$_DeleteDestination implements _DeleteDestination {
     TResult Function(MapRoute route)? addRoute,
     TResult Function(int routeId, MapRoute editedRoute)? editRoute,
     TResult Function(int routeId)? deleteRoute,
-    TResult Function(int? routeId)? selectRoute,
     TResult Function(int destinationId, int routeId)? addToRoute,
     TResult Function(MapDestination newDestination, int routeId)?
         addDestAndAddToRoute,
@@ -1165,7 +1132,6 @@ class _$_DeleteDestination implements _DeleteDestination {
     required TResult Function(_AddRoute value) addRoute,
     required TResult Function(_EditRoute value) editRoute,
     required TResult Function(_DeleteRoute value) deleteRoute,
-    required TResult Function(_SelectRoute value) selectRoute,
     required TResult Function(_AddToRoute value) addToRoute,
     required TResult Function(_AddDestAndAddToRoute value) addDestAndAddToRoute,
     required TResult Function(_RemoveFromRoute value)
@@ -1188,7 +1154,6 @@ class _$_DeleteDestination implements _DeleteDestination {
     TResult? Function(_AddRoute value)? addRoute,
     TResult? Function(_EditRoute value)? editRoute,
     TResult? Function(_DeleteRoute value)? deleteRoute,
-    TResult? Function(_SelectRoute value)? selectRoute,
     TResult? Function(_AddToRoute value)? addToRoute,
     TResult? Function(_AddDestAndAddToRoute value)? addDestAndAddToRoute,
     TResult? Function(_RemoveFromRoute value)? removeDestinationFromRoute,
@@ -1209,7 +1174,6 @@ class _$_DeleteDestination implements _DeleteDestination {
     TResult Function(_AddRoute value)? addRoute,
     TResult Function(_EditRoute value)? editRoute,
     TResult Function(_DeleteRoute value)? deleteRoute,
-    TResult Function(_SelectRoute value)? selectRoute,
     TResult Function(_AddToRoute value)? addToRoute,
     TResult Function(_AddDestAndAddToRoute value)? addDestAndAddToRoute,
     TResult Function(_RemoveFromRoute value)? removeDestinationFromRoute,
@@ -1318,7 +1282,6 @@ class _$_AddRoute implements _AddRoute {
     required TResult Function(MapRoute route) addRoute,
     required TResult Function(int routeId, MapRoute editedRoute) editRoute,
     required TResult Function(int routeId) deleteRoute,
-    required TResult Function(int? routeId) selectRoute,
     required TResult Function(int destinationId, int routeId) addToRoute,
     required TResult Function(MapDestination newDestination, int routeId)
         addDestAndAddToRoute,
@@ -1343,7 +1306,6 @@ class _$_AddRoute implements _AddRoute {
     TResult? Function(MapRoute route)? addRoute,
     TResult? Function(int routeId, MapRoute editedRoute)? editRoute,
     TResult? Function(int routeId)? deleteRoute,
-    TResult? Function(int? routeId)? selectRoute,
     TResult? Function(int destinationId, int routeId)? addToRoute,
     TResult? Function(MapDestination newDestination, int routeId)?
         addDestAndAddToRoute,
@@ -1368,7 +1330,6 @@ class _$_AddRoute implements _AddRoute {
     TResult Function(MapRoute route)? addRoute,
     TResult Function(int routeId, MapRoute editedRoute)? editRoute,
     TResult Function(int routeId)? deleteRoute,
-    TResult Function(int? routeId)? selectRoute,
     TResult Function(int destinationId, int routeId)? addToRoute,
     TResult Function(MapDestination newDestination, int routeId)?
         addDestAndAddToRoute,
@@ -1396,7 +1357,6 @@ class _$_AddRoute implements _AddRoute {
     required TResult Function(_AddRoute value) addRoute,
     required TResult Function(_EditRoute value) editRoute,
     required TResult Function(_DeleteRoute value) deleteRoute,
-    required TResult Function(_SelectRoute value) selectRoute,
     required TResult Function(_AddToRoute value) addToRoute,
     required TResult Function(_AddDestAndAddToRoute value) addDestAndAddToRoute,
     required TResult Function(_RemoveFromRoute value)
@@ -1419,7 +1379,6 @@ class _$_AddRoute implements _AddRoute {
     TResult? Function(_AddRoute value)? addRoute,
     TResult? Function(_EditRoute value)? editRoute,
     TResult? Function(_DeleteRoute value)? deleteRoute,
-    TResult? Function(_SelectRoute value)? selectRoute,
     TResult? Function(_AddToRoute value)? addToRoute,
     TResult? Function(_AddDestAndAddToRoute value)? addDestAndAddToRoute,
     TResult? Function(_RemoveFromRoute value)? removeDestinationFromRoute,
@@ -1440,7 +1399,6 @@ class _$_AddRoute implements _AddRoute {
     TResult Function(_AddRoute value)? addRoute,
     TResult Function(_EditRoute value)? editRoute,
     TResult Function(_DeleteRoute value)? deleteRoute,
-    TResult Function(_SelectRoute value)? selectRoute,
     TResult Function(_AddToRoute value)? addToRoute,
     TResult Function(_AddDestAndAddToRoute value)? addDestAndAddToRoute,
     TResult Function(_RemoveFromRoute value)? removeDestinationFromRoute,
@@ -1557,7 +1515,6 @@ class _$_EditRoute implements _EditRoute {
     required TResult Function(MapRoute route) addRoute,
     required TResult Function(int routeId, MapRoute editedRoute) editRoute,
     required TResult Function(int routeId) deleteRoute,
-    required TResult Function(int? routeId) selectRoute,
     required TResult Function(int destinationId, int routeId) addToRoute,
     required TResult Function(MapDestination newDestination, int routeId)
         addDestAndAddToRoute,
@@ -1582,7 +1539,6 @@ class _$_EditRoute implements _EditRoute {
     TResult? Function(MapRoute route)? addRoute,
     TResult? Function(int routeId, MapRoute editedRoute)? editRoute,
     TResult? Function(int routeId)? deleteRoute,
-    TResult? Function(int? routeId)? selectRoute,
     TResult? Function(int destinationId, int routeId)? addToRoute,
     TResult? Function(MapDestination newDestination, int routeId)?
         addDestAndAddToRoute,
@@ -1607,7 +1563,6 @@ class _$_EditRoute implements _EditRoute {
     TResult Function(MapRoute route)? addRoute,
     TResult Function(int routeId, MapRoute editedRoute)? editRoute,
     TResult Function(int routeId)? deleteRoute,
-    TResult Function(int? routeId)? selectRoute,
     TResult Function(int destinationId, int routeId)? addToRoute,
     TResult Function(MapDestination newDestination, int routeId)?
         addDestAndAddToRoute,
@@ -1635,7 +1590,6 @@ class _$_EditRoute implements _EditRoute {
     required TResult Function(_AddRoute value) addRoute,
     required TResult Function(_EditRoute value) editRoute,
     required TResult Function(_DeleteRoute value) deleteRoute,
-    required TResult Function(_SelectRoute value) selectRoute,
     required TResult Function(_AddToRoute value) addToRoute,
     required TResult Function(_AddDestAndAddToRoute value) addDestAndAddToRoute,
     required TResult Function(_RemoveFromRoute value)
@@ -1658,7 +1612,6 @@ class _$_EditRoute implements _EditRoute {
     TResult? Function(_AddRoute value)? addRoute,
     TResult? Function(_EditRoute value)? editRoute,
     TResult? Function(_DeleteRoute value)? deleteRoute,
-    TResult? Function(_SelectRoute value)? selectRoute,
     TResult? Function(_AddToRoute value)? addToRoute,
     TResult? Function(_AddDestAndAddToRoute value)? addDestAndAddToRoute,
     TResult? Function(_RemoveFromRoute value)? removeDestinationFromRoute,
@@ -1679,7 +1632,6 @@ class _$_EditRoute implements _EditRoute {
     TResult Function(_AddRoute value)? addRoute,
     TResult Function(_EditRoute value)? editRoute,
     TResult Function(_DeleteRoute value)? deleteRoute,
-    TResult Function(_SelectRoute value)? selectRoute,
     TResult Function(_AddToRoute value)? addToRoute,
     TResult Function(_AddDestAndAddToRoute value)? addDestAndAddToRoute,
     TResult Function(_RemoveFromRoute value)? removeDestinationFromRoute,
@@ -1779,7 +1731,6 @@ class _$_DeleteRoute implements _DeleteRoute {
     required TResult Function(MapRoute route) addRoute,
     required TResult Function(int routeId, MapRoute editedRoute) editRoute,
     required TResult Function(int routeId) deleteRoute,
-    required TResult Function(int? routeId) selectRoute,
     required TResult Function(int destinationId, int routeId) addToRoute,
     required TResult Function(MapDestination newDestination, int routeId)
         addDestAndAddToRoute,
@@ -1804,7 +1755,6 @@ class _$_DeleteRoute implements _DeleteRoute {
     TResult? Function(MapRoute route)? addRoute,
     TResult? Function(int routeId, MapRoute editedRoute)? editRoute,
     TResult? Function(int routeId)? deleteRoute,
-    TResult? Function(int? routeId)? selectRoute,
     TResult? Function(int destinationId, int routeId)? addToRoute,
     TResult? Function(MapDestination newDestination, int routeId)?
         addDestAndAddToRoute,
@@ -1829,7 +1779,6 @@ class _$_DeleteRoute implements _DeleteRoute {
     TResult Function(MapRoute route)? addRoute,
     TResult Function(int routeId, MapRoute editedRoute)? editRoute,
     TResult Function(int routeId)? deleteRoute,
-    TResult Function(int? routeId)? selectRoute,
     TResult Function(int destinationId, int routeId)? addToRoute,
     TResult Function(MapDestination newDestination, int routeId)?
         addDestAndAddToRoute,
@@ -1857,7 +1806,6 @@ class _$_DeleteRoute implements _DeleteRoute {
     required TResult Function(_AddRoute value) addRoute,
     required TResult Function(_EditRoute value) editRoute,
     required TResult Function(_DeleteRoute value) deleteRoute,
-    required TResult Function(_SelectRoute value) selectRoute,
     required TResult Function(_AddToRoute value) addToRoute,
     required TResult Function(_AddDestAndAddToRoute value) addDestAndAddToRoute,
     required TResult Function(_RemoveFromRoute value)
@@ -1880,7 +1828,6 @@ class _$_DeleteRoute implements _DeleteRoute {
     TResult? Function(_AddRoute value)? addRoute,
     TResult? Function(_EditRoute value)? editRoute,
     TResult? Function(_DeleteRoute value)? deleteRoute,
-    TResult? Function(_SelectRoute value)? selectRoute,
     TResult? Function(_AddToRoute value)? addToRoute,
     TResult? Function(_AddDestAndAddToRoute value)? addDestAndAddToRoute,
     TResult? Function(_RemoveFromRoute value)? removeDestinationFromRoute,
@@ -1901,7 +1848,6 @@ class _$_DeleteRoute implements _DeleteRoute {
     TResult Function(_AddRoute value)? addRoute,
     TResult Function(_EditRoute value)? editRoute,
     TResult Function(_DeleteRoute value)? deleteRoute,
-    TResult Function(_SelectRoute value)? selectRoute,
     TResult Function(_AddToRoute value)? addToRoute,
     TResult Function(_AddDestAndAddToRoute value)? addDestAndAddToRoute,
     TResult Function(_RemoveFromRoute value)? removeDestinationFromRoute,
@@ -1922,226 +1868,6 @@ abstract class _DeleteRoute implements MapDataEvent {
   int get routeId;
   @JsonKey(ignore: true)
   _$$_DeleteRouteCopyWith<_$_DeleteRoute> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$_SelectRouteCopyWith<$Res> {
-  factory _$$_SelectRouteCopyWith(
-          _$_SelectRoute value, $Res Function(_$_SelectRoute) then) =
-      __$$_SelectRouteCopyWithImpl<$Res>;
-  @useResult
-  $Res call({int? routeId});
-}
-
-/// @nodoc
-class __$$_SelectRouteCopyWithImpl<$Res>
-    extends _$MapDataEventCopyWithImpl<$Res, _$_SelectRoute>
-    implements _$$_SelectRouteCopyWith<$Res> {
-  __$$_SelectRouteCopyWithImpl(
-      _$_SelectRoute _value, $Res Function(_$_SelectRoute) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? routeId = freezed,
-  }) {
-    return _then(_$_SelectRoute(
-      freezed == routeId
-          ? _value.routeId
-          : routeId // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_SelectRoute implements _SelectRoute {
-  const _$_SelectRoute(this.routeId);
-
-  @override
-  final int? routeId;
-
-  @override
-  String toString() {
-    return 'MapDataEvent.selectRoute(routeId: $routeId)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_SelectRoute &&
-            (identical(other.routeId, routeId) || other.routeId == routeId));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, routeId);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_SelectRouteCopyWith<_$_SelectRoute> get copyWith =>
-      __$$_SelectRouteCopyWithImpl<_$_SelectRoute>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() load,
-    required TResult Function() save,
-    required TResult Function(MapDestination destination) addDestination,
-    required TResult Function(
-            int destinationId, MapDestination editedDestination)
-        editDestination,
-    required TResult Function(int destinationId) deleteDestination,
-    required TResult Function(MapRoute route) addRoute,
-    required TResult Function(int routeId, MapRoute editedRoute) editRoute,
-    required TResult Function(int routeId) deleteRoute,
-    required TResult Function(int? routeId) selectRoute,
-    required TResult Function(int destinationId, int routeId) addToRoute,
-    required TResult Function(MapDestination newDestination, int routeId)
-        addDestAndAddToRoute,
-    required TResult Function(int routeId, int destinationIndex)
-        removeDestinationFromRoute,
-    required TResult Function(int routeId, int destinationIndex, int toIndex)
-        moveDestinationInRoute,
-    required TResult Function(MapDestination newDestination) onDestinationAdd,
-  }) {
-    return selectRoute(routeId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? load,
-    TResult? Function()? save,
-    TResult? Function(MapDestination destination)? addDestination,
-    TResult? Function(int destinationId, MapDestination editedDestination)?
-        editDestination,
-    TResult? Function(int destinationId)? deleteDestination,
-    TResult? Function(MapRoute route)? addRoute,
-    TResult? Function(int routeId, MapRoute editedRoute)? editRoute,
-    TResult? Function(int routeId)? deleteRoute,
-    TResult? Function(int? routeId)? selectRoute,
-    TResult? Function(int destinationId, int routeId)? addToRoute,
-    TResult? Function(MapDestination newDestination, int routeId)?
-        addDestAndAddToRoute,
-    TResult? Function(int routeId, int destinationIndex)?
-        removeDestinationFromRoute,
-    TResult? Function(int routeId, int destinationIndex, int toIndex)?
-        moveDestinationInRoute,
-    TResult? Function(MapDestination newDestination)? onDestinationAdd,
-  }) {
-    return selectRoute?.call(routeId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? load,
-    TResult Function()? save,
-    TResult Function(MapDestination destination)? addDestination,
-    TResult Function(int destinationId, MapDestination editedDestination)?
-        editDestination,
-    TResult Function(int destinationId)? deleteDestination,
-    TResult Function(MapRoute route)? addRoute,
-    TResult Function(int routeId, MapRoute editedRoute)? editRoute,
-    TResult Function(int routeId)? deleteRoute,
-    TResult Function(int? routeId)? selectRoute,
-    TResult Function(int destinationId, int routeId)? addToRoute,
-    TResult Function(MapDestination newDestination, int routeId)?
-        addDestAndAddToRoute,
-    TResult Function(int routeId, int destinationIndex)?
-        removeDestinationFromRoute,
-    TResult Function(int routeId, int destinationIndex, int toIndex)?
-        moveDestinationInRoute,
-    TResult Function(MapDestination newDestination)? onDestinationAdd,
-    required TResult orElse(),
-  }) {
-    if (selectRoute != null) {
-      return selectRoute(routeId);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Load value) load,
-    required TResult Function(_Save value) save,
-    required TResult Function(_AddDestination value) addDestination,
-    required TResult Function(_EditDestination value) editDestination,
-    required TResult Function(_DeleteDestination value) deleteDestination,
-    required TResult Function(_AddRoute value) addRoute,
-    required TResult Function(_EditRoute value) editRoute,
-    required TResult Function(_DeleteRoute value) deleteRoute,
-    required TResult Function(_SelectRoute value) selectRoute,
-    required TResult Function(_AddToRoute value) addToRoute,
-    required TResult Function(_AddDestAndAddToRoute value) addDestAndAddToRoute,
-    required TResult Function(_RemoveFromRoute value)
-        removeDestinationFromRoute,
-    required TResult Function(_MoveDestinationInRoute value)
-        moveDestinationInRoute,
-    required TResult Function(_OnDestinationAdd value) onDestinationAdd,
-  }) {
-    return selectRoute(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Load value)? load,
-    TResult? Function(_Save value)? save,
-    TResult? Function(_AddDestination value)? addDestination,
-    TResult? Function(_EditDestination value)? editDestination,
-    TResult? Function(_DeleteDestination value)? deleteDestination,
-    TResult? Function(_AddRoute value)? addRoute,
-    TResult? Function(_EditRoute value)? editRoute,
-    TResult? Function(_DeleteRoute value)? deleteRoute,
-    TResult? Function(_SelectRoute value)? selectRoute,
-    TResult? Function(_AddToRoute value)? addToRoute,
-    TResult? Function(_AddDestAndAddToRoute value)? addDestAndAddToRoute,
-    TResult? Function(_RemoveFromRoute value)? removeDestinationFromRoute,
-    TResult? Function(_MoveDestinationInRoute value)? moveDestinationInRoute,
-    TResult? Function(_OnDestinationAdd value)? onDestinationAdd,
-  }) {
-    return selectRoute?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Load value)? load,
-    TResult Function(_Save value)? save,
-    TResult Function(_AddDestination value)? addDestination,
-    TResult Function(_EditDestination value)? editDestination,
-    TResult Function(_DeleteDestination value)? deleteDestination,
-    TResult Function(_AddRoute value)? addRoute,
-    TResult Function(_EditRoute value)? editRoute,
-    TResult Function(_DeleteRoute value)? deleteRoute,
-    TResult Function(_SelectRoute value)? selectRoute,
-    TResult Function(_AddToRoute value)? addToRoute,
-    TResult Function(_AddDestAndAddToRoute value)? addDestAndAddToRoute,
-    TResult Function(_RemoveFromRoute value)? removeDestinationFromRoute,
-    TResult Function(_MoveDestinationInRoute value)? moveDestinationInRoute,
-    TResult Function(_OnDestinationAdd value)? onDestinationAdd,
-    required TResult orElse(),
-  }) {
-    if (selectRoute != null) {
-      return selectRoute(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _SelectRoute implements MapDataEvent {
-  const factory _SelectRoute(final int? routeId) = _$_SelectRoute;
-
-  int? get routeId;
-  @JsonKey(ignore: true)
-  _$$_SelectRouteCopyWith<_$_SelectRoute> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -2228,7 +1954,6 @@ class _$_AddToRoute implements _AddToRoute {
     required TResult Function(MapRoute route) addRoute,
     required TResult Function(int routeId, MapRoute editedRoute) editRoute,
     required TResult Function(int routeId) deleteRoute,
-    required TResult Function(int? routeId) selectRoute,
     required TResult Function(int destinationId, int routeId) addToRoute,
     required TResult Function(MapDestination newDestination, int routeId)
         addDestAndAddToRoute,
@@ -2253,7 +1978,6 @@ class _$_AddToRoute implements _AddToRoute {
     TResult? Function(MapRoute route)? addRoute,
     TResult? Function(int routeId, MapRoute editedRoute)? editRoute,
     TResult? Function(int routeId)? deleteRoute,
-    TResult? Function(int? routeId)? selectRoute,
     TResult? Function(int destinationId, int routeId)? addToRoute,
     TResult? Function(MapDestination newDestination, int routeId)?
         addDestAndAddToRoute,
@@ -2278,7 +2002,6 @@ class _$_AddToRoute implements _AddToRoute {
     TResult Function(MapRoute route)? addRoute,
     TResult Function(int routeId, MapRoute editedRoute)? editRoute,
     TResult Function(int routeId)? deleteRoute,
-    TResult Function(int? routeId)? selectRoute,
     TResult Function(int destinationId, int routeId)? addToRoute,
     TResult Function(MapDestination newDestination, int routeId)?
         addDestAndAddToRoute,
@@ -2306,7 +2029,6 @@ class _$_AddToRoute implements _AddToRoute {
     required TResult Function(_AddRoute value) addRoute,
     required TResult Function(_EditRoute value) editRoute,
     required TResult Function(_DeleteRoute value) deleteRoute,
-    required TResult Function(_SelectRoute value) selectRoute,
     required TResult Function(_AddToRoute value) addToRoute,
     required TResult Function(_AddDestAndAddToRoute value) addDestAndAddToRoute,
     required TResult Function(_RemoveFromRoute value)
@@ -2329,7 +2051,6 @@ class _$_AddToRoute implements _AddToRoute {
     TResult? Function(_AddRoute value)? addRoute,
     TResult? Function(_EditRoute value)? editRoute,
     TResult? Function(_DeleteRoute value)? deleteRoute,
-    TResult? Function(_SelectRoute value)? selectRoute,
     TResult? Function(_AddToRoute value)? addToRoute,
     TResult? Function(_AddDestAndAddToRoute value)? addDestAndAddToRoute,
     TResult? Function(_RemoveFromRoute value)? removeDestinationFromRoute,
@@ -2350,7 +2071,6 @@ class _$_AddToRoute implements _AddToRoute {
     TResult Function(_AddRoute value)? addRoute,
     TResult Function(_EditRoute value)? editRoute,
     TResult Function(_DeleteRoute value)? deleteRoute,
-    TResult Function(_SelectRoute value)? selectRoute,
     TResult Function(_AddToRoute value)? addToRoute,
     TResult Function(_AddDestAndAddToRoute value)? addDestAndAddToRoute,
     TResult Function(_RemoveFromRoute value)? removeDestinationFromRoute,
@@ -2470,7 +2190,6 @@ class _$_AddDestAndAddToRoute implements _AddDestAndAddToRoute {
     required TResult Function(MapRoute route) addRoute,
     required TResult Function(int routeId, MapRoute editedRoute) editRoute,
     required TResult Function(int routeId) deleteRoute,
-    required TResult Function(int? routeId) selectRoute,
     required TResult Function(int destinationId, int routeId) addToRoute,
     required TResult Function(MapDestination newDestination, int routeId)
         addDestAndAddToRoute,
@@ -2495,7 +2214,6 @@ class _$_AddDestAndAddToRoute implements _AddDestAndAddToRoute {
     TResult? Function(MapRoute route)? addRoute,
     TResult? Function(int routeId, MapRoute editedRoute)? editRoute,
     TResult? Function(int routeId)? deleteRoute,
-    TResult? Function(int? routeId)? selectRoute,
     TResult? Function(int destinationId, int routeId)? addToRoute,
     TResult? Function(MapDestination newDestination, int routeId)?
         addDestAndAddToRoute,
@@ -2520,7 +2238,6 @@ class _$_AddDestAndAddToRoute implements _AddDestAndAddToRoute {
     TResult Function(MapRoute route)? addRoute,
     TResult Function(int routeId, MapRoute editedRoute)? editRoute,
     TResult Function(int routeId)? deleteRoute,
-    TResult Function(int? routeId)? selectRoute,
     TResult Function(int destinationId, int routeId)? addToRoute,
     TResult Function(MapDestination newDestination, int routeId)?
         addDestAndAddToRoute,
@@ -2548,7 +2265,6 @@ class _$_AddDestAndAddToRoute implements _AddDestAndAddToRoute {
     required TResult Function(_AddRoute value) addRoute,
     required TResult Function(_EditRoute value) editRoute,
     required TResult Function(_DeleteRoute value) deleteRoute,
-    required TResult Function(_SelectRoute value) selectRoute,
     required TResult Function(_AddToRoute value) addToRoute,
     required TResult Function(_AddDestAndAddToRoute value) addDestAndAddToRoute,
     required TResult Function(_RemoveFromRoute value)
@@ -2571,7 +2287,6 @@ class _$_AddDestAndAddToRoute implements _AddDestAndAddToRoute {
     TResult? Function(_AddRoute value)? addRoute,
     TResult? Function(_EditRoute value)? editRoute,
     TResult? Function(_DeleteRoute value)? deleteRoute,
-    TResult? Function(_SelectRoute value)? selectRoute,
     TResult? Function(_AddToRoute value)? addToRoute,
     TResult? Function(_AddDestAndAddToRoute value)? addDestAndAddToRoute,
     TResult? Function(_RemoveFromRoute value)? removeDestinationFromRoute,
@@ -2592,7 +2307,6 @@ class _$_AddDestAndAddToRoute implements _AddDestAndAddToRoute {
     TResult Function(_AddRoute value)? addRoute,
     TResult Function(_EditRoute value)? editRoute,
     TResult Function(_DeleteRoute value)? deleteRoute,
-    TResult Function(_SelectRoute value)? selectRoute,
     TResult Function(_AddToRoute value)? addToRoute,
     TResult Function(_AddDestAndAddToRoute value)? addDestAndAddToRoute,
     TResult Function(_RemoveFromRoute value)? removeDestinationFromRoute,
@@ -2702,7 +2416,6 @@ class _$_RemoveFromRoute implements _RemoveFromRoute {
     required TResult Function(MapRoute route) addRoute,
     required TResult Function(int routeId, MapRoute editedRoute) editRoute,
     required TResult Function(int routeId) deleteRoute,
-    required TResult Function(int? routeId) selectRoute,
     required TResult Function(int destinationId, int routeId) addToRoute,
     required TResult Function(MapDestination newDestination, int routeId)
         addDestAndAddToRoute,
@@ -2727,7 +2440,6 @@ class _$_RemoveFromRoute implements _RemoveFromRoute {
     TResult? Function(MapRoute route)? addRoute,
     TResult? Function(int routeId, MapRoute editedRoute)? editRoute,
     TResult? Function(int routeId)? deleteRoute,
-    TResult? Function(int? routeId)? selectRoute,
     TResult? Function(int destinationId, int routeId)? addToRoute,
     TResult? Function(MapDestination newDestination, int routeId)?
         addDestAndAddToRoute,
@@ -2752,7 +2464,6 @@ class _$_RemoveFromRoute implements _RemoveFromRoute {
     TResult Function(MapRoute route)? addRoute,
     TResult Function(int routeId, MapRoute editedRoute)? editRoute,
     TResult Function(int routeId)? deleteRoute,
-    TResult Function(int? routeId)? selectRoute,
     TResult Function(int destinationId, int routeId)? addToRoute,
     TResult Function(MapDestination newDestination, int routeId)?
         addDestAndAddToRoute,
@@ -2780,7 +2491,6 @@ class _$_RemoveFromRoute implements _RemoveFromRoute {
     required TResult Function(_AddRoute value) addRoute,
     required TResult Function(_EditRoute value) editRoute,
     required TResult Function(_DeleteRoute value) deleteRoute,
-    required TResult Function(_SelectRoute value) selectRoute,
     required TResult Function(_AddToRoute value) addToRoute,
     required TResult Function(_AddDestAndAddToRoute value) addDestAndAddToRoute,
     required TResult Function(_RemoveFromRoute value)
@@ -2803,7 +2513,6 @@ class _$_RemoveFromRoute implements _RemoveFromRoute {
     TResult? Function(_AddRoute value)? addRoute,
     TResult? Function(_EditRoute value)? editRoute,
     TResult? Function(_DeleteRoute value)? deleteRoute,
-    TResult? Function(_SelectRoute value)? selectRoute,
     TResult? Function(_AddToRoute value)? addToRoute,
     TResult? Function(_AddDestAndAddToRoute value)? addDestAndAddToRoute,
     TResult? Function(_RemoveFromRoute value)? removeDestinationFromRoute,
@@ -2824,7 +2533,6 @@ class _$_RemoveFromRoute implements _RemoveFromRoute {
     TResult Function(_AddRoute value)? addRoute,
     TResult Function(_EditRoute value)? editRoute,
     TResult Function(_DeleteRoute value)? deleteRoute,
-    TResult Function(_SelectRoute value)? selectRoute,
     TResult Function(_AddToRoute value)? addToRoute,
     TResult Function(_AddDestAndAddToRoute value)? addDestAndAddToRoute,
     TResult Function(_RemoveFromRoute value)? removeDestinationFromRoute,
@@ -2944,7 +2652,6 @@ class _$_MoveDestinationInRoute implements _MoveDestinationInRoute {
     required TResult Function(MapRoute route) addRoute,
     required TResult Function(int routeId, MapRoute editedRoute) editRoute,
     required TResult Function(int routeId) deleteRoute,
-    required TResult Function(int? routeId) selectRoute,
     required TResult Function(int destinationId, int routeId) addToRoute,
     required TResult Function(MapDestination newDestination, int routeId)
         addDestAndAddToRoute,
@@ -2969,7 +2676,6 @@ class _$_MoveDestinationInRoute implements _MoveDestinationInRoute {
     TResult? Function(MapRoute route)? addRoute,
     TResult? Function(int routeId, MapRoute editedRoute)? editRoute,
     TResult? Function(int routeId)? deleteRoute,
-    TResult? Function(int? routeId)? selectRoute,
     TResult? Function(int destinationId, int routeId)? addToRoute,
     TResult? Function(MapDestination newDestination, int routeId)?
         addDestAndAddToRoute,
@@ -2994,7 +2700,6 @@ class _$_MoveDestinationInRoute implements _MoveDestinationInRoute {
     TResult Function(MapRoute route)? addRoute,
     TResult Function(int routeId, MapRoute editedRoute)? editRoute,
     TResult Function(int routeId)? deleteRoute,
-    TResult Function(int? routeId)? selectRoute,
     TResult Function(int destinationId, int routeId)? addToRoute,
     TResult Function(MapDestination newDestination, int routeId)?
         addDestAndAddToRoute,
@@ -3022,7 +2727,6 @@ class _$_MoveDestinationInRoute implements _MoveDestinationInRoute {
     required TResult Function(_AddRoute value) addRoute,
     required TResult Function(_EditRoute value) editRoute,
     required TResult Function(_DeleteRoute value) deleteRoute,
-    required TResult Function(_SelectRoute value) selectRoute,
     required TResult Function(_AddToRoute value) addToRoute,
     required TResult Function(_AddDestAndAddToRoute value) addDestAndAddToRoute,
     required TResult Function(_RemoveFromRoute value)
@@ -3045,7 +2749,6 @@ class _$_MoveDestinationInRoute implements _MoveDestinationInRoute {
     TResult? Function(_AddRoute value)? addRoute,
     TResult? Function(_EditRoute value)? editRoute,
     TResult? Function(_DeleteRoute value)? deleteRoute,
-    TResult? Function(_SelectRoute value)? selectRoute,
     TResult? Function(_AddToRoute value)? addToRoute,
     TResult? Function(_AddDestAndAddToRoute value)? addDestAndAddToRoute,
     TResult? Function(_RemoveFromRoute value)? removeDestinationFromRoute,
@@ -3066,7 +2769,6 @@ class _$_MoveDestinationInRoute implements _MoveDestinationInRoute {
     TResult Function(_AddRoute value)? addRoute,
     TResult Function(_EditRoute value)? editRoute,
     TResult Function(_DeleteRoute value)? deleteRoute,
-    TResult Function(_SelectRoute value)? selectRoute,
     TResult Function(_AddToRoute value)? addToRoute,
     TResult Function(_AddDestAndAddToRoute value)? addDestAndAddToRoute,
     TResult Function(_RemoveFromRoute value)? removeDestinationFromRoute,
@@ -3179,7 +2881,6 @@ class _$_OnDestinationAdd implements _OnDestinationAdd {
     required TResult Function(MapRoute route) addRoute,
     required TResult Function(int routeId, MapRoute editedRoute) editRoute,
     required TResult Function(int routeId) deleteRoute,
-    required TResult Function(int? routeId) selectRoute,
     required TResult Function(int destinationId, int routeId) addToRoute,
     required TResult Function(MapDestination newDestination, int routeId)
         addDestAndAddToRoute,
@@ -3204,7 +2905,6 @@ class _$_OnDestinationAdd implements _OnDestinationAdd {
     TResult? Function(MapRoute route)? addRoute,
     TResult? Function(int routeId, MapRoute editedRoute)? editRoute,
     TResult? Function(int routeId)? deleteRoute,
-    TResult? Function(int? routeId)? selectRoute,
     TResult? Function(int destinationId, int routeId)? addToRoute,
     TResult? Function(MapDestination newDestination, int routeId)?
         addDestAndAddToRoute,
@@ -3229,7 +2929,6 @@ class _$_OnDestinationAdd implements _OnDestinationAdd {
     TResult Function(MapRoute route)? addRoute,
     TResult Function(int routeId, MapRoute editedRoute)? editRoute,
     TResult Function(int routeId)? deleteRoute,
-    TResult Function(int? routeId)? selectRoute,
     TResult Function(int destinationId, int routeId)? addToRoute,
     TResult Function(MapDestination newDestination, int routeId)?
         addDestAndAddToRoute,
@@ -3257,7 +2956,6 @@ class _$_OnDestinationAdd implements _OnDestinationAdd {
     required TResult Function(_AddRoute value) addRoute,
     required TResult Function(_EditRoute value) editRoute,
     required TResult Function(_DeleteRoute value) deleteRoute,
-    required TResult Function(_SelectRoute value) selectRoute,
     required TResult Function(_AddToRoute value) addToRoute,
     required TResult Function(_AddDestAndAddToRoute value) addDestAndAddToRoute,
     required TResult Function(_RemoveFromRoute value)
@@ -3280,7 +2978,6 @@ class _$_OnDestinationAdd implements _OnDestinationAdd {
     TResult? Function(_AddRoute value)? addRoute,
     TResult? Function(_EditRoute value)? editRoute,
     TResult? Function(_DeleteRoute value)? deleteRoute,
-    TResult? Function(_SelectRoute value)? selectRoute,
     TResult? Function(_AddToRoute value)? addToRoute,
     TResult? Function(_AddDestAndAddToRoute value)? addDestAndAddToRoute,
     TResult? Function(_RemoveFromRoute value)? removeDestinationFromRoute,
@@ -3301,7 +2998,6 @@ class _$_OnDestinationAdd implements _OnDestinationAdd {
     TResult Function(_AddRoute value)? addRoute,
     TResult Function(_EditRoute value)? editRoute,
     TResult Function(_DeleteRoute value)? deleteRoute,
-    TResult Function(_SelectRoute value)? selectRoute,
     TResult Function(_AddToRoute value)? addToRoute,
     TResult Function(_AddDestAndAddToRoute value)? addDestAndAddToRoute,
     TResult Function(_RemoveFromRoute value)? removeDestinationFromRoute,
