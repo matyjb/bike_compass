@@ -1,10 +1,8 @@
-import 'dart:async';
-
 import 'package:bike_compass/data/models/map_destination.dart';
 import 'package:bike_compass/logic/map_data_bloc/map_data_bloc.dart';
 import 'package:bike_compass/logic/app_map_cubit/app_map_cubit.dart';
+import 'package:bike_compass/presentation/screens/home/map/compass_map.dart';
 import 'package:bike_compass/presentation/screens/home/toolbar/get_name_dialog.dart';
-import 'package:bike_compass/presentation/screens/home/map/maps_with_markers.dart';
 import 'package:bike_compass/presentation/screens/home/route_destinations_list/map_points_manager.dart';
 import 'package:bike_compass/presentation/screens/home/toolbar/toolbar.dart';
 import 'package:flutter/material.dart';
@@ -35,8 +33,8 @@ class _HomeScreenLayoutState extends State<HomeScreenLayout>
     with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<int> _animation;
-  final Completer<GoogleMapController> _controller =
-      Completer<GoogleMapController>();
+  GoogleMapController? _controller;
+  LatLngBounds? _bounds;
 
   @override
   void initState() {
@@ -49,7 +47,7 @@ class _HomeScreenLayoutState extends State<HomeScreenLayout>
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<AppMapCubit, AppMapState>(
+    return BlocConsumer<AppMapCubit, AppMapState>(
       listener: (context, state) {
         if (state.expandedMap) {
           _animationController.reverse();
@@ -57,35 +55,47 @@ class _HomeScreenLayoutState extends State<HomeScreenLayout>
           _animationController.forward();
         }
       },
-      child: Column(
+      builder: (context, appMapState) => Column(
         children: [
           Flexible(
             flex: _animation.value,
-            child: MapsWithMarkers(
-              followMode: true,
-              onMapCreated: _controller.complete,
+            child: GMap(
+              appMapState: appMapState,
+              controller: _controller,
+              onGetMapBounds: (bounds) => setState(() {
+                _bounds = bounds;
+              }),
+              onMapCreated: (controller) => setState(() {
+                _controller = controller;
+              }),
             ),
           ),
           SizedBox(
             height: 50,
             child: Toolbar(
-              onTapAdd: () async {
-                LatLngBounds pos = await _controller.future
-                    .then((value) => value.getVisibleRegion());
-                LatLng center = LatLng(
-                  (pos.northeast.latitude + pos.southwest.latitude) / 2,
-                  (pos.northeast.longitude + pos.southwest.longitude) / 2,
-                );
-                // ignore: use_build_context_synchronously
-                GetNameDialog.showStandardDialog(context).then((String? value) {
-                  if (value != null) {
-                    final bloc = context.read<MapDataBloc>();
-                    bloc.add(MapDataEvent.onDestinationAdd(
-                      MapDestination(name: value, location: center),
-                    ));
-                  }
-                });
-              },
+              onTapAdd: _controller == null
+                  ? null
+                  : () {
+                      if (_bounds == null) return;
+                      LatLng center = LatLng(
+                        (_bounds!.northeast.latitude +
+                                _bounds!.southwest.latitude) /
+                            2,
+                        (_bounds!.northeast.longitude +
+                                _bounds!.southwest.longitude) /
+                            2,
+                      );
+                      // ignore: use_build_context_synchronously
+                      GetNameDialog.showStandardDialog(context)
+                          .then((String? value) {
+                        if (value != null) {
+                          final bloc = context.read<MapDataBloc>();
+                          bloc.add(MapDataEvent.onDestinationAdd(
+                            MapDestination(name: value, location: center),
+                          ));
+                        }
+                      });
+                    },
             ),
           ),
           Flexible(

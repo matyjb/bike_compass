@@ -45,6 +45,7 @@ dependencies:
       ref: V4
       path: packages/location
   path_provider: ^2.0.15
+  stream_transform: ^2.1.0
 
 dev_dependencies:
   bloc_test: ^9.1.3
