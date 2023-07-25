@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:bike_compass/logic/compass_bloc/compass_bloc.dart';
+import 'package:bike_compass/logic/position_bloc/compass_bloc/compass_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

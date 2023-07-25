@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:bike_compass/logic/location_permission_cubit/location_permission_cubit.dart';
+import 'package:bike_compass/logic/position_bloc/location_permission_cubit/location_permission_cubit.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:location/location.dart';

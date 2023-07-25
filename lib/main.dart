@@ -1,10 +1,7 @@
 import 'package:bike_compass/data/providers/hive.dart';
 import 'package:bike_compass/logic/app_map_cubit/app_map_cubit.dart';
-import 'package:bike_compass/logic/compass_bloc/compass_bloc.dart';
-import 'package:bike_compass/logic/location_bloc/location_bloc.dart';
-import 'package:bike_compass/logic/location_permission_cubit/location_permission_cubit.dart';
 import 'package:bike_compass/logic/map_data_bloc/map_data_bloc.dart';
-import 'package:bike_compass/logic/position_bloc/position_bloc.dart';
+import 'package:bike_compass/logic/position_bloc/position_bloc_provider.dart';
 import 'package:bike_compass/router.dart';
 import 'package:bike_compass/theme_data.dart';
 import 'package:flutter/material.dart';
@@ -15,54 +12,28 @@ const String appName = "bike_compass";
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await HiveBoxProvider.init();
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
-class MyApp extends StatefulWidget {
-  const MyApp({super.key});
-
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
+class MyApp extends StatelessWidget {
   final _appRouter = AppRouter();
-  final _locPermissionCubit = LocationPermissionCubit()..requestPermission();
   final _appMapCubit = AppMapCubit();
-  late final LocationBloc _locationBloc;
-  late final CompassBloc _compassBloc;
 
-  _MyAppState() {
-    _locationBloc = LocationBloc(locationPermissionCubit: _locPermissionCubit);
-    _compassBloc = CompassBloc(locationPermissionCubit: _locPermissionCubit);
-  }
+  MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider.value(
-      value: _locPermissionCubit,
-      child: MultiBlocProvider(
-        providers: [
-          BlocProvider.value(
-            value: _locationBloc,
-          ),
-          BlocProvider.value(
-            value: _compassBloc,
-          ),
-          BlocProvider.value(
-            value: _appMapCubit,
-          ),
-          BlocProvider(
-            create: (_) => PositionBloc(
-              locationBloc: _locationBloc,
-              compassBloc: _compassBloc,
-            ),
-          ),
-          BlocProvider(
-            create: (_) =>
-                MapDataBloc(_appMapCubit)..add(const MapDataEvent.load()),
-          ),
-        ],
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider.value(
+          value: _appMapCubit,
+        ),
+        BlocProvider(
+          create: (_) =>
+              MapDataBloc(_appMapCubit)..add(const MapDataEvent.load()),
+        ),
+      ],
+      child: PositionBlocProvider(
         child: MaterialApp(
           title: appName,
           theme: lightTheme,
@@ -72,13 +43,5 @@ class _MyAppState extends State<MyApp> {
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    _locPermissionCubit.close();
-    _locationBloc.close();
-    _compassBloc.close();
-    super.dispose();
   }
 }

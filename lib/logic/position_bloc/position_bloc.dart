@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:bike_compass/logic/compass_bloc/compass_bloc.dart';
-import 'package:bike_compass/logic/location_bloc/location_bloc.dart';
+import 'package:bike_compass/logic/position_bloc/compass_bloc/compass_bloc.dart';
+import 'package:bike_compass/logic/position_bloc/location_bloc/location_bloc.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
