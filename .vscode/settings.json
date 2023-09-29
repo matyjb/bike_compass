@@ -8,5 +8,9 @@
     "**/Thumbs.db": true,
     "**/*.freezed.dart": true,
     "**/*.g.dart": true
+  },
+  "dart.lineLength": 150,
+  "[dart]": {
+    "editor.rulers": [150]
   }
 }

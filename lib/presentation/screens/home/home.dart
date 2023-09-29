@@ -1,6 +1,8 @@
 import 'package:bike_compass/data/models/map_destination.dart';
+import 'package:bike_compass/data/models/visible_region.dart';
 import 'package:bike_compass/logic/map_data_bloc/map_data_bloc.dart';
 import 'package:bike_compass/logic/app_map_cubit/app_map_cubit.dart';
+import 'package:bike_compass/presentation/screens/home/map/blips_painter.dart';
 import 'package:bike_compass/presentation/screens/home/map/compass_map.dart';
 import 'package:bike_compass/presentation/screens/home/toolbar/get_name_dialog.dart';
 import 'package:bike_compass/presentation/screens/home/route_destinations_list/map_points_manager.dart';
@@ -34,7 +36,7 @@ class _HomeScreenLayoutState extends State<HomeScreenLayout>
   late AnimationController _animationController;
   late Animation<int> _animation;
   GoogleMapController? _controller;
-  LatLngBounds? _bounds;
+  VisibleRegion? _bounds;
 
   @override
   void initState() {
@@ -59,15 +61,19 @@ class _HomeScreenLayoutState extends State<HomeScreenLayout>
         children: [
           Flexible(
             flex: _animation.value,
-            child: GMap(
-              appMapState: appMapState,
-              controller: _controller,
-              onGetMapBounds: (bounds) => setState(() {
-                _bounds = bounds;
-              }),
-              onMapCreated: (controller) => setState(() {
-                _controller = controller;
-              }),
+            child: BlipsPaint(
+              points: const [],
+              visibleBounds: _bounds,
+              child: GMap(
+                appMapState: appMapState,
+                controller: _controller,
+                onGetMapBounds: (bounds) => setState(() {
+                  _bounds = bounds;
+                }),
+                onMapCreated: (controller) => setState(() {
+                  _controller = controller;
+                }),
+              ),
             ),
           ),
           SizedBox(
@@ -77,14 +83,7 @@ class _HomeScreenLayoutState extends State<HomeScreenLayout>
                   ? null
                   : () {
                       if (_bounds == null) return;
-                      LatLng center = LatLng(
-                        (_bounds!.northeast.latitude +
-                                _bounds!.southwest.latitude) /
-                            2,
-                        (_bounds!.northeast.longitude +
-                                _bounds!.southwest.longitude) /
-                            2,
-                      );
+                      LatLng center = _bounds!.center;
                       // ignore: use_build_context_synchronously
                       GetNameDialog.showStandardDialog(context)
                           .then((String? value) {

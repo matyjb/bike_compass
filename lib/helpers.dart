@@ -1,7 +1,10 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:stream_transform/stream_transform.dart';
 import 'dart:math' show pi, sin, cos, atan2, sqrt;
+
+import 'package:vector_math/vector_math.dart';
 
 int getNewKey<T>(Map<int, T> m) {
   if (m.isNotEmpty) {
@@ -32,6 +35,10 @@ double degreesToRadians(double degrees) {
 
 const earthRadiusM = 6371000;
 
+extension OffsetExtension on Offset {
+  Vector2 toVec2() => Vector2(dx, dy);
+}
+
 extension LatLngExtension on LatLng {
   /// Calculates distance to [other] and returns in meters.
   double distanceTo(LatLng other) {
@@ -49,6 +56,20 @@ extension LatLngExtension on LatLng {
     double c = 2 * atan2(sqrt(a), sqrt(1 - a));
     return earthRadiusM * c;
   }
+
+  LatLng operator +(LatLng other) {
+    return LatLng(latitude + other.latitude, longitude + other.longitude);
+  }
+
+  LatLng operator -(LatLng other) {
+    return LatLng(latitude - other.latitude, longitude - other.longitude);
+  }
+
+  LatLng operator /(double x) {
+    return LatLng(latitude / x, longitude / x);
+  }
+
+  Vector2 toVec2() => Vector2(latitude, longitude);
 }
 
 EventTransformer<E> debounce<E>(Duration duration) {

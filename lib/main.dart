@@ -4,6 +4,7 @@ import 'package:bike_compass/logic/map_data_bloc/map_data_bloc.dart';
 import 'package:bike_compass/logic/position_bloc/position_bloc_provider.dart';
 import 'package:bike_compass/router.dart';
 import 'package:bike_compass/theme_data.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -12,7 +13,13 @@ const String appName = "bike_compass";
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await HiveBoxProvider.init();
-  runApp(MyApp());
+  try {
+    runApp(MyApp());
+  } catch (e) {
+    if (kDebugMode) {
+      print("F! $e");
+    }
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -29,8 +36,7 @@ class MyApp extends StatelessWidget {
           value: _appMapCubit,
         ),
         BlocProvider(
-          create: (_) =>
-              MapDataBloc(_appMapCubit)..add(const MapDataEvent.load()),
+          create: (_) => MapDataBloc(_appMapCubit)..add(const MapDataEvent.load()),
         ),
       ],
       child: PositionBlocProvider(
